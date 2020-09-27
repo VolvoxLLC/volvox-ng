@@ -1,0 +1,20 @@
+﻿{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "volvox": {
+    "components": {
+      "confirmDialog": {
+        "title": "Confirm Action",
+        "message": "Do you really want to execute this action?"
+      }
+    },
+    "commons": {
+      "buttons": {
+        "save": "Save",
+        "deny": "Deny",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div #loggerElement
+     *ngFor="let log of logs"
+     [class]="log.config.className"
+     [@slide]="log.state"
+     class="logger-element">
+
+    <div class="content">
+        <mat-icon [svgIcon]="log.icon" class="icon"></mat-icon>
+        <div [innerHTML]="log.message" class="message"></div>
+    </div>
+
+    <div *ngIf="log.config.action || !log.config.hideDismiss" class="actions">
+        <button (click)="slideOut(log.id)" *ngIf="!log.config.hideDismiss" class="dismiss" mat-button>
+            {{'Dismiss' | uppercase}}
+        </button>
+        <button (click)="callAction(log)"
+                *ngIf="log.config.action && log.config.action.label && log.config.action.callback"
+                class="action-btn"
+                mat-button>{{log.config.action.label | uppercase}}</button>
+    </div>
+
+</div>

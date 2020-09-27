@@ -1,0 +1,50 @@
+@import "vars";
+
+:host {
+  display: block;
+}
+
+.alert {
+  position: relative;
+  padding: 15px;
+  border-radius: 4px;
+  width: 100%;
+  display: table;
+  color: $dark;
+  border: 1px solid $dark;
+  border-left-width: 5px;
+
+  .icon {
+    @include centerVerticalFlex();
+    margin-bottom: 10px;
+
+    mat-icon {
+      margin-right: 10px;
+    }
+  }
+
+  &-danger {
+    background: rgba($danger, .1);
+    border-color: $danger;
+  }
+
+  &-warning {
+    background: rgba($warning, .1);
+    border-color: $warning;
+  }
+
+  &-info {
+    background: rgba($info, .1);
+    border-color: $info;
+  }
+
+  &-primary {
+    background: rgba($apollo, .1);
+    border-color: $apollo;
+  }
+
+  &-success {
+    background: rgba($success, .1);
+    border-color: $success;
+  }
+}

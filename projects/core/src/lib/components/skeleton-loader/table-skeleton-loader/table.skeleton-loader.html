@@ -1,0 +1,12 @@
+<table [dataSource]="items" mat-table>
+    <ng-container *ngFor="let column of columns; let i = index;" [matColumnDef]="'column-' + i">
+        <th *matHeaderCellDef mat-header-cell>
+            <apollo-skeleton [skeleton]="column[0]"></apollo-skeleton>
+        </th>
+        <td *matCellDef="let row" mat-cell>
+            <apollo-skeleton [skeleton]="column[1]"></apollo-skeleton>
+        </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns;sticky:true" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" class="row-hover" mat-row></tr>
+</table>

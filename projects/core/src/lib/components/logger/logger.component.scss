@@ -1,0 +1,111 @@
+@import "vars";
+
+:host {
+  @include size(100%, 100%);
+  @include move(0, 0);
+  @include flex(true, false);
+  position: fixed;
+  z-index: 10000;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.logger-element {
+  padding: 10px 15px;
+  margin: 10px 10px 0;
+  width: 350px;
+  background: $white;
+  border-radius: 4px;
+  box-shadow: 3px 3px 10px rgba($black, .3);
+  border-left: 5px solid;
+  pointer-events: all;
+  max-height: 400px;
+
+  .content {
+    display: flex;
+    width: 100%;
+
+    .icon {
+      flex-shrink: 0;
+      margin-right: 10px;
+    }
+
+    .message {
+      @include maxLines();
+      flex: 1 auto;
+      font-size: 15px;
+      margin-top: 3px;
+      color: $dark;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .dismiss {
+    color: $dark;
+  }
+
+  button:not(:first-child) {
+    margin-left: 10px;
+  }
+
+  &.snackbar-error {
+    border-color: $danger;
+    color: $danger;
+
+    button.action-btn {
+      background-color: darken($danger, 15%);
+      color: $white;
+    }
+  }
+
+  &.snackbar-success {
+    border-color: $success;
+    color: $success;
+
+    button.action-btn {
+      background-color: darken($success, 15%);
+      color: $white;
+    }
+  }
+
+  &.snackbar-warning {
+    border-color: $warning;
+    color: $warning;
+
+    button.action-btn {
+      background-color: darken($warning, 10%);
+      color: $white;
+    }
+  }
+
+  &.snackbar-info {
+    border-color: $info;
+    color: $info;
+
+    button.action-btn {
+      background-color: darken($info, 15%);
+      color: $white;
+    }
+  }
+
+  &.snackbar-default {
+    border-color: $dark;
+    color: $dark;
+
+    button.action-btn {
+      background-color: $dark;
+      color: $white;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logger-element {
+    width: 100%;
+  }
+}
