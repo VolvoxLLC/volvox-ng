@@ -1,4 +1,4 @@
-@import "vars";
+@import "./../../styles/vars";
 
 :host {
   display: block;
@@ -10,8 +10,8 @@
   border-radius: 4px;
   width: 100%;
   display: table;
-  color: $dark;
-  border: 1px solid $dark;
+  color: #222222;
+  border: 1px solid #222222;
   border-left-width: 5px;
 
   .icon {

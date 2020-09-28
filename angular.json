@@ -8,15 +8,24 @@
       "root": "projects/core",
       "sourceRoot": "projects/core/src",
       "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "projects/core/src/lib/styles"
-              ]
-            },
             "tsConfig": "projects/core/tsconfig.lib.json",
             "project": "projects/core/ng-package.json"
           },
