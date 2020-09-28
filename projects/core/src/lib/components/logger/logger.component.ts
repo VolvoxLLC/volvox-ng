@@ -1,9 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ILogger, ILoggerConfig } from '../../models/logger-config.model';
+import { BaseComponent } from "../base/base.component";
 
 @Component({
-    selector: 'apollo-logger',
+    selector: 'volvox-logger',
     templateUrl: './logger.component.html',
     styleUrls: ['./logger.component.scss'],
     animations: [
@@ -16,17 +17,21 @@ import { ILogger, ILoggerConfig } from '../../models/logger-config.model';
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoggerComponent implements OnInit {
+export class LoggerComponent extends BaseComponent implements OnInit {
 
     @ViewChildren('loggerElement')
     public elements: QueryList<any>;
 
     public logs: ILogger[] = [];
 
-    constructor(private readonly myChangeDetectorRef: ChangeDetectorRef) {
+    constructor(
+        private readonly myChangeDetectorRef: ChangeDetectorRef
+    ) {
+        super();
     }
 
     public ngOnInit(): void {
+        super.ngOnInit();
     }
 
     // Shows snackbar

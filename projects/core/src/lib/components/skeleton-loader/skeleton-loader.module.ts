@@ -10,8 +10,8 @@ import { SkeletonComponent } from './skeleton/skeleton.component';
     ],
     exports: [
         BaseSkeletonLoader,
-        SkeletonComponent
-    ]
+        SkeletonComponent,
+    ],
 })
 export class SkeletonLoaderModule {
 }

@@ -16,6 +16,7 @@ export const i18n: II18n = {
             buttons: {
                 save: 'volvox.commons.buttons.save',
                 deny: 'volvox.commons.buttons.deny',
+                dismiss: 'volvox.commons.buttons.dismiss',
                 confirm: 'volvox.commons.buttons.confirm',
                 cancel: 'volvox.commons.buttons.cancel',
             },

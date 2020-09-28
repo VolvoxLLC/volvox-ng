@@ -11,6 +11,7 @@
             buttons: {
                 save: string;
                 deny: string;
+                dismiss: string;
                 confirm: string;
                 cancel: string;
             }

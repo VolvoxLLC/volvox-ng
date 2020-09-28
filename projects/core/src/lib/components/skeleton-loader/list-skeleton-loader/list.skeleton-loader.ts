@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef } from '
 import { BaseSkeletonLoader } from '../base.skeleton-loader';
 
 @Component({
-    selector: 'apollo-list-skeleton-loader',
+    selector: 'volvox-list-skeleton-loader',
     templateUrl: './list.skeleton-loader.html',
     styleUrls: ['./list.skeleton-loader.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

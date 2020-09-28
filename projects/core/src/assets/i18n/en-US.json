@@ -12,6 +12,7 @@
       "buttons": {
         "save": "Save",
         "deny": "Deny",
+        "dismiss": "Dismiss",
         "confirm": "Confirm",
         "cancel": "Cancel"
       }

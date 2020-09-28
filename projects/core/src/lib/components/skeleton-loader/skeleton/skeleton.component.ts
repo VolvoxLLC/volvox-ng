@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@
 import { Skeleton } from '../../../models/skeleton.model';
 
 @Component({
-    selector: 'apollo-skeleton',
+    selector: 'volvox-skeleton',
     templateUrl: './skeleton.component.html',
     styleUrls: ['./skeleton.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -15,7 +15,7 @@
   border-left-width: 5px;
 
   .icon {
-    @include centerVerticalFlex();
+    @include flex(false, false, true);
     margin-bottom: 10px;
 
     mat-icon {
@@ -39,8 +39,8 @@
   }
 
   &-primary {
-    background: rgba($apollo, .1);
-    border-color: $apollo;
+    background: rgba($primary, .1);
+    border-color: $primary;
   }
 
   &-success {

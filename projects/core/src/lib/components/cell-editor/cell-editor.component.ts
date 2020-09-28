@@ -15,7 +15,7 @@ import { Subject } from 'rxjs';
 import { TableItem } from '../../models/table-item.model';
 
 @Component({
-    selector: 'apollo-cell-editor',
+    selector: 'volvox-cell-editor',
     templateUrl: './cell-editor.component.html',
     styleUrls: ['./cell-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

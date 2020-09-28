@@ -1,0 +1,71 @@
+﻿// Colors
+$black: #000000;
+$black-87-opacity: rgba($black, .87);
+$black-60-opacity: rgba($black, .6);
+
+// White
+$white: #ffffff;
+$white-87-opacity: rgba($white, .87);
+
+$volvox: #66CC33;
+$primary: $volvox;
+$twitch: #6441A4;
+$youtube: #FF0000;
+$discord: #738ADB;
+$danger: #f44336;
+$success: #3AD15D;
+$warning: #ffaa00;
+$lime: #66CC33;
+$info: #008eff;
+
+// Fonts
+$fontRoboto: 'Roboto', sans-serif;
+$fontRobotoCondensed: 'Roboto Condensed', sans-serif;
+
+// Mixins / Functions
+@mixin move($top, $left) {
+  top: $top;
+  left: $left;
+}
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin circle($size) {
+  @include size($size, $size);
+  border-radius: 50%;
+}
+
+@mixin maxLines($lines: 3, $ellipsis: true) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+  max-lines: $lines;
+
+  @if ($ellipsis) {
+    text-overflow: ellipsis;
+  }
+}
+
+@mixin flex($column: false, $wrap: false, $alignCenter: false, $justifyCenter: false) {
+  display: flex;
+
+  @if ($column) {
+    flex-direction: column;
+  }
+
+  @if ($wrap) {
+    flex-wrap: wrap;
+  }
+
+  @if ($alignCenter) {
+    align-items: center;
+  }
+
+  @if ($justifyCenter) {
+    justify-content: center;
+  }
+}

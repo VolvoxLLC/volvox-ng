@@ -3,14 +3,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ConfirmDialogData, ConfirmDialogResult } from '../../models/confirm-dialog-data.model';
+import { ConfirmDialogData, ConfirmDialogResult } from '../../models/confirm-dialog.model';
 import { TableItem } from '../../models/table-item.model';
 import { PromiseReject, PromiseResolve } from '../../models/utils.model';
 import { ConfirmDialog } from '../confirm-dialog/confirm.dialog';
 import { BaseComponent } from './base.component';
 
 @Component({
-    selector: 'apollo-cell-editor-base',
+    selector: 'volvox-cell-editor-base',
     template: ``,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

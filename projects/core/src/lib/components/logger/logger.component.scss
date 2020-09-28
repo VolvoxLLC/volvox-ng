@@ -35,7 +35,7 @@
       flex: 1 auto;
       font-size: 15px;
       margin-top: 3px;
-      color: $dark;
+      color: #222222;
     }
   }
 
@@ -46,7 +46,7 @@
   }
 
   .dismiss {
-    color: $dark;
+    color: #222222;
   }
 
   button:not(:first-child) {
@@ -94,11 +94,11 @@
   }
 
   &.snackbar-default {
-    border-color: $dark;
-    color: $dark;
+    border-color: #222222;
+    color: #222222;
 
     button.action-btn {
-      background-color: $dark;
+      background-color: #222222;
       color: $white;
     }
   }

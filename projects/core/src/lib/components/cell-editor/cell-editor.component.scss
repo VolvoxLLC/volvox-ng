@@ -11,11 +11,11 @@
 
   &.focused {
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba($apollo, .8);
+    box-shadow: 0 0 0 0.2rem rgba(#1387DF, .8);
   }
 
   &.edited {
-    color: $apollo;
+    color: #1387DF;
     font-weight: bold;
   }
 }
@@ -23,7 +23,7 @@
 ::ng-deep .editable-cell {
   position: relative;
 
-  &:first-child apollo-cell-editor:not(.focused) {
+  &:first-child volvox-cell-editor:not(.focused) {
     padding-left: 24px;
   }
 }

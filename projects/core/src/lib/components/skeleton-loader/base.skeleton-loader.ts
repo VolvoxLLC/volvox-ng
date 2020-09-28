@@ -1,7 +1,7 @@
 ﻿import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'apollo-skeleton-loader',
+    selector: 'volvox-skeleton-loader',
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

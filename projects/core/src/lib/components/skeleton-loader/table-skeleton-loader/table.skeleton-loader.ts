@@ -3,7 +3,7 @@ import { Skeleton } from '../../../models/skeleton.model';
 import { BaseSkeletonLoader } from '../base.skeleton-loader';
 
 @Component({
-    selector: 'apollo-table-skeleton-loader',
+    selector: 'volvox-table-skeleton-loader',
     templateUrl: './table.skeleton-loader.html',
     styleUrls: ['./table.skeleton-loader.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
