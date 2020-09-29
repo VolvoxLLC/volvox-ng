@@ -18,7 +18,7 @@ export interface IItem {
 }
 
 export function isNullOrEmpty(str: string): boolean {
-    return !!str?.trim();
+    return !str?.trim();
 }
 
 export function isZeroOrHigher(num: number | string): boolean {
