@@ -7,6 +7,7 @@ import { VarDirective } from './var.directive';
     imports: [
         CommonModule,
     ],
+    exports: [VarDirective],
 })
 export class VarDirectiveModule {
 }

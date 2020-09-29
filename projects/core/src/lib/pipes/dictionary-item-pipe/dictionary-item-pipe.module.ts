@@ -8,8 +8,8 @@ import { DictionaryItemPipe } from './dictionary-item.pipe';
         CommonModule,
     ],
     exports: [
-        DictionaryItemPipe
-    ]
+        DictionaryItemPipe,
+    ],
 })
 export class DictionaryItemPipeModule {
 }

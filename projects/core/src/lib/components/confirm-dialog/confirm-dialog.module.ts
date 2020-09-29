@@ -13,7 +13,7 @@ import { ConfirmDialog } from './confirm.dialog';
         MatButtonModule,
         TranslateModule,
     ],
-    exports: [],
+    exports: [ConfirmDialog],
 })
 export class ConfirmDialogModule {
 }
