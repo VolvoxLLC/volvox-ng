@@ -10,5 +10,5 @@ import { VolvoxDatePipe } from './volvox-date.pipe';
     exports: [VolvoxDatePipe],
     providers: [DatePipe],
 })
-export class ApolloDatePipeModule {
+export class VolvoxDatePipeModule {
 }
