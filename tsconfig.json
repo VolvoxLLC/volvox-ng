@@ -20,6 +20,7 @@
         "dist/core/core",
         "dist/core"
       ]
-    }
+    },
+    "resolveJsonModule": true
   }
 }
