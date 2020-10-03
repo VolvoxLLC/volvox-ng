@@ -15,29 +15,6 @@ export class CellEditorDirective implements OnInit {
     ) {
     }
 
-    private static invokeElementMethod(element: any, methodName: string, args?: any[]): void {
-        (element as any)[methodName].apply(element, args);
-    }
-
-    private static executeMove(e: KeyboardEvent, targetCell: Element): void {
-        e.preventDefault();
-        // If datepicker is opened, remove cdk-overlay from dom
-        const element: Element = e.composedPath()[0] as Element;
-        if (element.className.indexOf('td-input-date') > -1) {
-            const cdkOverlayContainer: Element = document.getElementsByClassName('cdk-overlay-container')[0];
-            const cdkBackdrop: Element = cdkOverlayContainer.getElementsByClassName('cdk-overlay-backdrop')[0];
-            if (cdkBackdrop != null) {
-                CellEditorDirective.invokeElementMethod(cdkBackdrop, 'click');
-            }
-            cdkOverlayContainer.innerHTML = '';
-        }
-
-        CellEditorDirective.invokeElementMethod(e.target, 'blur');
-        if (targetCell != null) {
-            CellEditorDirective.invokeElementMethod(targetCell, 'click');
-        }
-    }
-
     public ngOnInit(): void {
         this.myElementRef.nativeElement.classList.add('editable-cell');
     }
@@ -73,6 +50,29 @@ export class CellEditorDirective implements OnInit {
         e.preventDefault();
         this.myCellEditorService.updateEditingCell(this.cellEditor);
         this.cellEditor.cellClick.emit();
+    }
+
+    private static invokeElementMethod(element: any, methodName: string, args?: any[]): void {
+        (element as any)[methodName].apply(element, args);
+    }
+
+    private static executeMove(e: KeyboardEvent, targetCell: Element): void {
+        e.preventDefault();
+        // If datepicker is opened, remove cdk-overlay from dom
+        const element: Element = e.composedPath()[0] as Element;
+        if (element.className.indexOf('td-input-date') > -1) {
+            const cdkOverlayContainer: Element = document.getElementsByClassName('cdk-overlay-container')[0];
+            const cdkBackdrop: Element = cdkOverlayContainer.getElementsByClassName('cdk-overlay-backdrop')[0];
+            if (cdkBackdrop != null) {
+                CellEditorDirective.invokeElementMethod(cdkBackdrop, 'click');
+            }
+            cdkOverlayContainer.innerHTML = '';
+        }
+
+        CellEditorDirective.invokeElementMethod(e.target, 'blur');
+        if (targetCell != null) {
+            CellEditorDirective.invokeElementMethod(targetCell, 'click');
+        }
     }
 
     private moveToNextRowCell(e: KeyboardEvent): void {

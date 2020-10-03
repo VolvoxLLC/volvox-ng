@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
-    selector: 'apollo-alert-widget',
+    selector: 'volvox-alert-widget',
     templateUrl: './alert.widget.html',
     styleUrls: ['./alert.widget.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

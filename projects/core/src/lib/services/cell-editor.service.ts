@@ -26,8 +26,8 @@ export class CellEditorService {
             this.documentEditListener = (e: MouseEvent): void => {
                 e.preventDefault();
                 const target: HTMLElement = e.target as HTMLElement;
-                const apolloCellEditor: HTMLElement = target.closest('apollo-cell-editor');
-                if (this.cellEditor && apolloCellEditor !== this.cellEditor.element && !target.classList.contains('cell-output')) {
+                const volvoxCellEditor: HTMLElement = target.closest('volvox-cell-editor');
+                if (this.cellEditor && volvoxCellEditor !== this.cellEditor.element && !target.classList.contains('cell-output')) {
                     this.documentEditListener = null;
                     this.cellEditor.toOutput(true);
                     this.cellEditor = null;
