@@ -11,7 +11,11 @@
     "lib": [
       "dom",
       "es2018"
-    ]
+    ],
+    "typeRoots": [
+      "src/typings.d.ts"
+    ],
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,

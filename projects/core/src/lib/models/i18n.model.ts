@@ -1,4 +1,12 @@
-﻿export interface II18n {
+﻿export enum I18nSupported {
+    enUS = 'en-US',
+}
+
+export function mapI18n(data: any): II18n {
+    return data as II18n;
+}
+
+export interface II18n {
     version: string;
     volvox: {
         components: {

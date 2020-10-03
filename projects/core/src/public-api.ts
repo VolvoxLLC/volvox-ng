@@ -9,6 +9,7 @@ export * from './lib/services/api.service';
 export * from './lib/services/cell-editor.service';
 export * from './lib/services/logger.service';
 export * from './lib/services/volvox-socket.service';
+export * from './lib/services/volvox-translate.service';
 
 /**
  * Guards
@@ -18,6 +19,8 @@ export * from './lib/services/guards/can-deactivate.guard';
 /**
  * Components
  */
+export * from './lib/volvox.module';
+
 export * from './lib/components/confirm-dialog/confirm-dialog.module';
 export * from './lib/components/confirm-dialog/confirm.dialog';
 
