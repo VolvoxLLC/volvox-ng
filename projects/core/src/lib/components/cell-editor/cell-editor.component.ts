@@ -6,13 +6,14 @@ import {
     ElementRef,
     EventEmitter,
     Input,
-    OnDestroy,
     OnInit,
     Output
 } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { ICellEditorState } from '../../models/states/cell-editor.state.model';
 import { TableItem } from '../../models/table-item.model';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
     selector: 'volvox-cell-editor',
@@ -20,9 +21,7 @@ import { TableItem } from '../../models/table-item.model';
     styleUrls: ['./cell-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CellEditorComponent implements OnInit, OnDestroy {
-
-    public mode: 'input' | 'output' = 'output';
+export class CellEditorComponent extends BaseComponent<ICellEditorState> implements OnInit {
 
     @Input()
     public key: string;
@@ -45,14 +44,19 @@ export class CellEditorComponent implements OnInit, OnDestroy {
     @Output()
     private cellCancel: EventEmitter<any> = new EventEmitter<any>();
 
-    @ContentChild(MatSelect) private select: MatSelect;
-    private ngUnsubscribe: Subject<any>;
+    @ContentChild(MatSelect)
+    private select: MatSelect;
+
     private oldValue: any;
 
     constructor(
         private readonly myElementRef: ElementRef<HTMLElement>,
         private readonly myChangeDetectorRef: ChangeDetectorRef,
     ) {
+        super();
+        this.store$ = new BehaviorSubject<ICellEditorState>({
+            mode: 'output',
+        });
     }
 
     public get element(): HTMLElement {
@@ -60,19 +64,13 @@ export class CellEditorComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.ngUnsubscribe = new Subject<any>();
         this.oldValue = this.value;
         this.rowItem.rowOriginalData = this.rowItem;
     }
 
-    public ngOnDestroy(): void {
-        this.ngUnsubscribe.next();
-        this.ngUnsubscribe.complete();
-    }
-
     public toOutput(save?: boolean): void {
-        if (this.mode !== 'output') {
-            this.mode = 'output';
+        if (this.snapshot.mode !== 'output') {
+            this.updateState({...this.snapshot, mode: 'output'});
             this.element.classList.remove('focused');
 
             if (save) {
@@ -102,7 +100,7 @@ export class CellEditorComponent implements OnInit, OnDestroy {
     }
 
     public toInput(): void {
-        this.mode = 'input';
+        this.updateState({...this.snapshot, mode: 'input'});
         this.element.classList.add('focused');
         setTimeout((): void => {
             const comp: any = this.element.querySelector('.cell-input');

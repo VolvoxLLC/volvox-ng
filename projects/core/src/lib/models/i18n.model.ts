@@ -14,7 +14,24 @@ export interface II18n {
                 title: string;
                 message: string;
             }
-        }
+        },
+        pipes: {
+            timeSince: {
+                prefix: string,
+                suffix: string,
+                seconds: string,
+                minute: string,
+                minutes: string,
+                hour: string,
+                hours: string,
+                day: string,
+                days: string,
+                month: string,
+                months: string,
+                year: string,
+                years: string,
+            },
+        },
         commons: {
             buttons: {
                 save: string;

@@ -1,8 +1,6 @@
-﻿export class TableItem<T extends any> {
-    public rowChangedRowKeys: string[];
-    public rowOriginalData: TableItem<T>;
+﻿export interface ITableItem<T> {
+    rowChangedRowKeys: string[];
+    rowOriginalData: T;
 }
 
-export function mapTable<T>(data: TableItem<any>[]): T[] {
-    return data as any as T[];
-}
+export type TableItem<T> = ITableItem<T> & T;

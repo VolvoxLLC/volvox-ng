@@ -1,2 +1,4 @@
-<ng-content *ngIf="mode === 'input'" select=".cell-input"></ng-content>
-<ng-content *ngIf="mode === 'output'" select=".cell-output"></ng-content>
+<ng-container *ngIf="store$ | async; let state">
+  <ng-content *ngIf="state.mode === 'input'" select=".cell-input"></ng-content>
+  <ng-content *ngIf="state.mode === 'output'" select=".cell-output"></ng-content>
+</ng-container>
