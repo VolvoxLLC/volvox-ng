@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ContentChild,
     ElementRef,
@@ -51,7 +50,6 @@ export class CellEditorComponent extends BaseComponent<ICellEditorState> impleme
 
     constructor(
         private readonly myElementRef: ElementRef<HTMLElement>,
-        private readonly myChangeDetectorRef: ChangeDetectorRef,
     ) {
         super();
         this.store$ = new BehaviorSubject<ICellEditorState>({
@@ -95,7 +93,6 @@ export class CellEditorComponent extends BaseComponent<ICellEditorState> impleme
                 this.cellCancel.emit();
             }
             this.valueChange.next(this.value);
-            this.myChangeDetectorRef.markForCheck();
         }
     }
 
@@ -111,7 +108,6 @@ export class CellEditorComponent extends BaseComponent<ICellEditorState> impleme
                 this.select.open();
             }
         });
-        this.myChangeDetectorRef.markForCheck();
     }
 
 }

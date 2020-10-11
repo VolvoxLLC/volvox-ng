@@ -1,32 +1,39 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import * as enUS from '../../assets/i18n/volvox-en-US.json';
-import { Dictionary } from '../classes/dictionary';
-import { I18nSupported, II18n, mapI18n } from '../models/i18n.model';
+import { Dictionary, IDictionaryItem } from '../classes/dictionary';
+import { I18nSupported, II18n } from '../models/i18n.model';
+import { ApiService } from './api.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class VolvoxTranslateService {
 
+    private readonly cache: Dictionary<I18nSupported, II18n>;
+
     constructor(
         private readonly myTranslateService: TranslateService,
+        private readonly myApiService: ApiService,
     ) {
+        this.cache = new Dictionary<I18nSupported, II18n>();
     }
 
-    public get supportedLanguages(): Dictionary<I18nSupported, II18n> {
-        return new Dictionary<I18nSupported, II18n>(
-            {
-                key: I18nSupported.enUS,
-                value: mapI18n(enUS),
-            }
-        );
+    public async merge(lang: I18nSupported): Promise<II18n> {
+        if (this.cache.contains(lang)) {
+            const cacheItem: IDictionaryItem<I18nSupported, II18n> = this.cache.get(lang);
+            this.updateTranslation(lang, cacheItem.value);
+            return cacheItem.value;
+        }
+
+        const data: II18n = await this.myApiService.get<II18n>(`/assets/i18n/volvox-${ lang }.json`).toPromise()
+        this.cache.add(lang, data);
+        return this.updateTranslation(lang, data).toPromise();
     }
 
-    public useLang(lang: I18nSupported): Observable<II18n> {
-        this.myTranslateService.setTranslation(lang.toString(), this.supportedLanguages.get(lang).value, true);
-        return this.myTranslateService.use(lang.toString());
+    private updateTranslation(lang: I18nSupported, data: II18n): Observable<II18n> {
+        this.myTranslateService.setTranslation(lang, data, true);
+        return this.myTranslateService.use(lang);
     }
 
 }

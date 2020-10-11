@@ -7,6 +7,7 @@ import { CellEditorComponent } from '../components/cell-editor/cell-editor.compo
 export class CellEditorService {
 
     public cellEditor: CellEditorComponent;
+
     private documentEditListener: (e: MouseEvent) => void;
 
     constructor() {

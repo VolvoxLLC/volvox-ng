@@ -39,6 +39,7 @@
 - Added socket service
 - Added VolvoxTranslateService
 
-## Version 1.2.0
+## Version 1.2.1 (2020-10-11)
 - Updated live updated timeSince pipe
 - Added behaviour subject to use with state
+- Updated translation
