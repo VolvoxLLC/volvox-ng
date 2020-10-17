@@ -1,16 +1,19 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ILoggerState } from '../../models/facades/logger-state.model';
 import { ILogger, ILoggerConfig } from '../../models/logger-config.model';
-import { BaseComponent } from "../base/base.component";
+import { LoggerFacade } from '../../services/facades/logger.facade';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
     selector: 'volvox-logger',
     templateUrl: './logger.component.html',
-    styleUrls: ['./logger.component.scss'],
+    styleUrls: [ './logger.component.scss' ],
     animations: [
         trigger('slide', [
-            state('enter', style({transform: 'translateX(0)'})),
-            state('leave', style({transform: 'translateX(120%)'})),
+            state('enter', style({ transform: 'translateX(0)' })),
+            state('leave', style({ transform: 'translateX(120%)' })),
             transition('leave => enter', animate(200)),
             transition('enter => leave', animate(200)),
         ]),
@@ -22,21 +25,23 @@ export class LoggerComponent extends BaseComponent implements OnInit {
     @ViewChildren('loggerElement')
     public elements: QueryList<any>;
 
-    public logs: ILogger[] = [];
+    public loggerState$: BehaviorSubject<ILoggerState>;
 
     constructor(
-        private readonly myChangeDetectorRef: ChangeDetectorRef
+        private myLoggerFacade: LoggerFacade,
     ) {
         super();
     }
 
     public ngOnInit(): void {
         super.ngOnInit();
+        this.loggerState$ = this.myLoggerFacade.store$;
     }
 
     // Shows snackbar
     public fadeIn(message: string, type: string, config: ILoggerConfig): number {
-        const i = this.logs.length;
+        const logs: ILogger[] = [ ...this.myLoggerFacade.snapshot.logs ];
+        const i = logs.length;
         let icon: string;
 
         switch (type) {
@@ -57,21 +62,22 @@ export class LoggerComponent extends BaseComponent implements OnInit {
                 break;
         }
 
-        this.logs.push({id: i, message, config, state: 'enter', icon});
-
-        this.myChangeDetectorRef.markForCheck();
+        logs.push({ id: i, message, config, state: 'enter', icon });
+        this.myLoggerFacade.updateLogs(logs);
         return i;
     }
 
     public slideOut(i: number): void {
-        if (this.logs.length > 0) {
-            const item = this.logs.find((e: ILogger): boolean => e.id === i);
+        let logs: ILogger[] = [ ...this.myLoggerFacade.snapshot.logs ];
+        if (logs.length > 0) {
+            const item = logs.find((e: ILogger): boolean => e.id === i);
             item.state = 'leave';
-            this.myChangeDetectorRef.markForCheck();
+            this.myLoggerFacade.updateLogs(logs);
             setTimeout((): void => {
-                const index = this.logs.findIndex((log: ILogger): boolean => log.id === item.id);
-                this.logs.splice(index, 1);
-                this.myChangeDetectorRef.markForCheck();
+                logs = [ ...this.myLoggerFacade.snapshot.logs ];
+                const index = logs.findIndex((log: ILogger): boolean => log.id === item.id);
+                logs.splice(index, 1);
+                this.myLoggerFacade.updateLogs(logs);
             }, 200);
         }
     }
