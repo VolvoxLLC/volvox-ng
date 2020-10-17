@@ -39,6 +39,7 @@ export interface II18n {
                 dismiss: string;
                 confirm: string;
                 cancel: string;
+                delete: string;
             }
         };
     };

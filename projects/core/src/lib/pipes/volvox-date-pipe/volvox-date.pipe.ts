@@ -4,7 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { i18n } from '../../classes/i18n';
-import { VolvoxTranslateService } from '../../services/volvox-translate.service';
 
 @Pipe({
     name: 'volvoxDate',
@@ -17,7 +16,6 @@ export class VolvoxDatePipe implements PipeTransform {
     constructor(
         private readonly myDatePipe: DatePipe,
         private readonly myTranslateService: TranslateService,
-        private readonly myVolvoxTranslateService: VolvoxTranslateService,
     ) {
         this.store$ = new BehaviorSubject<number>(null);
         this.updateTemplates();

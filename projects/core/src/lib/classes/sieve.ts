@@ -31,16 +31,8 @@ export interface ISieveOptions {
 }
 
 export class Sieve {
-    /**
-     * Options
-     * @private sieve options
-     */
-    private readonly options: ISieveOptions;
 
-    /**
-     * base url
-     * @private base url of queried page
-     */
+    private readonly options: ISieveOptions;
     private readonly baseUrl: string;
 
     /**
@@ -133,14 +125,18 @@ export class Sieve {
 
         if (this.filters?.length) {
             query += '&';
+
             for (const filter of this.filters) {
-                query += `${ filter.key }${ filter.operator }${ filter.value },`;
+                if (filter.value) {
+                    query += `${ filter.key }${ filter.operator }${ filter.value },`;
+                }
             }
             query = query.slice(0, -1);
         }
 
         if (this.sorts?.length) {
             query += '&';
+
             for (const sort of this.sorts) {
                 query += `${ sort.desc ? '-' : '+' }${ sort.name },`;
             }

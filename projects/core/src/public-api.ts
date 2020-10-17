@@ -55,6 +55,7 @@ export * from './lib/models/skeleton.model';
 export * from './lib/models/table-item.model';
 export * from './lib/models/utils.model';
 
+export * from './lib/models/states/cell-editor.state.model';
 export * from './lib/models/states/cell-editor-base.state.model';
 
 /**
