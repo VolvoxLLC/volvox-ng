@@ -1,12 +1,11 @@
 ﻿import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ConfirmDialogData, ConfirmDialogResult } from '../../models/confirm-dialog.model';
-import { ICellEditorBaseState } from '../../models/states/cell-editor-base.state.model';
 import { TableItem } from '../../models/table-item.model';
 import { PromiseReject, PromiseResolve } from '../../models/utils.model';
+import { CellEditorBaseFacade } from '../../services/facades/cell-editor-base.facade';
 import { ConfirmDialog } from '../confirm-dialog/confirm.dialog';
 import { BaseComponent } from './base.component';
 
@@ -15,37 +14,35 @@ import { BaseComponent } from './base.component';
     template: ``,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CellEditorBaseComponent<T, T1> extends BaseComponent<ICellEditorBaseState<T1>>
-    implements OnInit, CanDeactivate<CellEditorBaseComponent<T, T1>> {
+export class CellEditorBaseComponent<Model> extends BaseComponent implements OnInit, CanDeactivate<CellEditorBaseComponent<Model>> {
 
     constructor(
+        public readonly myCellEditorFacade: CellEditorBaseFacade<Model>,
         public readonly myMatDialog: MatDialog,
     ) {
         super();
-        this.store$ = new BehaviorSubject<ICellEditorBaseState<T1>>({
-            dataSource: new MatTableDataSource<TableItem<T1>>(),
-            displayedColumns: [],
-        });
     }
 
-    public get changedRows(): TableItem<T1>[] {
-        return this.snapshot.dataSource?.data?.filter((c: TableItem<T1>): boolean => c.rowChangedRowKeys?.length > 0);
+    public get changedRows(): TableItem<Model>[] {
+        return this.myCellEditorFacade.snapshot.dataSource?.data?.filter((c: TableItem<Model>): boolean => c.rowChangedRowKeys?.length > 0);
     }
 
     public ngOnInit(): void {
         super.ngOnInit();
     }
 
-    public canDeactivate(component: CellEditorBaseComponent<T, T1>, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot,
+    public canDeactivate(component: CellEditorBaseComponent<Model>, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot,
                          nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         if (!this.changedRows.length) {
             return true;
         }
+
         return new Promise((resolve: PromiseResolve<boolean>, reject: PromiseReject): void => {
-            this.myMatDialog.open(ConfirmDialog, {
-                width: '600px',
-                data: new ConfirmDialogData('Discard changes?', 'Do you really want to discard your changes?'),
-            })
+            this.myMatDialog
+                .open(ConfirmDialog, {
+                    width: '600px',
+                    data: new ConfirmDialogData('Discard changes?', 'Do you really want to discard your changes?'),
+                })
                 .afterClosed()
                 .subscribe((result: ConfirmDialogResult): void => {
                     if (result === ConfirmDialogResult.confirmed) {

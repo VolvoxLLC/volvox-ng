@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
     ElementRef,
@@ -9,18 +10,18 @@ import {
     Output
 } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
-import { BehaviorSubject } from 'rxjs';
-import { ICellEditorState } from '../../models/states/cell-editor.state.model';
 import { TableItem } from '../../models/table-item.model';
 import { BaseComponent } from '../base/base.component';
 
 @Component({
     selector: 'volvox-cell-editor',
     templateUrl: './cell-editor.component.html',
-    styleUrls: ['./cell-editor.component.scss'],
+    styleUrls: [ './cell-editor.component.scss' ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CellEditorComponent extends BaseComponent<ICellEditorState> implements OnInit {
+export class CellEditorComponent extends BaseComponent implements OnInit {
+
+    public mode: 'input' | 'output' = 'output';
 
     @Input()
     public key: string;
@@ -49,12 +50,10 @@ export class CellEditorComponent extends BaseComponent<ICellEditorState> impleme
     private oldValue: any;
 
     constructor(
+        private readonly myChangeDetectorRef: ChangeDetectorRef,
         private readonly myElementRef: ElementRef<HTMLElement>,
     ) {
         super();
-        this.store$ = new BehaviorSubject<ICellEditorState>({
-            mode: 'output',
-        });
     }
 
     public get element(): HTMLElement {
@@ -67,8 +66,9 @@ export class CellEditorComponent extends BaseComponent<ICellEditorState> impleme
     }
 
     public toOutput(save?: boolean): void {
-        if (this.snapshot.mode !== 'output') {
-            this.updateState({...this.snapshot, mode: 'output'});
+        if (this.mode !== 'output') {
+            this.mode = 'output';
+            this.myChangeDetectorRef.markForCheck();
             this.element.classList.remove('focused');
 
             if (save) {
@@ -97,7 +97,8 @@ export class CellEditorComponent extends BaseComponent<ICellEditorState> impleme
     }
 
     public toInput(): void {
-        this.updateState({...this.snapshot, mode: 'input'});
+        this.mode = 'input';
+        this.myChangeDetectorRef.markForCheck();
         this.element.classList.add('focused');
         setTimeout((): void => {
             const comp: any = this.element.querySelector('.cell-input');

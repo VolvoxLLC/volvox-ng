@@ -12,6 +12,12 @@ export * from './lib/services/volvox-socket.service';
 export * from './lib/services/volvox-translate.service';
 
 /**
+ * Facades
+ */
+export * from './lib/services/facades/logger.facade';
+export * from './lib/services/facades/cell-editor-base.facade';
+
+/**
  * Guards
  */
 export * from './lib/services/guards/can-deactivate.guard';
@@ -55,8 +61,8 @@ export * from './lib/models/skeleton.model';
 export * from './lib/models/table-item.model';
 export * from './lib/models/utils.model';
 
-export * from './lib/models/states/cell-editor.state.model';
-export * from './lib/models/states/cell-editor-base.state.model';
+export * from './lib/models/facades/logger-state.model';
+export * from './lib/models/facades/cell-editor-base-state.model';
 
 /**
  * Classes
