@@ -124,23 +124,29 @@ export class Sieve {
         }
 
         if (this.filters?.length) {
-            query += '&';
+            let filterQuery: string = '&filters=';
 
             for (const filter of this.filters) {
                 if (filter.value) {
-                    query += `${ filter.key }${ filter.operator }${ filter.value },`;
+                    filterQuery += `${ filter.key }${ filter.operator }${ filter.value },`;
                 }
             }
-            query = query.slice(0, -1);
+
+            if (filterQuery !== '&filters=') {
+                filterQuery = filterQuery.slice(0, -1);
+                query += filterQuery;
+            }
         }
 
         if (this.sorts?.length) {
-            query += '&';
+            let sortQuery: string = '&sorts=';
 
             for (const sort of this.sorts) {
-                query += `${ sort.desc ? '-' : '+' }${ sort.name },`;
+                sortQuery += `${ sort.desc ? '-' : '+' }${ sort.name },`;
             }
-            query = query.slice(0, -1);
+
+            sortQuery = sortQuery.slice(0, -1);
+            query += sortQuery;
         }
 
         if (query.startsWith('&')) {
