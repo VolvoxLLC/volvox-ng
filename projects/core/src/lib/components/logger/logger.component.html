@@ -1,22 +1,26 @@
-<div #loggerElement
-     *ngFor="let log of logs"
-     [class]="log.config.className"
-     [@slide]="log.state"
-     class="logger-element">
+<ng-container *ngIf="loggerState$ | async as state">
+    <div #loggerElement
+         *ngFor="let log of state.logs"
+         [@slide]="log.state"
+         [class.none]="!log.state"
+         [class]="log.config.className"
+         class="logger-element">
 
-    <div class="content">
-        <mat-icon [svgIcon]="log.icon" class="icon"></mat-icon>
-        <div [innerHTML]="log.message" class="message"></div>
+        <div class="content">
+            <mat-icon [svgIcon]="log.icon" class="icon"></mat-icon>
+            <div [innerHTML]="log.message | translate" class="message"></div>
+        </div>
+
+        <div *ngIf="log.config.action || !log.config.hideDismiss" class="actions">
+            <button (click)="slideOut(log.id)" *ngIf="!log.config.hideDismiss" class="dismiss" mat-button>
+                {{i18n.volvox.commons.buttons.dismiss | translate | uppercase}}
+            </button>
+            <button (click)="callAction(log)"
+                    *ngIf="log.config.action && log.config.action.label && log.config.action.callback"
+                    class="action-btn"
+                    mat-button>{{log.config.action.label | translate | uppercase}}</button>
+        </div>
+
     </div>
+</ng-container>
 
-    <div *ngIf="log.config.action || !log.config.hideDismiss" class="actions">
-        <button (click)="slideOut(log.id)" *ngIf="!log.config.hideDismiss" class="dismiss" mat-button>
-            {{i18n.volvox.commons.buttons.dismiss | uppercase}}
-        </button>
-        <button (click)="callAction(log)"
-                *ngIf="log.config.action && log.config.action.label && log.config.action.callback"
-                class="action-btn"
-                mat-button>{{log.config.action.label | uppercase}}</button>
-    </div>
-
-</div>

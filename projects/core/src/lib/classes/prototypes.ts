@@ -1,22 +1,15 @@
 ﻿/**
- * Cast any type to string
- * @param str string to be casted
- * @returns casted string
+ * Cast any type
+ * @param data to be casted
+ * @returns casted data
  */
-export function string(str: any): string {
-    return str as string;
+export function cast<T>(data: any): T {
+    return data as T;
 }
 
 export class StringExtensions implements IStringExtensions {
-
-    /**
-     * Gets a part of a string
-     * @param maxChars maximum amount of chars
-     * @param appendDot append three dots at the end
-     * @returns splitted string
-     */
     public getPart(maxChars: number, appendDot?: boolean): string {
-        let newStr = string(this).replace(/\\n/g, ' ');
+        let newStr = cast<string>(this).replace(/\\n/g, ' ');
         if (newStr.length > maxChars) {
             newStr = newStr.substring(0, maxChars);
             if (appendDot && newStr.length > maxChars - 3) {
@@ -26,12 +19,8 @@ export class StringExtensions implements IStringExtensions {
         return newStr;
     }
 
-    /**
-     * Converts a string from json
-     * @returns object of expected type
-     */
     public fromJSON<T>(): T {
-        let str: string = string(this);
+        let str: string = cast<string>(this);
         if (typeof this !== 'string') {
             str = JSON.stringify(str);
         }
@@ -47,52 +36,74 @@ export class StringExtensions implements IStringExtensions {
         }
     }
 
-    /**
-     * Converts a string to a css class
-     * @returns converted kebab case css class
-     */
     public toCSSClass(): string {
-        return string(this)?.replace(/([a-z])([A-Z])/, '$1-$2').toLowerCase();
+        return cast<string>(this)?.replace(/([a-z])([A-Z])/, '$1-$2').toLowerCase();
     }
 
-    /**
-     * Converts a datetime string to utc format
-     */
     public toUTC(): string {
-        return string(this) + 'Z';
+        return cast<string>(this) + 'Z';
     }
 }
 
 export class ArrayExtensions implements IArrayExtensions {
-
-    /**
-     * Checks if array has changes
-     * @param data array passed
-     * @deprecated learn how to program
-     */
     public hasChanges<T>(data: T): boolean {
         return JSON.stringify(this) !== JSON.stringify(data);
     }
+}
 
+export class NumberExtensions implements INumberExtensions {
+    public between(start: number, end: number): boolean {
+        const num: number = cast<number>(this);
+        return num >= start && num <= end;
+    }
 }
 
 /**
  * @interface StringExtensions
  */
 export interface IStringExtensions {
-    getPart: (maxChars: number, appendDot?: boolean) => string;
-    fromJSON: <T>() => T;
-    toCSSClass: () => string;
-    toUTC: () => string;
+    /**
+     * Gets a part of a string
+     * @param maxChars maximum amount of chars
+     * @param appendDot append three dots at the end
+     * @returns splitted string
+     */
+    getPart(maxChars: number, appendDot?: boolean): string;
+
+    /**
+     * Converts a string from json
+     * @returns object of expected type
+     */
+    fromJSON<T>(): T;
+
+    /**
+     * Converts a string to a css class
+     * @returns converted kebab case css class
+     */
+    toCSSClass(): string;
+
+    /**
+     * Converts a datetime string to utc format
+     */
+    toUTC(): string;
 }
 
 export interface IArrayExtensions {
     /**
-     * Checks if the array is equal to the other one
-     * @param data array
+     * Checks if array has changes
+     * @param data array passed
      * @deprecated learn how to program
      */
     hasChanges: <T>(data: T[]) => boolean;
+}
+
+export interface INumberExtensions {
+    /**
+     * checks if a number in a range
+     * @param start of range
+     * @param end of range
+     */
+    between(start: number, end: number): boolean;
 }
 
 declare global {
@@ -102,6 +113,10 @@ declare global {
 
     // tslint:disable-next-line:no-empty-interface
     interface Array<T> extends IArrayExtensions {
+    }
+
+    // tslint:disable-next-line:no-empty-interface
+    interface Number extends INumberExtensions {
     }
 }
 
@@ -113,6 +128,7 @@ export class Prototypes {
     public static init(): void {
         const stringExtensions = new StringExtensions();
         const arrayExtensions = new ArrayExtensions();
+        const numberExtensions = new NumberExtensions();
 
         String.prototype.getPart = stringExtensions.getPart;
         String.prototype.fromJSON = stringExtensions.fromJSON;
@@ -120,5 +136,7 @@ export class Prototypes {
         String.prototype.toUTC = stringExtensions.toUTC;
 
         Array.prototype.hasChanges = arrayExtensions.hasChanges;
+
+        Number.prototype.between = numberExtensions.between;
     }
 }

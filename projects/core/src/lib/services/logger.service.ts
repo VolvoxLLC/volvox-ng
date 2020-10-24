@@ -10,10 +10,17 @@ export class LoggerService {
     private loggerComp: LoggerComponent;
     private isDebug: boolean;
 
+    /**
+     * Default constructor
+     */
     constructor() {
     }
 
-    // Serializes empty values, so no error is being returned
+    /**
+     * Serializes empty values, so no error is being returned
+     * @param config
+     * @private
+     */
     private static serializeConfig(config: ILoggerConfig): ILoggerConfig {
         if (!config) {
             config = {};
@@ -25,6 +32,12 @@ export class LoggerService {
         return config;
     }
 
+    /**
+     * Writes data to console
+     * @param type
+     * @param msg
+     * @private
+     */
     private static writeToConsole(type: 'error' | 'success' | 'info' | 'warning' | 'log', msg: string): void {
         const date = new Date();
         const dateOptions = {
@@ -63,11 +76,20 @@ export class LoggerService {
         }
     }
 
+    /**
+     * Setter for logger
+     * @param component
+     * @param isDebug
+     */
     public logger(component: LoggerComponent, isDebug: boolean): void {
         this.loggerComp = component;
         this.isDebug = isDebug;
     }
 
+    /**
+     * Gets the error message from any type of object
+     * @param err
+     */
     public getErrorMsg(err: any): string {
         let msg = 'Error';
 
@@ -96,7 +118,12 @@ export class LoggerService {
         return msg;
     }
 
-    // Logs an error to the user
+    /**
+     * Logs an error to the user
+     * @param err
+     * @param showUser
+     * @param config
+     */
     public logError(err: any, showUser?: boolean, config?: ILoggerConfig): void {
         config = LoggerService.serializeConfig(config);
         const msg = this.getErrorMsg(err);
@@ -109,7 +136,12 @@ export class LoggerService {
         LoggerService.writeToConsole('error', msg);
     }
 
-    // Logs a success message to the user
+    /**
+     * Logs a success message to the user
+     * @param msg
+     * @param showUser
+     * @param config
+     */
     public logSuccess(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
         config = LoggerService.serializeConfig(config);
         config.className = 'snackbar-success';
@@ -121,7 +153,12 @@ export class LoggerService {
         LoggerService.writeToConsole('success', msg);
     }
 
-    // Logs a warning to the user
+    /**
+     * Logs a warning to the user
+     * @param msg
+     * @param showUser
+     * @param config
+     */
     public logWarning(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
         config = LoggerService.serializeConfig(config);
         config.className = 'snackbar-warning';
@@ -133,7 +170,12 @@ export class LoggerService {
         LoggerService.writeToConsole('warning', msg);
     }
 
-    // Logs an info to the user
+    /**
+     * Logs an info to the user
+     * @param msg
+     * @param showUser
+     * @param config
+     */
     public logInfo(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
         config = LoggerService.serializeConfig(config);
         config.className = 'snackbar-info';
@@ -145,13 +187,23 @@ export class LoggerService {
         LoggerService.writeToConsole('info', msg);
     }
 
+    /**
+     * Logs a message (only for debug)
+     * @param data
+     * @param showUser
+     */
     public logDebug(data: any, showUser?: boolean): void {
         if (this.isDebug) {
             this.log(data, showUser);
         }
     }
 
-    // Logs any kind of message to the user
+    /**
+     * Logs any kind of message to the user
+     * @param msg
+     * @param showUser
+     * @param config
+     */
     public log(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
         config = LoggerService.serializeConfig(config);
         config.className = 'snackbar-default';
@@ -163,6 +215,13 @@ export class LoggerService {
         LoggerService.writeToConsole('log', msg);
     }
 
+    /**
+     * Shows the log
+     * @param msg
+     * @param type
+     * @param config
+     * @private
+     */
     private show(msg: string, type: string, config: ILoggerConfig): void {
         if (this.loggerComp) {
             const i = this.loggerComp.fadeIn(msg, type, config);

@@ -40,6 +40,7 @@ export interface II18n {
                 confirm: string;
                 cancel: string;
                 delete: string;
+                accept: string;
             }
         };
     };

@@ -26,5 +26,5 @@ export function isZeroOrHigher(num: number | string): boolean {
 }
 
 export function isNumber(num: any): boolean {
-    return !isNaN(num);
+    return !isNaN(+num);
 }

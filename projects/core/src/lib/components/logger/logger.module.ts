@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LoggerComponent } from './logger.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -12,6 +13,7 @@ import { LoggerComponent } from './logger.component';
         CommonModule,
         MatIconModule,
         MatButtonModule,
+        TranslateModule,
     ],
     exports: [
         LoggerComponent,

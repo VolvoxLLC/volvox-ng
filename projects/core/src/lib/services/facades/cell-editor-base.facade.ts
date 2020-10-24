@@ -19,16 +19,12 @@ let _state: ICellEditorBaseState<any> = {
 })
 export class CellEditorBaseFacade<Model> {
 
-    public store$: BehaviorSubject<ICellEditorBaseState<Model>>;
+    protected store$: BehaviorSubject<ICellEditorBaseState<Model>>;
 
     constructor(
         private readonly myApiService: ApiService,
     ) {
         this.store$ = new BehaviorSubject<ICellEditorBaseState<Model>>(_state);
-    }
-
-    public get snapshot(): ICellEditorBaseState<Model> {
-        return this.store$.value;
     }
 
     public loadData(url: string): Observable<TableItem<Model>[]> {
@@ -59,6 +55,14 @@ export class CellEditorBaseFacade<Model> {
         const state: ICellEditorBaseState<Model> = { ...this.snapshot };
         state.dataSource.paginator = paginator;
         this.updateState({ ..._state, dataSource: state.dataSource });
+    }
+
+    public get snapshot(): ICellEditorBaseState<Model> {
+        return this.store$.value;
+    }
+
+    public subState(): Observable<ICellEditorBaseState<Model>> {
+        return this.store$.asObservable();
     }
 
     public updateDisplayedColumns(displayedColumns: string[]): void {

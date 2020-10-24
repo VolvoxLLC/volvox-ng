@@ -1,4 +1,4 @@
-﻿import { isZeroOrHigher } from './utils.model';
+﻿import { isNullOrEmpty, isNumber, isZeroOrHigher } from './utils.model';
 
 export class Skeleton {
     public width?: number | string;
@@ -9,7 +9,11 @@ export class Skeleton {
     constructor(skeleton?: Skeleton) {
         this.width = isZeroOrHigher(skeleton?.width) ? skeleton?.width : 100;
         this.height = isZeroOrHigher(skeleton?.height) ? skeleton?.height : 15;
-        this.borderRadius = isZeroOrHigher(skeleton?.borderRadius) ? skeleton?.height : 4;
+        if ((isNumber(skeleton?.borderRadius) && isZeroOrHigher(skeleton?.borderRadius)) ||
+            (typeof skeleton?.borderRadius === 'string' && !isNullOrEmpty(skeleton?.borderRadius))) {
+            this.borderRadius = skeleton.borderRadius;
+        }
+        this.borderRadius = this.borderRadius || 4;
         this.randomizeOffset = skeleton?.randomizeOffset || 0;
     }
 }

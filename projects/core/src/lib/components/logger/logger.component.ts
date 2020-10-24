@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ILoggerState } from '../../models/facades/logger-state.model';
 import { ILogger, ILoggerConfig } from '../../models/logger-config.model';
 import { LoggerFacade } from '../../services/facades/logger.facade';
@@ -13,9 +13,13 @@ import { BaseComponent } from '../base/base.component';
     animations: [
         trigger('slide', [
             state('enter', style({ transform: 'translateX(0)' })),
-            state('leave', style({ transform: 'translateX(120%)' })),
-            transition('leave => enter', animate(200)),
-            transition('enter => leave', animate(200)),
+            transition(':leave', [
+                animate(200, style({ transform: 'translateX(120%)' })),
+            ]),
+            transition(':enter', [
+                style({ transform: 'translateX(120%)' }),
+                animate(200, style({ transform: 'translateX(0)' })),
+            ]),
         ]),
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,8 +29,12 @@ export class LoggerComponent extends BaseComponent implements OnInit {
     @ViewChildren('loggerElement')
     public elements: QueryList<any>;
 
-    public loggerState$: BehaviorSubject<ILoggerState>;
+    public loggerState$: Observable<ILoggerState>;
 
+    /**
+     * Default constructor
+     * @param myLoggerFacade
+     */
     constructor(
         private myLoggerFacade: LoggerFacade,
     ) {
@@ -35,12 +43,18 @@ export class LoggerComponent extends BaseComponent implements OnInit {
 
     public ngOnInit(): void {
         super.ngOnInit();
-        this.loggerState$ = this.myLoggerFacade.store$;
+        this.loggerState$ = this.myLoggerFacade.subState();
     }
 
-    // Shows snackbar
+    /**
+     * Shows the snackbar
+     * @param message
+     * @param type
+     * @param config
+     */
     public fadeIn(message: string, type: string, config: ILoggerConfig): number {
         const logs: ILogger[] = [ ...this.myLoggerFacade.snapshot.logs ];
+        console.log(logs);
         const i = logs.length;
         let icon: string;
 
@@ -67,6 +81,10 @@ export class LoggerComponent extends BaseComponent implements OnInit {
         return i;
     }
 
+    /**
+     * Hides the log
+     * @param i
+     */
     public slideOut(i: number): void {
         let logs: ILogger[] = [ ...this.myLoggerFacade.snapshot.logs ];
         if (logs.length > 0) {

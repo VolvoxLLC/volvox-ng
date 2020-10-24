@@ -37,6 +37,7 @@ export const i18n: II18n = {
                 confirm: 'volvox.commons.buttons.confirm',
                 cancel: 'volvox.commons.buttons.cancel',
                 delete: 'volvox.commons.buttons.delete',
+                accept: 'volvox.commons.buttons.accept',
             },
         },
     },

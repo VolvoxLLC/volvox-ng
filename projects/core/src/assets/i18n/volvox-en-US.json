@@ -32,7 +32,8 @@
         "dismiss": "Dismiss",
         "confirm": "Confirm",
         "cancel": "Cancel",
-        "delete": "Delete"
+        "delete": "Delete",
+        "accept": "Accept"
       }
     }
   }

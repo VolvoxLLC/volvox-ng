@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ILoggerState } from '../../models/facades/logger-state.model';
 import { ILogger } from '../../models/logger-config.model';
 
@@ -12,7 +12,7 @@ let _state: ILoggerState = {
 })
 export class LoggerFacade {
 
-    public store$: BehaviorSubject<ILoggerState>;
+    protected store$: BehaviorSubject<ILoggerState>;
 
     constructor() {
         this.store$ = new BehaviorSubject<ILoggerState>(_state);
@@ -20,6 +20,10 @@ export class LoggerFacade {
 
     public get snapshot(): ILoggerState {
         return this.store$.value;
+    }
+
+    public subState(): Observable<ILoggerState> {
+        return this.store$.asObservable();
     }
 
     public updateLogs(logs: ILogger[]): void {
