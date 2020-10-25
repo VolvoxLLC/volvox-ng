@@ -43,3 +43,6 @@
 - Updated live updated timeSince pipe
 - Added behaviour subject to use with state
 - Updated translation
+
+## Version 1.2.2 (2020-10-25)
+- Bug fixes
