@@ -77,6 +77,13 @@ export * from './lib/utils/item.util';
 export * from './lib/utils/commons.util';
 
 /**
+ * Enums
+ */
+export * from './lib/enums/theme.enum';
+export * from './lib/enums/content-position.enum';
+export * from './lib/enums/browser.enum';
+
+/**
  * Pipes
  */
 export * from './lib/pipes/volvox-date-pipe/volvox-date-pipe.module';
