@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { Dictionary, IDictionaryItem } from '../classes/dictionary';
 import { I18nSupported, II18n } from '../models/i18n.model';
 import { ApiService } from './api.service';
+import { Dictionary } from '../utils/dictionary.util';
+import { IDictionaryItem } from '../models/dictionary-item.model';
 
 @Injectable({
     providedIn: 'root',

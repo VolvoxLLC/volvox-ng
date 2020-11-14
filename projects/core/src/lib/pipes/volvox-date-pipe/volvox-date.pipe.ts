@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { i18n } from '../../classes/i18n';
+import { i18n } from '../../utils/i18n.util';
 
 @Pipe({
     name: 'volvoxDate',

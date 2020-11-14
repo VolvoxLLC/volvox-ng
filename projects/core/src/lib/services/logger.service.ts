@@ -17,66 +17,6 @@ export class LoggerService {
     }
 
     /**
-     * Serializes empty values, so no error is being returned
-     * @param config
-     * @private
-     */
-    private static serializeConfig(config: ILoggerConfig): ILoggerConfig {
-        if (!config) {
-            config = {};
-            config.hideDismiss = true;
-        }
-        if (!config.duration) {
-            config.duration = 5;
-        }
-        return config;
-    }
-
-    /**
-     * Writes data to console
-     * @param type
-     * @param msg
-     * @private
-     */
-    private static writeToConsole(type: 'error' | 'success' | 'info' | 'warning' | 'log', msg: string): void {
-        const date = new Date();
-        const dateOptions = {
-            year: '2-digit',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-        };
-
-        if (typeof msg !== 'object') {
-            msg = `${ date.toLocaleDateString('en-US', dateOptions) }: ${ msg }`;
-
-            let css: string = 'background: #222222;padding:10px;border-radius:4px;border:1px solid;border-left:5px solid;';
-            let color: string = '#DDDDDD';
-            switch (type) {
-                case 'warning':
-                    color = '#FFC107';
-                    break;
-                case 'success':
-                    color = '#69F0AE';
-                    break;
-                case 'info':
-                    color = '#B3E5FC';
-                    break;
-                case 'error':
-                    color = '#FF8A80';
-                    break;
-            }
-            css += `color: ${ color };border-color: ${ color };`;
-
-            console.log(`%c[${ type.toUpperCase() }] ${ msg }`, css);
-        } else {
-            console.log(msg);
-        }
-    }
-
-    /**
      * Setter for logger
      * @param component
      * @param isDebug
@@ -213,6 +153,66 @@ export class LoggerService {
         }
 
         LoggerService.writeToConsole('log', msg);
+    }
+
+    /**
+     * Serializes empty values, so no error is being returned
+     * @param config
+     * @private
+     */
+    private static serializeConfig(config: ILoggerConfig): ILoggerConfig {
+        if (!config) {
+            config = {};
+            config.hideDismiss = true;
+        }
+        if (!config.duration) {
+            config.duration = 5;
+        }
+        return config;
+    }
+
+    /**
+     * Writes data to console
+     * @param type
+     * @param msg
+     * @private
+     */
+    private static writeToConsole(type: 'error' | 'success' | 'info' | 'warning' | 'log', msg: string): void {
+        const date = new Date();
+        const dateOptions = {
+            year: '2-digit',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+        };
+
+        if (typeof msg !== 'object') {
+            msg = `${ date.toLocaleDateString('en-US', dateOptions) }: ${ msg }`;
+
+            let css: string = 'background: #222222;padding:10px;border-radius:4px;border:1px solid;border-left:5px solid;';
+            let color: string = '#DDDDDD';
+            switch (type) {
+                case 'warning':
+                    color = '#FFC107';
+                    break;
+                case 'success':
+                    color = '#69F0AE';
+                    break;
+                case 'info':
+                    color = '#B3E5FC';
+                    break;
+                case 'error':
+                    color = '#FF8A80';
+                    break;
+            }
+            css += `color: ${ color };border-color: ${ color };`;
+
+            console.log(`%c[${ type.toUpperCase() }] ${ msg }`, css);
+        } else {
+            console.log(msg);
+        }
     }
 
     /**

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { i18n } from '../../classes/i18n';
 import { II18n } from '../../models/i18n.model';
+import { i18n } from '../../utils/i18n.util';
 
 @Component({
     selector: 'volvox-base',

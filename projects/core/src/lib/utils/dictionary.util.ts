@@ -1,10 +1,4 @@
-﻿/**
- * Interface for dictionary class. Has a key and a value
- */
-export interface IDictionaryItem<Key, Value> {
-    key: Key;
-    value: Value;
-}
+﻿import { IDictionaryItem } from '../models/dictionary-item.model';
 
 export class Dictionary<Key, Value> {
 

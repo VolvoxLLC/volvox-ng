@@ -4,10 +4,10 @@ import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } f
 import { Observable } from 'rxjs';
 import { ConfirmDialogData, ConfirmDialogResult } from '../../models/confirm-dialog.model';
 import { TableItem } from '../../models/table-item.model';
-import { PromiseReject, PromiseResolve } from '../../models/utils.model';
 import { CellEditorBaseFacade } from '../../services/facades/cell-editor-base.facade';
 import { ConfirmDialog } from '../confirm-dialog/confirm.dialog';
 import { BaseComponent } from './base.component';
+import { PromiseReject, PromiseResolve } from '../../utils/promise.util';
 
 @Component({
     selector: 'volvox-cell-editor-base',

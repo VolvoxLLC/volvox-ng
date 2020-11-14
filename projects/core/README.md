@@ -46,3 +46,8 @@
 
 ## Version 1.2.2 (2020-10-25)
 - Bug fixes
+
+## Version 1.2.3 (2020-11-14)
+- Refactor folder structure
+- Add utils
+- Add enums

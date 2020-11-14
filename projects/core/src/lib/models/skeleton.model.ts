@@ -1,4 +1,4 @@
-﻿import { isNullOrEmpty, isNumber, isZeroOrHigher } from './utils.model';
+﻿import { isNullOrEmpty, isNumber, isZeroOrHigher } from '../utils/commons.util';
 
 export class Skeleton {
     public width?: number | string;

@@ -59,18 +59,22 @@ export * from './lib/models/i18n.model';
 export * from './lib/models/logger-config.model';
 export * from './lib/models/skeleton.model';
 export * from './lib/models/table-item.model';
-export * from './lib/models/utils.model';
+export * from './lib/models/dictionary-item.model';
 
 export * from './lib/models/facades/logger-state.model';
 export * from './lib/models/facades/cell-editor-base-state.model';
 
 /**
- * Classes
+ * Utils
  */
-export * from './lib/classes/i18n';
-export * from './lib/classes/dictionary';
-export * from './lib/classes/prototypes';
-export * from './lib/classes/sieve';
+export * from './lib/utils/i18n.util';
+export * from './lib/utils/dictionary.util';
+export * from './lib/utils/prototypes.util';
+export * from './lib/utils/sieve.util';
+export * from './lib/utils/size.util';
+export * from './lib/utils/promise.util';
+export * from './lib/utils/item.util';
+export * from './lib/utils/commons.util';
 
 /**
  * Pipes
