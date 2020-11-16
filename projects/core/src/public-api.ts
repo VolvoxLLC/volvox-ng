@@ -60,6 +60,7 @@ export * from './lib/models/logger-config.model';
 export * from './lib/models/skeleton.model';
 export * from './lib/models/table-item.model';
 export * from './lib/models/dictionary-item.model';
+export * from './lib/models/api-options.model';
 
 export * from './lib/models/facades/logger-state.model';
 export * from './lib/models/facades/cell-editor-base-state.model';

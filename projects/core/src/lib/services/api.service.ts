@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { IApiOptions } from '../models/api-options.model';
 
 @Injectable({
     providedIn: 'root',
@@ -8,7 +10,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
 
     constructor(
-        private myHttpClient: HttpClient,
+        private readonly myHttpClient: HttpClient
     ) {
     }
 
@@ -24,16 +26,24 @@ export class ApiService {
         window.localStorage.removeItem('jwtAccessToken');
     }
 
-    public get<T>(url: string, headers?: HttpHeaders, preventAuth?: boolean): Observable<T> {
-        if (!preventAuth) {
+    public get<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Observable<T> {
+        if (!options?.preventAuth) {
             headers = this.getHeaders(headers);
         }
 
-        return this.myHttpClient.get<T>(url, {headers});
+        return this.myHttpClient.get<T>(url, { headers })
+            .pipe(
+                catchError((err: any): Observable<any> => {
+                    if (!options?.skipErrorHandling) {
+                        throw err;
+                    }
+                    return of(err);
+                }),
+            );
     }
 
-    public async getAsync<T>(url: string, headers?: HttpHeaders, preventAuth?: boolean): Promise<T> {
-        return this.get<T>(url, headers, preventAuth).toPromise();
+    public async getAsync<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Promise<T> {
+        return this.get<T>(url, headers, options).toPromise();
     }
 
     /**
@@ -44,19 +54,27 @@ export class ApiService {
             headers = this.getHeaders(headers);
         }
 
-        return this.myHttpClient.get<T>(url, {headers}).toPromise();
+        return this.myHttpClient.get<T>(url, { headers }).toPromise();
     }
 
-    public getWithHeaders<T>(url: string, headers?: HttpHeaders, preventAuth?: boolean): Observable<HttpResponse<T>> {
-        if (!preventAuth) {
+    public getWithHeaders<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Observable<HttpResponse<T>> {
+        if (!options?.preventAuth) {
             headers = this.getHeaders(headers);
         }
 
-        return this.myHttpClient.get<T>(url, {headers, observe: 'response'});
+        return this.myHttpClient.get<T>(url, { headers, observe: 'response' })
+            .pipe(
+                catchError((err: any): Observable<any> => {
+                    if (!options?.skipErrorHandling) {
+                        throw err;
+                    }
+                    return of(err);
+                }),
+            );
     }
 
-    public async getWithHeadersAsync<T>(url: string, headers?: HttpHeaders, preventAuth?: boolean): Promise<HttpResponse<T>> {
-        return this.getWithHeaders<T>(url, headers, preventAuth).toPromise();
+    public async getWithHeadersAsync<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Promise<HttpResponse<T>> {
+        return this.getWithHeaders<T>(url, headers, options).toPromise();
     }
 
     /**
@@ -67,16 +85,24 @@ export class ApiService {
             headers = this.getHeaders(headers);
         }
 
-        return this.myHttpClient.get<T>(url, {headers, observe: 'response'}).toPromise();
+        return this.myHttpClient.get<T>(url, { headers, observe: 'response' }).toPromise();
     }
 
-    public patch<T>(url: string, data?: T, headers?: HttpHeaders): Observable<any> {
+    public patch<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         headers = this.getHeaders(headers, true);
-        return this.myHttpClient.patch(url, data, {headers});
+        return this.myHttpClient.patch(url, data, { headers })
+            .pipe(
+                catchError((err: any): Observable<any> => {
+                    if (!options?.skipErrorHandling) {
+                        throw err;
+                    }
+                    return of(err);
+                }),
+            );
     }
 
-    public async patchAsync<T>(url: string, data?: T, headers?: HttpHeaders): Promise<any> {
-        return this.patch(url, data, headers).toPromise();
+    public async patchAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
+        return this.patch<T, T1>(url, data, headers, options).toPromise();
     }
 
     /**
@@ -84,16 +110,24 @@ export class ApiService {
      */
     public async httpPatch<T>(url: string, data?: T, headers?: HttpHeaders): Promise<any> {
         headers = this.getHeaders(headers, true);
-        return this.myHttpClient.patch(url, data, {headers}).toPromise();
+        return this.myHttpClient.patch(url, data, { headers }).toPromise();
     }
 
-    public put<T>(url: string, data?: T, headers?: HttpHeaders): Observable<any> {
+    public put<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         headers = this.getHeaders(headers, true);
-        return this.myHttpClient.put(url, data, {headers});
+        return this.myHttpClient.put(url, data, { headers })
+            .pipe(
+                catchError((err: any): Observable<any> => {
+                    if (!options?.skipErrorHandling) {
+                        throw err;
+                    }
+                    return of(err);
+                }),
+            );
     }
 
-    public async putAsync<T>(url: string, data?: T, headers?: HttpHeaders): Promise<any> {
-        return this.put(url, data, headers).toPromise();
+    public async putAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
+        return this.put<T, T1>(url, data, headers, options).toPromise();
     }
 
     /**
@@ -101,16 +135,24 @@ export class ApiService {
      */
     public async httpPut<T>(url: string, data?: T, headers?: HttpHeaders): Promise<any> {
         headers = this.getHeaders(headers, true);
-        return this.myHttpClient.put(url, data, {headers}).toPromise();
+        return this.myHttpClient.put(url, data, { headers }).toPromise();
     }
 
-    public post<T>(url: string, data?: T, headers?: HttpHeaders): Observable<any> {
+    public post<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         headers = this.getHeaders(headers, true);
-        return this.myHttpClient.post(url, data, {headers});
+        return this.myHttpClient.post<T>(url, data, { headers })
+            .pipe(
+                catchError((err: any): Observable<any> => {
+                    if (!options?.skipErrorHandling) {
+                        throw err;
+                    }
+                    return of(err);
+                }),
+            );
     }
 
-    public async postAsync<T>(url: string, data?: T, headers?: HttpHeaders): Promise<any> {
-        return this.post(url, data, headers).toPromise();
+    public async postAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
+        return this.post<T, T1>(url, data, headers, options).toPromise();
     }
 
     /**
@@ -118,16 +160,38 @@ export class ApiService {
      */
     public async httpPost<T>(url: string, data?: T, headers?: HttpHeaders): Promise<any> {
         headers = this.getHeaders(headers, true);
-        return this.myHttpClient.post(url, data, {headers}).toPromise();
+        return this.myHttpClient.post(url, data, { headers }).toPromise();
     }
 
-    public delete<T>(url: string, headers?: HttpHeaders): Observable<T> {
+    /**
+     * makes an http delete call
+     * @param url
+     * @param headers
+     * @param options
+     * @returns Observable
+     */
+    public delete<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Observable<T> {
         headers = this.getHeaders(headers);
-        return this.myHttpClient.delete<T>(url, {headers});
+        return this.myHttpClient.delete<T>(url, { headers })
+            .pipe(
+                catchError((err: any): Observable<any> => {
+                    if (!options?.skipErrorHandling) {
+                        throw err;
+                    }
+                    return of(err);
+                }),
+            );
     }
 
-    public async deleteAsync(url: string, headers?: HttpHeaders): Promise<any> {
-        return this.delete(url, headers).toPromise();
+    /**
+     * makes an http async delete call
+     * @param url
+     * @param headers
+     * @param options
+     * @return Promise
+     */
+    public async deleteAsync<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Promise<T> {
+        return this.delete<T>(url, headers, options).toPromise();
     }
 
     /**
@@ -135,9 +199,15 @@ export class ApiService {
      */
     public async httpDelete(url: string, headers?: HttpHeaders): Promise<any> {
         headers = this.getHeaders(headers);
-        return this.myHttpClient.delete(url, {headers}).toPromise();
+        return this.myHttpClient.delete(url, { headers }).toPromise();
     }
 
+    /**
+     * Appends a script to the html body
+     * @param path
+     * @param attributes
+     * @param onLoad
+     */
     public loadExternalScript(path: string, attributes?: { key: string, value: string }[],
                               onLoad?: ((this: GlobalEventHandlers, ev: Event) => any)): void {
         const script = document.createElement('script');
