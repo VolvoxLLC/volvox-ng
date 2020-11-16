@@ -14,20 +14,36 @@ export class ApiService {
     ) {
     }
 
+    /**
+     * Gets an access token
+     */
     public getAccessToken(): string {
         return window.localStorage.getItem('jwtAccessToken');
     }
 
+    /**
+     * Sets an access token
+     * @param token
+     */
     public setAccessToken(token: string): void {
         window.localStorage.setItem('jwtAccessToken', token);
     }
 
+    /**
+     * Removes an access token from local storage
+     */
     public removeAccessToken(): void {
         window.localStorage.removeItem('jwtAccessToken');
     }
 
+    /**
+     * Makes an http get call
+     * @param url
+     * @param headers
+     * @param options
+     */
     public get<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Observable<T> {
-        if (!options?.preventAuth) {
+        if (!options?.skipAuth) {
             headers = this.getHeaders(headers);
         }
 
@@ -42,6 +58,12 @@ export class ApiService {
             );
     }
 
+    /**
+     * Makes an async http get call
+     * @param url
+     * @param headers
+     * @param options
+     */
     public async getAsync<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Promise<T> {
         return this.get<T>(url, headers, options).toPromise();
     }
@@ -57,8 +79,14 @@ export class ApiService {
         return this.myHttpClient.get<T>(url, { headers }).toPromise();
     }
 
+    /**
+     * Makes an http get call, which also includes the response headers
+     * @param url
+     * @param headers
+     * @param options
+     */
     public getWithHeaders<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Observable<HttpResponse<T>> {
-        if (!options?.preventAuth) {
+        if (!options?.skipAuth) {
             headers = this.getHeaders(headers);
         }
 
@@ -73,6 +101,12 @@ export class ApiService {
             );
     }
 
+    /**
+     * Makes an async http get call, which also includes the response headers
+     * @param url
+     * @param headers
+     * @param options
+     */
     public async getWithHeadersAsync<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Promise<HttpResponse<T>> {
         return this.getWithHeaders<T>(url, headers, options).toPromise();
     }
@@ -88,6 +122,13 @@ export class ApiService {
         return this.myHttpClient.get<T>(url, { headers, observe: 'response' }).toPromise();
     }
 
+    /**
+     * Makes an http patch call
+     * @param url
+     * @param data
+     * @param headers
+     * @param options
+     */
     public patch<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         headers = this.getHeaders(headers, true);
         return this.myHttpClient.patch(url, data, { headers })
@@ -101,6 +142,13 @@ export class ApiService {
             );
     }
 
+    /**
+     * Makes an async http patch call
+     * @param url
+     * @param data
+     * @param headers
+     * @param options
+     */
     public async patchAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
         return this.patch<T, T1>(url, data, headers, options).toPromise();
     }
@@ -113,6 +161,13 @@ export class ApiService {
         return this.myHttpClient.patch(url, data, { headers }).toPromise();
     }
 
+    /**
+     * Makes an http put call
+     * @param url
+     * @param data
+     * @param headers
+     * @param options
+     */
     public put<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         headers = this.getHeaders(headers, true);
         return this.myHttpClient.put(url, data, { headers })
@@ -126,6 +181,13 @@ export class ApiService {
             );
     }
 
+    /**
+     * Makes an async http put call
+     * @param url
+     * @param data
+     * @param headers
+     * @param options
+     */
     public async putAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
         return this.put<T, T1>(url, data, headers, options).toPromise();
     }
@@ -138,6 +200,13 @@ export class ApiService {
         return this.myHttpClient.put(url, data, { headers }).toPromise();
     }
 
+    /**
+     * Makes an http post call
+     * @param url
+     * @param data
+     * @param headers
+     * @param options
+     */
     public post<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         headers = this.getHeaders(headers, true);
         return this.myHttpClient.post<T>(url, data, { headers })
@@ -151,6 +220,13 @@ export class ApiService {
             );
     }
 
+    /**
+     * Makes an async http post call
+     * @param url
+     * @param data
+     * @param headers
+     * @param options
+     */
     public async postAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
         return this.post<T, T1>(url, data, headers, options).toPromise();
     }

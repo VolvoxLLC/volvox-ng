@@ -1,4 +1,4 @@
 ﻿export interface IApiOptions {
-    preventAuth?: boolean;
+    skipAuth?: boolean;
     skipErrorHandling?: boolean;
 }
