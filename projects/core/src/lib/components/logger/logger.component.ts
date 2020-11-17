@@ -54,7 +54,6 @@ export class LoggerComponent extends BaseComponent implements OnInit {
      */
     public fadeIn(message: string, type: string, config: ILoggerConfig): number {
         const logs: ILogger[] = [ ...this.myLoggerFacade.snapshot.logs ];
-        console.log(logs);
         const i = logs.length;
         let icon: string;
 

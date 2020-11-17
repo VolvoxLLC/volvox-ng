@@ -59,3 +59,6 @@
 - Added Global error handling
 - Added more supported languages
 - Extended api call options
+
+## Version 1.3.2 (2020-11-17)
+- Api errors fix
