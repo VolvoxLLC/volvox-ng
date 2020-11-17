@@ -1,6 +1,6 @@
 {
   "name": "@volvox-ng/core",
-  "version": "1.3.0",
+  "version": "1.4.1",
   "author": {
     "name": "Volvox LLC",
     "email": "smoutinho@volvox.tech",
@@ -11,9 +11,9 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": ">=^11.0.0",
-    "@angular/core": ">=^10.0.0",
-    "@angular/cdk": ">=10.0.0",
-    "@angular/material": ">=10.0.0",
+    "@angular/core": ">=^11.0.0",
+    "@angular/cdk": ">=11.0.0",
+    "@angular/material": ">=11.0.0",
     "@ngx-translate/core": ">=13.0.0"
   },
   "dependencies": {
