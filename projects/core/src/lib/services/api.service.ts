@@ -36,18 +36,6 @@ export class ApiService {
         window.localStorage.removeItem('jwtAccessToken');
     }
 
-    private static serializeOptions(options: IApiOptions): IApiOptions {
-        if (!options) {
-            options = {};
-        }
-
-        if (!options.contentType) {
-            options.contentType = 'application/json';
-        }
-
-        return options;
-    }
-
     /**
      * Makes an async http get call
      * @param url
@@ -315,6 +303,18 @@ export class ApiService {
     public async httpDelete(url: string, headers?: HttpHeaders): Promise<any> {
         headers = this.getHeaders(headers, null);
         return this.myHttpClient.delete(url, { headers }).toPromise();
+    }
+
+    private static serializeOptions(options: IApiOptions): IApiOptions {
+        if (!options) {
+            options = {};
+        }
+
+        if (!options.contentType) {
+            options.contentType = 'application/json';
+        }
+
+        return options;
     }
 
     private getHeaders(headers: HttpHeaders, options: IApiOptions): HttpHeaders {
