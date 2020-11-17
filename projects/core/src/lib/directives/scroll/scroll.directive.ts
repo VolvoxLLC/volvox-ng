@@ -6,7 +6,7 @@ import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
 export class ScrollDirective {
 
     @Output()
-    public onScroll = new EventEmitter();
+    public onScroll: EventEmitter<Event> = new EventEmitter<Event>();
 
     constructor() {
     }

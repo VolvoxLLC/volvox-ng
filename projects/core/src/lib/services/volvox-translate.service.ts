@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { I18nSupported, II18n } from '../models/i18n.model';
-import { ApiService } from './api.service';
-import { Dictionary } from '../utils/dictionary.util';
 import { IDictionaryItem } from '../models/dictionary-item.model';
+import { I18nSupported, II18n } from '../models/i18n.model';
+import { Dictionary } from '../utils/dictionary.util';
+import { ApiService } from './api.service';
 
 @Injectable({
     providedIn: 'root',
@@ -27,7 +27,7 @@ export class VolvoxTranslateService {
             return cacheItem.value;
         }
 
-        const data: II18n = await this.myApiService.get<II18n>(`/assets/i18n/volvox-${ lang }.json`).toPromise()
+        const data: II18n = await this.myApiService.get<II18n>(`/assets/i18n/volvox-${ lang }.json`).toPromise();
         this.cache.add(lang, data);
         return this.updateTranslation(lang, data).toPromise();
     }
