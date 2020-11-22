@@ -1,4 +1,13 @@
 /**
+ * Checks if an object is null or undefined. Does not check for
+ * empty strings, or false booleans
+ * @param val
+ */
+export function isNullOrUndefined(val: any): boolean {
+    return val === null || val === undefined;
+}
+
+/**
  * Checks if a string is null or empty
  * @param str
  */

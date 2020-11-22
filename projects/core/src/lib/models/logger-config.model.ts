@@ -1,15 +1,23 @@
-export interface ILoggerConfig {
+export interface ILoggerBaseConfig {
     duration?: number;
     className?: string;
     hideIcon?: boolean;
-    hideDismiss?: boolean;
+    showDismiss?: boolean;
+    closeOnClick?: boolean;
+}
+
+export interface ILoggerDefaultConfig extends ILoggerBaseConfig {
+    debug: boolean;
+}
+
+export interface ILoggerConfig extends ILoggerBaseConfig {
     action?: {
         label: string;
         callback?: () => void;
     };
 }
 
-export interface ILogger {
+export interface ILog {
     id: number;
     message: string;
     config: ILoggerConfig;
