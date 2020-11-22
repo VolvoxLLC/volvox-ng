@@ -18,23 +18,6 @@ export class LoggerService {
     }
 
     /**
-     * Getes a value which is not undefined or null
-     * @param val
-     * @param val1
-     * @param def
-     * @private
-     */
-    private static getValue<T>(val: T, val1: T, def: T): T {
-        if (isNullOrUndefined(val)) {
-            if (isNullOrUndefined(val1)) {
-                return def;
-            }
-            return val1;
-        }
-        return val;
-    }
-
-    /**
      * Gets the error message from any type of object
      * @param err
      */
@@ -157,6 +140,40 @@ export class LoggerService {
     }
 
     /**
+     * Gets a value which is not undefined or null
+     * @param val
+     * @param val1
+     * @param def
+     * @private
+     */
+    private static getValue<T>(val: T, val1: T, def: T): T {
+        if (isNullOrUndefined(val)) {
+            if (isNullOrUndefined(val1)) {
+                return def;
+            }
+            return val1;
+        }
+        return val;
+    }
+
+    /**
+     * Logs any kind of message to the user
+     * @param msg
+     * @param showUser
+     * @param config
+     */
+    public log(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
+        config = this.serializeConfig(config);
+        config.className = 'snackbar-default';
+
+        if (showUser) {
+            this.show(msg, 'default', config);
+        }
+
+        LoggerService.writeToConsole('log', msg);
+    }
+
+    /**
      * Writes data to console
      * @param type
      * @param msg
@@ -201,23 +218,6 @@ export class LoggerService {
     }
 
     /**
-     * Logs any kind of message to the user
-     * @param msg
-     * @param showUser
-     * @param config
-     */
-    public log(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
-        config = this.serializeConfig(config);
-        config.className = 'snackbar-default';
-
-        if (showUser) {
-            this.show(msg, 'default', config);
-        }
-
-        LoggerService.writeToConsole('log', msg);
-    }
-
-    /**
      * Serializes empty values, so no error is being returned
      * @param config
      * @private
@@ -233,7 +233,7 @@ export class LoggerService {
             };
         }
 
-        // Get config duration
+        // Serialize configuration
         config.duration = LoggerService.getValue<number>(config.duration, this.defaultConfig.duration, 4);
         config.className = LoggerService.getValue<string>(config.className, this.defaultConfig.className, null);
         config.showDismiss = LoggerService.getValue<boolean>(config.showDismiss, this.defaultConfig.showDismiss, false);
