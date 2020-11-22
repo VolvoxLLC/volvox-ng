@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ILoggerState } from '../../models/facades/logger-state.model';
-import { ILogger } from '../../models/logger-config.model';
+import { ILog } from '../../models/logger-config.model';
 
 let _state: ILoggerState = {
     logs: [],
@@ -26,7 +26,7 @@ export class LoggerFacade {
         return this.store$.asObservable();
     }
 
-    public updateLogs(logs: ILogger[]): void {
+    public updateLogs(logs: ILog[]): void {
         this.updateState({ ..._state, logs });
     }
 

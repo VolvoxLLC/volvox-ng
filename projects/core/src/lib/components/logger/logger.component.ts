@@ -2,7 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILoggerState } from '../../models/facades/logger-state.model';
-import { ILogger, ILoggerConfig } from '../../models/logger-config.model';
+import { ILog, ILoggerConfig } from '../../models/logger-config.model';
 import { LoggerFacade } from '../../services/facades/logger.facade';
 import { BaseComponent } from '../base/base.component';
 
@@ -46,14 +46,20 @@ export class LoggerComponent extends BaseComponent implements OnInit {
         this.loggerState$ = this.myLoggerFacade.subState();
     }
 
+    public onClickLog(log: ILog): void {
+        if (log.config.closeOnClick) {
+            this.slideOut(log.id);
+        }
+    }
+
     /**
      * Shows the snackbar
      * @param message
      * @param type
      * @param config
      */
-    public fadeIn(message: string, type: string, config: ILoggerConfig): number {
-        const logs: ILogger[] = [ ...this.myLoggerFacade.snapshot.logs ];
+    public slideIn(message: string, type: string, config: ILoggerConfig): number {
+        const logs: ILog[] = [ ...this.myLoggerFacade.snapshot.logs ];
         const i = logs.length;
         let icon: string;
 
@@ -82,24 +88,24 @@ export class LoggerComponent extends BaseComponent implements OnInit {
 
     /**
      * Hides the log
-     * @param i
+     * @param id
      */
-    public slideOut(i: number): void {
-        let logs: ILogger[] = [ ...this.myLoggerFacade.snapshot.logs ];
+    public slideOut(id: number): void {
+        let logs: ILog[] = [ ...this.myLoggerFacade.snapshot.logs ];
         if (logs.length > 0) {
-            const item = logs.find((e: ILogger): boolean => e.id === i);
+            const item = logs.find((e: ILog): boolean => e.id === id);
             item.state = 'leave';
             this.myLoggerFacade.updateLogs(logs);
             setTimeout((): void => {
                 logs = [ ...this.myLoggerFacade.snapshot.logs ];
-                const index = logs.findIndex((log: ILogger): boolean => log.id === item.id);
+                const index = logs.findIndex((log: ILog): boolean => log.id === item.id);
                 logs.splice(index, 1);
                 this.myLoggerFacade.updateLogs(logs);
             }, 200);
         }
     }
 
-    public callAction(log: ILogger): void {
+    public callAction(log: ILog): void {
         log.config.action.callback.call(this);
         this.slideOut(log.id);
     }

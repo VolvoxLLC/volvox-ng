@@ -4,6 +4,8 @@
          [@slide]="log.state"
          [class.none]="!log.state"
          [class]="log.config.className"
+         (click)="onClickLog(log)"
+         [class.touch]="log.config.closeOnClick"
          class="logger-element">
 
         <div class="content">
@@ -11,14 +13,15 @@
             <div [innerHTML]="log.message | translate" class="message"></div>
         </div>
 
-        <div *ngIf="log.config.action || !log.config.hideDismiss" class="actions">
-            <button (click)="slideOut(log.id)" *ngIf="!log.config.hideDismiss" class="dismiss" mat-button>
-                {{i18n.volvox.commons.buttons.dismiss | translate | uppercase}}
+        <div *ngIf="log.config.action || log.config.showDismiss" class="actions">
+            <button (click)="slideOut(log.id)" *ngIf="log.config.showDismiss" class="dismiss" mat-button>
+                {{ i18n.volvox.commons.buttons.dismiss | translate | uppercase }}
             </button>
-            <button (click)="callAction(log)"
+            <button (click)="$event.stopPropagation(); callAction(log)"
                     *ngIf="log.config.action && log.config.action.label && log.config.action.callback"
-                    class="action-btn"
-                    mat-button>{{log.config.action.label | translate | uppercase}}</button>
+                    class="action-btn" mat-button>
+                {{ log.config.action.label | translate | uppercase }}
+            </button>
         </div>
 
     </div>

@@ -21,6 +21,10 @@
   pointer-events: all;
   max-height: 400px;
 
+  &.touch {
+    cursor: pointer;
+  }
+
   .content {
     display: flex;
     width: 100%;
