@@ -1,0 +1,22 @@
+.spinner {
+  .spinner-inner {
+    display: flex;
+    align-items: center;
+
+    mat-spinner {
+      margin-right: 8px;
+    }
+  }
+}
+
+.progress-bar {
+  overflow: hidden;
+  position: relative;
+
+  mat-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}

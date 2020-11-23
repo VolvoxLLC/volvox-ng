@@ -30,6 +30,9 @@ export * from './lib/volvox.module';
 export * from './lib/components/confirm-dialog/confirm-dialog.module';
 export * from './lib/components/confirm-dialog/confirm.dialog';
 
+export * from './lib/components/loading-button/loading-button.module';
+export * from './lib/components/loading-button/loading-button.component';
+
 export * from './lib/components/logger/logger.module';
 export * from './lib/components/logger/logger.component';
 
