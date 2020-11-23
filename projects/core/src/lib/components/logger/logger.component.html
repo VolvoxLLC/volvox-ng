@@ -11,8 +11,8 @@
         <div class="content">
             <mat-icon [svgIcon]="log.icon" class="icon"></mat-icon>
             <div>
-                <div *ngIf="log.title" class="title">{{ log.title }}</div>
-                <div [innerHTML]="log.message | translate" class="message"></div>
+                <div *ngIf="log.title" class="title">{{ log.title | translate }}</div>
+                <div *ngIf="log.message" [innerHTML]="log.message | translate" class="message"></div>
             </div>
         </div>
 
