@@ -1,14 +1,17 @@
 <ng-container [ngSwitch]="buttonType">
-    <button *ngSwitchDefault [class]="mode" [color]="color" [disabled]="loading" mat-button>
+    <button (click)="onClick($event)" *ngSwitchDefault [class]="mode" [color]="color" [disabled]="loading" mat-button>
         <ng-container [ngTemplateOutlet]="buttonContent"></ng-container>
     </button>
-    <button *ngSwitchCase="'raised'" [class]="mode" [color]="color" [disabled]="loading" mat-raised-button>
+    <button (click)="onClick($event)" *ngSwitchCase="'raised'" [class]="mode" [color]="color" [disabled]="loading"
+            mat-raised-button>
         <ng-container [ngTemplateOutlet]="buttonContent"></ng-container>
     </button>
-    <button *ngSwitchCase="'stroked'" [class]="mode" [color]="color" [disabled]="loading" mat-stroked-button>
+    <button (click)="onClick($event)" *ngSwitchCase="'stroked'" [class]="mode" [color]="color" [disabled]="loading"
+            mat-stroked-button>
         <ng-container [ngTemplateOutlet]="buttonContent"></ng-container>
     </button>
-    <button *ngSwitchCase="'flat'" [class]="mode" [color]="color" [disabled]="loading" mat-flat-button>
+    <button (click)="onClick($event)" *ngSwitchCase="'flat'" [class]="mode" [color]="color" [disabled]="loading"
+            mat-flat-button>
         <ng-container [ngTemplateOutlet]="buttonContent"></ng-container>
     </button>
 </ng-container>

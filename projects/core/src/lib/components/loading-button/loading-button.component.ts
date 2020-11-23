@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 
 @Component({
@@ -24,10 +24,18 @@ export class LoadingButtonComponent implements OnInit {
     @Input()
     public buttonType: 'default' | 'raised' | 'stroked' | 'flat';
 
+    @Output()
+    public click: EventEmitter<MouseEvent>;
+
     constructor() {
     }
 
     public ngOnInit(): void {
+    }
+
+    public onClick(e: MouseEvent): void {
+        e.stopPropagation();
+        this.click.emit(e);
     }
 
 }
