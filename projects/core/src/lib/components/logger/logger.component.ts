@@ -54,11 +54,12 @@ export class LoggerComponent extends BaseComponent implements OnInit {
 
     /**
      * Shows the snackbar
+     * @param title
      * @param message
      * @param type
      * @param config
      */
-    public slideIn(message: string, type: string, config: ILoggerConfig): number {
+    public slideIn(title: string, message: string, type: string, config: ILoggerConfig): number {
         const logs: ILog[] = [ ...this.myLoggerFacade.snapshot.logs ];
         const i = logs.length;
         let icon: string;
@@ -81,7 +82,7 @@ export class LoggerComponent extends BaseComponent implements OnInit {
                 break;
         }
 
-        logs.push({ id: i, message, config, state: 'enter', icon });
+        logs.push({ id: i, title, message, config, state: 'enter', icon });
         this.myLoggerFacade.updateLogs(logs);
         return i;
     }
