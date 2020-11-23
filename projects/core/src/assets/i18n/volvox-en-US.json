@@ -23,7 +23,7 @@
   "volvox.commons.logs.info.label": "Info",
   "volvox.commons.logs.info.message": "Action was processed",
   "volvox.commons.logs.error.label": "Error",
-  "volvox.commons.logs.error.message": "Action failed in errors",
+  "volvox.commons.logs.error.message": "An error happened",
   "volvox.commons.buttons.save": "Save",
   "volvox.commons.buttons.deny": "Deny",
   "volvox.commons.buttons.dismiss": "Dismiss",
