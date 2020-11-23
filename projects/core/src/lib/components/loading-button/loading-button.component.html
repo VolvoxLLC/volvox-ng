@@ -1,0 +1,32 @@
+<ng-container [ngSwitch]="buttonType">
+    <button (click)="onClick($event)" *ngSwitchDefault [class]="mode" [color]="color" [disabled]="loading" mat-button>
+        <ng-container [ngTemplateOutlet]="buttonContent"></ng-container>
+    </button>
+    <button (click)="onClick($event)" *ngSwitchCase="'raised'" [class]="mode" [color]="color" [disabled]="loading"
+            mat-raised-button>
+        <ng-container [ngTemplateOutlet]="buttonContent"></ng-container>
+    </button>
+    <button (click)="onClick($event)" *ngSwitchCase="'stroked'" [class]="mode" [color]="color" [disabled]="loading"
+            mat-stroked-button>
+        <ng-container [ngTemplateOutlet]="buttonContent"></ng-container>
+    </button>
+    <button (click)="onClick($event)" *ngSwitchCase="'flat'" [class]="mode" [color]="color" [disabled]="loading"
+            mat-flat-button>
+        <ng-container [ngTemplateOutlet]="buttonContent"></ng-container>
+    </button>
+</ng-container>
+
+<ng-template #buttonContent>
+    <ng-container [ngSwitch]="mode">
+        <ng-container *ngSwitchCase="'spinner'">
+            <div class="spinner-inner">
+                <mat-spinner *ngIf="loading" [color]="color" [diameter]="20"></mat-spinner>
+                <span [class.disabled]="loading" class="label">{{ label }}</span>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'progress-bar'">
+            {{ label }}
+            <mat-progress-bar *ngIf="loading" [color]="color" mode="indeterminate"></mat-progress-bar>
+        </ng-container>
+    </ng-container>
+</ng-template>
