@@ -21,7 +21,7 @@
         <ng-container *ngSwitchCase="'spinner'">
             <div class="spinner-inner">
                 <mat-spinner *ngIf="loading" [color]="color" [diameter]="20"></mat-spinner>
-                <span class="label">{{ label }}</span>
+                <span [class.disabled]="loading" class="label">{{ label }}</span>
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'progress-bar'">

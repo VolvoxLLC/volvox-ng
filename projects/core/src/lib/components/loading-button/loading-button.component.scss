@@ -15,7 +15,7 @@ button:not(:disabled) {
       position: absolute;
     }
 
-    .label {
+    .label.disabled {
       margin-left: 30px;
     }
   }
