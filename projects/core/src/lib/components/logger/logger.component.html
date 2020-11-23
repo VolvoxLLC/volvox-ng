@@ -10,7 +10,10 @@
 
         <div class="content">
             <mat-icon [svgIcon]="log.icon" class="icon"></mat-icon>
-            <div [innerHTML]="log.message | translate" class="message"></div>
+            <div>
+                <div *ngIf="log.title" class="title">{{ log.title | translate }}</div>
+                <div *ngIf="log.message" [innerHTML]="log.message | translate" class="message"></div>
+            </div>
         </div>
 
         <div *ngIf="log.config.action || log.config.showDismiss" class="actions">

@@ -60,86 +60,6 @@ export class LoggerService {
     }
 
     /**
-     * Logs an error to the user
-     * @param err
-     * @param showUser
-     * @param config
-     */
-    public logError(err: any, showUser?: boolean, config?: ILoggerConfig): void {
-        config = this.serializeConfig(config);
-        const msg = this.getErrorMsg(err);
-        config.className = 'snackbar-error';
-
-        if (showUser) {
-            this.show(msg, 'error', config);
-        }
-
-        LoggerService.writeToConsole('error', msg);
-    }
-
-    /**
-     * Logs a success message to the user
-     * @param msg
-     * @param showUser
-     * @param config
-     */
-    public logSuccess(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
-        config = this.serializeConfig(config);
-        config.className = 'snackbar-success';
-
-        if (showUser) {
-            this.show(msg, 'success', config);
-        }
-
-        LoggerService.writeToConsole('success', msg);
-    }
-
-    /**
-     * Logs a warning to the user
-     * @param msg
-     * @param showUser
-     * @param config
-     */
-    public logWarning(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
-        config = this.serializeConfig(config);
-        config.className = 'snackbar-warning';
-
-        if (showUser) {
-            this.show(msg, 'warning', config);
-        }
-
-        LoggerService.writeToConsole('warning', msg);
-    }
-
-    /**
-     * Logs an info to the user
-     * @param msg
-     * @param showUser
-     * @param config
-     */
-    public logInfo(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
-        config = this.serializeConfig(config);
-        config.className = 'snackbar-info';
-
-        if (showUser) {
-            this.show(msg, 'info', config);
-        }
-
-        LoggerService.writeToConsole('info', msg);
-    }
-
-    /**
-     * Logs a message (only for debug)
-     * @param data
-     * @param showUser
-     */
-    public logDebug(data: any, showUser?: boolean): void {
-        if (this.defaultConfig.debug) {
-            this.log(data, showUser);
-        }
-    }
-
-    /**
      * Gets a value which is not undefined or null
      * @param val
      * @param val1
@@ -157,17 +77,102 @@ export class LoggerService {
     }
 
     /**
-     * Logs any kind of message to the user
+     * Logs an error to the user
+     * @param title
+     * @param err
+     * @param showUser
+     * @param config
+     */
+    public logError(title: string, err: any, showUser?: boolean, config?: ILoggerConfig): void {
+        config = this.serializeConfig(config);
+        const msg = this.getErrorMsg(err);
+        config.className = 'snackbar-error';
+
+        if (showUser) {
+            this.show(title, msg, 'error', config);
+        }
+
+        LoggerService.writeToConsole('error', msg);
+    }
+
+    /**
+     * Logs a success message to the user
+     * @param title
      * @param msg
      * @param showUser
      * @param config
      */
-    public log(msg?: string, showUser?: boolean, config?: ILoggerConfig): void {
+    public logSuccess(title: string, msg: string, showUser?: boolean, config?: ILoggerConfig): void {
+        config = this.serializeConfig(config);
+        config.className = 'snackbar-success';
+
+        if (showUser) {
+            this.show(title, msg, 'success', config);
+        }
+
+        LoggerService.writeToConsole('success', msg);
+    }
+
+    /**
+     * Logs a warning to the user
+     * @param title
+     * @param msg
+     * @param showUser
+     * @param config
+     */
+    public logWarning(title: string, msg: string, showUser?: boolean, config?: ILoggerConfig): void {
+        config = this.serializeConfig(config);
+        config.className = 'snackbar-warning';
+
+        if (showUser) {
+            this.show(title, msg, 'warning', config);
+        }
+
+        LoggerService.writeToConsole('warning', msg);
+    }
+
+    /**
+     * Logs an info to the user
+     * @param title
+     * @param msg
+     * @param showUser
+     * @param config
+     */
+    public logInfo(title: string, msg: string, showUser?: boolean, config?: ILoggerConfig): void {
+        config = this.serializeConfig(config);
+        config.className = 'snackbar-info';
+
+        if (showUser) {
+            this.show(title, msg, 'info', config);
+        }
+
+        LoggerService.writeToConsole('info', msg);
+    }
+
+    /**
+     * Logs a message (only for debug)
+     * @param data
+     * @param showUser
+     */
+    public logDebug(data: any, showUser?: boolean): void {
+        if (this.defaultConfig.debug) {
+            this.log(null, data, showUser);
+        }
+    }
+
+    /**
+     * Logs any kind of message to the user
+     * @param title
+     * @param msg
+     * @param showUser
+     * @param config
+     */
+    public log(title: string, msg: string, showUser?: boolean, config?: ILoggerConfig): void {
         config = this.serializeConfig(config);
         config.className = 'snackbar-default';
 
         if (showUser) {
-            this.show(msg, 'default', config);
+            this.show(title, msg, 'default', config);
         }
 
         LoggerService.writeToConsole('log', msg);
@@ -244,14 +249,15 @@ export class LoggerService {
 
     /**
      * Shows the log
+     * @param title
      * @param msg
      * @param type
      * @param config
      * @private
      */
-    private show(msg: string, type: string, config: ILoggerConfig): void {
+    private show(title: string, msg: string, type: string, config: ILoggerConfig): void {
         if (this.loggerComp) {
-            const i = this.loggerComp.slideIn(msg, type, config);
+            const i = this.loggerComp.slideIn(title, msg, type, config);
 
             if (config.duration !== -1) {
                 setTimeout((): void => {

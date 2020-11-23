@@ -1,40 +1,34 @@
 ﻿{
   "$schema": "./volvox-schema.json",
   "version": "1.0.0",
-  "volvox": {
-    "components": {
-      "confirmDialog": {
-        "title": "Confirm Action",
-        "message": "Do you really want to execute this action?"
-      }
-    },
-    "pipes": {
-      "timeSince": {
-        "prefix": "",
-        "suffix": " ago",
-        "seconds": "%d seconds",
-        "minute": "a minute",
-        "minutes": "%d minutes",
-        "hour": "an hour",
-        "hours": "%d hours",
-        "day": "a day",
-        "days": "%d days",
-        "month": "a month",
-        "months": "%d months",
-        "year": "a year",
-        "years": "%d years"
-      }
-    },
-    "commons": {
-      "buttons": {
-        "save": "Save",
-        "deny": "Deny",
-        "dismiss": "Dismiss",
-        "confirm": "Confirm",
-        "cancel": "Cancel",
-        "delete": "Delete",
-        "accept": "Accept"
-      }
-    }
-  }
+  "volvox.components.confirmDialog.title": "Confirm Action",
+  "volvox.components.confirmDialog.message": "Do you really want to execute this action?",
+  "volvox.pipes.timeSince.prefix": "",
+  "volvox.pipes.timeSince.suffix": " ago",
+  "volvox.pipes.timeSince.seconds": "%d seconds",
+  "volvox.pipes.timeSince.minute": "a minute",
+  "volvox.pipes.timeSince.minutes": "%d minutes",
+  "volvox.pipes.timeSince.hour": "an hour",
+  "volvox.pipes.timeSince.hours": "%d hours",
+  "volvox.pipes.timeSince.day": "a day",
+  "volvox.pipes.timeSince.days": "%d days",
+  "volvox.pipes.timeSince.month": "a month",
+  "volvox.pipes.timeSince.months": "%d months",
+  "volvox.pipes.timeSince.year": "a year",
+  "volvox.pipes.timeSince.years": "%d years",
+  "volvox.commons.logs.success.label": "Success",
+  "volvox.commons.logs.success.message": "Action processed successfully",
+  "volvox.commons.logs.warning.label": "Warning",
+  "volvox.commons.logs.warning.message": "Action processed with warnings",
+  "volvox.commons.logs.info.label": "Info",
+  "volvox.commons.logs.info.message": "Action was processed",
+  "volvox.commons.logs.error.label": "Error",
+  "volvox.commons.logs.error.message": "An error happened",
+  "volvox.commons.buttons.save": "Save",
+  "volvox.commons.buttons.deny": "Deny",
+  "volvox.commons.buttons.dismiss": "Dismiss",
+  "volvox.commons.buttons.confirm": "Confirm",
+  "volvox.commons.buttons.cancel": "Cancel",
+  "volvox.commons.buttons.delete": "Delete",
+  "volvox.commons.buttons.accept": "Accept"
 }

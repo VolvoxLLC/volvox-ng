@@ -19,6 +19,7 @@ export interface ILoggerConfig extends ILoggerBaseConfig {
 
 export interface ILog {
     id: number;
+    title: string;
     message: string;
     config: ILoggerConfig;
     icon: string;

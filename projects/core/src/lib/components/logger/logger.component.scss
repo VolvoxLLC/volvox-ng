@@ -34,6 +34,11 @@
       margin-right: 10px;
     }
 
+    .title {
+      font-weight: 500;
+      color: #222222;
+    }
+
     .message {
       @include maxLines();
       flex: 1 auto;

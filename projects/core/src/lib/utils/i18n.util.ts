@@ -30,6 +30,24 @@ export const i18n: II18n = {
             },
         },
         commons: {
+            logs: {
+                error: {
+                    label: 'volvox.commons.logs.error.label',
+                    message: 'volvox.commons.logs.error.message',
+                },
+                success: {
+                    label: 'volvox.commons.logs.success.label',
+                    message: 'volvox.commons.logs.success.message',
+                },
+                warning: {
+                    label: 'volvox.commons.logs.warning.label',
+                    message: 'volvox.commons.logs.warning.message',
+                },
+                info: {
+                    label: 'volvox.commons.logs.info.label',
+                    message: 'volvox.commons.logs.info.message',
+                },
+            },
             buttons: {
                 save: 'volvox.commons.buttons.save',
                 deny: 'volvox.commons.buttons.deny',
