@@ -25,7 +25,7 @@ export class LoadingButtonComponent implements OnInit {
     public buttonType: 'default' | 'raised' | 'stroked' | 'flat';
 
     @Output()
-    public click: EventEmitter<MouseEvent>;
+    public click: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
     constructor() {
     }

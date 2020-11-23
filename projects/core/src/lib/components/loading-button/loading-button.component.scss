@@ -1,10 +1,22 @@
+:host {
+  pointer-events: none;
+}
+
+button:not(:disabled) {
+  pointer-events: all;
+}
+
 .spinner {
   .spinner-inner {
     display: flex;
     align-items: center;
 
     mat-spinner {
-      margin-right: 8px;
+      position: absolute;
+    }
+
+    .label {
+      margin-left: 30px;
     }
   }
 }
