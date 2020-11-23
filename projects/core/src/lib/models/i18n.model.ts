@@ -38,6 +38,24 @@ export interface II18n {
             },
         },
         commons: {
+            logs: {
+                error: {
+                    label: string;
+                    message: string;
+                },
+                success: {
+                    label: string;
+                    message: string;
+                },
+                warning: {
+                    label: string;
+                    message: string;
+                },
+                info: {
+                    label: string;
+                    message: string;
+                },
+            }
             buttons: {
                 save: string;
                 deny: string;
