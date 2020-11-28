@@ -3,7 +3,8 @@
     ignoreTimeout?: number;
     localStorageKey?: string;
     versionPath: string;
-    caption?: string;
+    showIgnore?: boolean;
+    title?: string;
     message?: string;
 }
 

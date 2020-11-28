@@ -4,6 +4,9 @@
 
   "volvox.components.confirmDialog.title": "Confirm Action",
   "volvox.components.confirmDialog.message": "Do you really want to execute this action?",
+  "volvox.components.updateDialog.title": "Update available",
+  "volvox.components.updateDialog.message": "A new update was found. Which action do you want to take?",
+
   "volvox.pipes.timeSince.prefix": "",
   "volvox.pipes.timeSince.suffix": " ago",
   "volvox.pipes.timeSince.seconds": "%d seconds",
@@ -17,6 +20,7 @@
   "volvox.pipes.timeSince.months": "%d months",
   "volvox.pipes.timeSince.year": "a year",
   "volvox.pipes.timeSince.years": "%d years",
+
   "volvox.commons.logs.success.label": "Success",
   "volvox.commons.logs.success.message": "Action processed successfully",
   "volvox.commons.logs.warning.label": "Warning",
@@ -25,6 +29,7 @@
   "volvox.commons.logs.info.message": "Action was processed",
   "volvox.commons.logs.error.label": "Error",
   "volvox.commons.logs.error.message": "An error happened",
+
   "volvox.commons.dateTime.second": "second",
   "volvox.commons.dateTime.seconds": "seconds",
   "volvox.commons.dateTime.minute": "minute",
@@ -33,6 +38,7 @@
   "volvox.commons.dateTime.hours": "hours",
   "volvox.commons.dateTime.day": "day",
   "volvox.commons.dateTime.days": "days",
+
   "volvox.commons.buttons.save": "Save",
   "volvox.commons.buttons.deny": "Deny",
   "volvox.commons.buttons.dismiss": "Dismiss",

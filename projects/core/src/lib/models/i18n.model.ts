@@ -18,7 +18,11 @@ export interface II18n {
             confirmDialog: {
                 title: string;
                 message: string;
-            }
+            },
+            updateDialog: {
+                title: string;
+                message: string;
+            },
         },
         pipes: {
             timeSince: {

@@ -5,6 +5,7 @@ import { IUpdateConfig, IVersion, UpdateDialogResult } from '../../models/update
 import { ApiService } from '../../services/api.service';
 import { LoggerService } from '../../services/logger.service';
 import { isNullOrEmpty } from '../../utils/commons.util';
+import { BaseComponent } from '../base/base.component';
 import { MatUpdateDialog } from './mat-update-dialog/mat-update.dialog';
 
 @Component({
@@ -12,7 +13,21 @@ import { MatUpdateDialog } from './mat-update-dialog/mat-update.dialog';
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UpdateDialog implements OnInit {
+export class UpdateDialog extends BaseComponent implements OnInit {
+
+    private firstLoad: boolean = true;
+
+    private blocked: boolean;
+
+    constructor(
+        private readonly myMatDialog: MatDialog,
+        private readonly myApiService: ApiService,
+        private readonly myLoggerService: LoggerService,
+    ) {
+        super();
+    }
+    private interval: number;
+    private config: IUpdateConfig;
 
     @Input('config')
     private set updateConfig(config: IUpdateConfig) {
@@ -23,19 +38,23 @@ export class UpdateDialog implements OnInit {
             }
 
             if (!config.localStorageKey) {
-                this.myLoggerService
-                    .logWarning('LoggerService', 'No localStorageKey was provided. Using value \'volvoxApplicationVersion\'');
                 config.localStorageKey = 'volvoxApplicationVersion';
             }
 
             if (!config.ignoreTimeout) {
-                this.myLoggerService.logWarning('LoggerService', 'No ignoreTimeout was provided. Using value \'30000\'');
                 config.ignoreTimeout = 30000;
             }
 
             if (!config.refreshInterval) {
-                this.myLoggerService.logWarning('LoggerService', 'No refreshInterval was provided. Using value \'15000\'');
                 config.refreshInterval = 15000;
+            }
+
+            if (!config.title) {
+                config.title = this.i18n.volvox.components.updateDialog.title;
+            }
+
+            if (!config.message) {
+                config.message = this.i18n.volvox.components.updateDialog.message;
             }
 
             this.config = config;
@@ -46,19 +65,8 @@ export class UpdateDialog implements OnInit {
         }
     }
 
-    private blocked: boolean;
-    private firstLoad: boolean;
-    private interval: number;
-    private config: IUpdateConfig;
-
-    constructor(
-        private readonly myMatDialog: MatDialog,
-        private readonly myApiService: ApiService,
-        private readonly myLoggerService: LoggerService,
-    ) {
-    }
-
     public ngOnInit(): void {
+        super.ngOnInit();
     }
 
     private start(): void {
@@ -118,6 +126,7 @@ export class UpdateDialog implements OnInit {
 
     private end(): void {
         clearInterval(this.interval);
+        this.interval = null;
     }
 
 }

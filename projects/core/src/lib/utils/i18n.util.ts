@@ -11,6 +11,10 @@ export const i18n: II18n = {
                 title: 'volvox.components.confirmDialog.title',
                 message: 'volvox.components.confirmDialog.message',
             },
+            updateDialog: {
+                title: 'volvox.components.updateDialog.title',
+                message: 'volvox.components.updateDialog.message',
+            },
         },
         pipes: {
             timeSince: {
