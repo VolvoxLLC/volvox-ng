@@ -13,24 +13,31 @@ import { MatUpdateDialog } from './mat-update-dialog/mat-update.dialog';
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
+/***
+ * ## How to use this dialog:
+ *
+ * ### Add following line to your package.json and run npm install
+ * **"gulp": "~4.0.2"**
+ *
+ * ### Add these lines to your gulpfile.js
+ * ```js
+ * const gulp = require('gulp');
+ * const fs = require('fs');
+ * const pkg = require('./package.json');
+ * gulp.task('create-version', async () => {
+ *   const data = {
+ *        version: pkg.version,
+ *        timestamp: Date.now(),
+ *    };
+ *    console.log(data);
+ *    fs.writeFileSync('src/assets/version.json', JSON.stringify(data));
+ * })
+ * ```
+ */
 export class UpdateDialog extends BaseComponent implements OnInit {
 
-    private firstLoad: boolean = true;
-
-    private blocked: boolean;
-
-    constructor(
-        private readonly myMatDialog: MatDialog,
-        private readonly myApiService: ApiService,
-        private readonly myLoggerService: LoggerService,
-    ) {
-        super();
-    }
-    private interval: number;
-    private config: IUpdateConfig;
-
     @Input('config')
-    private set updateConfig(config: IUpdateConfig) {
+    public set updateConfig(config: IUpdateConfig) {
         if (config) {
             if (!config.versionPath) {
                 this.myLoggerService.logError('LoggerService', 'No version path was provided. This field is required!');
@@ -63,6 +70,20 @@ export class UpdateDialog extends BaseComponent implements OnInit {
         } else {
             this.myLoggerService.logWarning('LoggerService', 'Cannot check for version. No config was provided.');
         }
+    }
+
+    private firstLoad: boolean = true;
+
+    private blocked: boolean;
+    private interval: number;
+    private config: IUpdateConfig;
+
+    constructor(
+        private readonly myMatDialog: MatDialog,
+        private readonly myApiService: ApiService,
+        private readonly myLoggerService: LoggerService,
+    ) {
+        super();
     }
 
     public ngOnInit(): void {
