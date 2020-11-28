@@ -11,6 +11,10 @@ export const i18n: II18n = {
                 title: 'volvox.components.confirmDialog.title',
                 message: 'volvox.components.confirmDialog.message',
             },
+            updateDialog: {
+                title: 'volvox.components.updateDialog.title',
+                message: 'volvox.components.updateDialog.message',
+            },
         },
         pipes: {
             timeSince: {
@@ -30,6 +34,16 @@ export const i18n: II18n = {
             },
         },
         commons: {
+            dateTime: {
+                second: 'volvox.commons.dateTime.second',
+                seconds: 'volvox.commons.dateTime.seconds',
+                minute: 'volvox.commons.dateTime.minute',
+                minutes: 'volvox.commons.dateTime.minutes',
+                hour: 'volvox.commons.dateTime.hour',
+                hours: 'volvox.commons.dateTime.hours',
+                day: 'volvox.commons.dateTime.day',
+                days: 'volvox.commons.dateTime.days',
+            },
             logs: {
                 error: {
                     label: 'volvox.commons.logs.error.label',
@@ -56,6 +70,8 @@ export const i18n: II18n = {
                 cancel: 'volvox.commons.buttons.cancel',
                 delete: 'volvox.commons.buttons.delete',
                 accept: 'volvox.commons.buttons.accept',
+                reloadNow: 'volvox.commons.buttons.reloadNow',
+                ignoreFor: 'volvox.commons.buttons.ignoreFor',
             },
         },
     },

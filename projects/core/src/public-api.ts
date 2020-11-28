@@ -46,6 +46,10 @@ export * from './lib/components/alert-widget/alert.widget';
 export * from './lib/components/cell-editor/cell-editor.module';
 export * from './lib/components/cell-editor/cell-editor.component';
 
+export * from './lib/components/update-dialog/update-dialog.module';
+export * from './lib/components/update-dialog/mat-update-dialog/mat-update.dialog';
+export * from './lib/components/update-dialog/update.dialog';
+
 export * from './lib/components/skeleton-loader/skeleton-loader.module';
 export * from './lib/components/skeleton-loader/base.skeleton-loader';
 export * from './lib/components/skeleton-loader/skeleton/skeleton.component';
@@ -64,6 +68,8 @@ export * from './lib/models/skeleton.model';
 export * from './lib/models/table-item.model';
 export * from './lib/models/dictionary-item.model';
 export * from './lib/models/api-options.model';
+export * from './lib/models/update-config.model';
+export * from './lib/models/volvox-duration.model';
 
 export * from './lib/models/facades/logger-state.model';
 export * from './lib/models/facades/cell-editor-base-state.model';
@@ -95,6 +101,9 @@ export * from './lib/pipes/volvox-date-pipe/volvox-date.pipe';
 
 export * from './lib/pipes/dictionary-item-pipe/dictionary-item-pipe.module';
 export * from './lib/pipes/dictionary-item-pipe/dictionary-item.pipe';
+
+export * from './lib/pipes/volvox-duration-pipe/volvox-duration-pipe.module';
+export * from './lib/pipes/volvox-duration-pipe/volvox-duration.pipe';
 
 /**
  * Directives
