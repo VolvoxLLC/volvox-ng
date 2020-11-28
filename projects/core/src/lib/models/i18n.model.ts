@@ -38,6 +38,16 @@ export interface II18n {
             },
         },
         commons: {
+            dateTime: {
+                second: string;
+                seconds: string;
+                minute: string;
+                minutes: string;
+                hour: string;
+                hours: string;
+                day: string;
+                days: string;
+            },
             logs: {
                 error: {
                     label: string;
@@ -64,6 +74,8 @@ export interface II18n {
                 cancel: string;
                 delete: string;
                 accept: string;
+                reloadNow: string;
+                ignoreFor: string;
             }
         };
     };

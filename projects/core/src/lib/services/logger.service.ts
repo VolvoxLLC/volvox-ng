@@ -60,23 +60,6 @@ export class LoggerService {
     }
 
     /**
-     * Gets a value which is not undefined or null
-     * @param val
-     * @param val1
-     * @param def
-     * @private
-     */
-    private static getValue<T>(val: T, val1: T, def: T): T {
-        if (isNullOrUndefined(val)) {
-            if (isNullOrUndefined(val1)) {
-                return def;
-            }
-            return val1;
-        }
-        return val;
-    }
-
-    /**
      * Logs an error to the user
      * @param title
      * @param err
@@ -92,7 +75,7 @@ export class LoggerService {
             this.show(title, msg, 'error', config);
         }
 
-        LoggerService.writeToConsole('error', msg);
+        LoggerService.writeToConsole('error', title, msg);
     }
 
     /**
@@ -110,7 +93,7 @@ export class LoggerService {
             this.show(title, msg, 'success', config);
         }
 
-        LoggerService.writeToConsole('success', msg);
+        LoggerService.writeToConsole('success', title, msg);
     }
 
     /**
@@ -128,7 +111,7 @@ export class LoggerService {
             this.show(title, msg, 'warning', config);
         }
 
-        LoggerService.writeToConsole('warning', msg);
+        LoggerService.writeToConsole('warning', title, msg);
     }
 
     /**
@@ -146,7 +129,7 @@ export class LoggerService {
             this.show(title, msg, 'info', config);
         }
 
-        LoggerService.writeToConsole('info', msg);
+        LoggerService.writeToConsole('info', title, msg);
     }
 
     /**
@@ -175,16 +158,34 @@ export class LoggerService {
             this.show(title, msg, 'default', config);
         }
 
-        LoggerService.writeToConsole('log', msg);
+        LoggerService.writeToConsole('log', title, msg);
+    }
+
+    /**
+     * Gets a value which is not undefined or null
+     * @param val
+     * @param val1
+     * @param def
+     * @private
+     */
+    private static getValue<T>(val: T, val1: T, def: T): T {
+        if (isNullOrUndefined(val)) {
+            if (isNullOrUndefined(val1)) {
+                return def;
+            }
+            return val1;
+        }
+        return val;
     }
 
     /**
      * Writes data to console
      * @param type
+     * @param title
      * @param msg
      * @private
      */
-    private static writeToConsole(type: 'error' | 'success' | 'info' | 'warning' | 'log', msg: string): void {
+    private static writeToConsole(type: 'error' | 'success' | 'info' | 'warning' | 'log', title: string, msg: string): void {
         const date = new Date();
         const dateOptions = {
             year: '2-digit',
@@ -196,9 +197,6 @@ export class LoggerService {
         };
 
         if (typeof msg !== 'object') {
-            msg = `${ date.toLocaleDateString('en-US', dateOptions) }: ${ msg }`;
-
-            let css: string = 'background: #222222;padding:10px;border-radius:4px;border:1px solid;border-left:5px solid;';
             let color: string = '#DDDDDD';
             switch (type) {
                 case 'warning':
@@ -214,9 +212,11 @@ export class LoggerService {
                     color = '#FF8A80';
                     break;
             }
-            css += `color: ${ color };border-color: ${ color };`;
-
-            console.log(`%c[${ type.toUpperCase() }] ${ msg }`, css);
+            console.log(
+                `%c[${ type.toUpperCase() }] ${ date.toLocaleDateString('en-US', dateOptions) } - ${ title || type }\n%c${ msg }`,
+                `font-weight:bold;color: ${ color };`,
+                `color: ${ color };`
+            );
         } else {
             console.log(msg);
         }
@@ -228,6 +228,13 @@ export class LoggerService {
      * @private
      */
     private serializeConfig(config: ILoggerConfig): ILoggerConfig {
+        // Check if user has default config
+        if (!this.defaultConfig) {
+            this.defaultConfig = {
+                debug: true,
+            };
+        }
+
         if (!config) {
             // Get user default config
             config = {

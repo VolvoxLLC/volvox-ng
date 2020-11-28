@@ -1,0 +1,17 @@
+<h1 mat-dialog-title class="active">{{ config.caption | translate }}</h1>
+<div mat-dialog-content>
+    {{ config.message | translate }}
+</div>
+<div mat-dialog-actions>
+    <button mat-stroked-button (click)="close(0)" class="cancel-btn">
+        {{ i18n.volvox.commons.buttons.cancel | translate }}
+    </button>
+    <button mat-stroked-button color="primary" *ngIf="config" (click)="close(1)">
+        {{ i18n.volvox.commons.buttons.ignoreFor | translate: {
+        duration: config.ignoreTimeout | volvoxDuration: 'auto' | async | uppercase
+    } | uppercase }}
+    </button>
+    <button mat-flat-button color="primary" (click)="close(2)">
+        {{ i18n.volvox.commons.buttons.reloadNow | translate }}
+    </button>
+</div>

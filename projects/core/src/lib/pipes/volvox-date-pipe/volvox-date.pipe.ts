@@ -14,8 +14,8 @@ export class VolvoxDatePipe implements PipeTransform {
     private templates: { [key: string]: string };
 
     constructor(
-        private readonly myDatePipe: DatePipe,
         private readonly myTranslateService: TranslateService,
+        private readonly myDatePipe: DatePipe,
     ) {
         this.store$ = new BehaviorSubject<number>(null);
         this.updateTemplates();
