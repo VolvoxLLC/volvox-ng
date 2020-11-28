@@ -1,7 +1,7 @@
 ﻿export interface IUpdateConfig {
-    refreshInterval: number;
-    ignoreTimeout: number;
-    localStorageKey: string;
+    refreshInterval?: number;
+    ignoreTimeout?: number;
+    localStorageKey?: string;
     versionPath: string;
     caption?: string;
     message?: string;
