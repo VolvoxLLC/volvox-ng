@@ -1,8 +1,10 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IApiOptions } from '../models/api-options.model';
+import { i18n } from '../utils/i18n.util';
+import { LoggerService } from './logger.service';
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +12,8 @@ import { IApiOptions } from '../models/api-options.model';
 export class ApiService {
 
     constructor(
-        private readonly myHttpClient: HttpClient
+        private readonly myHttpClient: HttpClient,
+        private readonly myLoggerService: LoggerService,
     ) {
     }
 
@@ -58,12 +61,7 @@ export class ApiService {
 
         return this.myHttpClient.get<T>(url, { headers })
             .pipe(
-                catchError((err: any): Observable<any> => {
-                    if (!options?.skipErrorHandling) {
-                        throw err;
-                    }
-                    return of(err);
-                }),
+                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
     }
 
@@ -99,12 +97,7 @@ export class ApiService {
 
         return this.myHttpClient.get<T>(url, { headers, observe: 'response' })
             .pipe(
-                catchError((err: any): Observable<any> => {
-                    if (!options?.skipErrorHandling) {
-                        throw err;
-                    }
-                    return of(err);
-                }),
+                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
     }
 
@@ -139,12 +132,7 @@ export class ApiService {
 
         return this.myHttpClient.patch(url, data, { headers })
             .pipe(
-                catchError((err: any): Observable<any> => {
-                    if (!options?.skipErrorHandling) {
-                        throw err;
-                    }
-                    return of(err);
-                }),
+                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
     }
 
@@ -180,12 +168,7 @@ export class ApiService {
         headers = this.getHeaders(headers, options);
         return this.myHttpClient.put(url, data, { headers })
             .pipe(
-                catchError((err: any): Observable<any> => {
-                    if (!options?.skipErrorHandling) {
-                        throw err;
-                    }
-                    return of(err);
-                }),
+                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
     }
 
@@ -221,12 +204,7 @@ export class ApiService {
         headers = this.getHeaders(headers, options);
         return this.myHttpClient.post<T>(url, data, { headers })
             .pipe(
-                catchError((err: any): Observable<any> => {
-                    if (!options?.skipErrorHandling) {
-                        throw err;
-                    }
-                    return of(err);
-                }),
+                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
     }
 
@@ -262,12 +240,7 @@ export class ApiService {
         headers = this.getHeaders(headers, options);
         return this.myHttpClient.delete<T>(url, { headers })
             .pipe(
-                catchError((err: any): Observable<any> => {
-                    if (!options?.skipErrorHandling) {
-                        throw err;
-                    }
-                    return of(err);
-                }),
+                catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
 
@@ -315,6 +288,14 @@ export class ApiService {
         }
 
         return options;
+    }
+
+    private handleError(err: HttpErrorResponse, options: IApiOptions): Observable<never> {
+        if (!options?.skipErrorHandling) {
+            this.myLoggerService.logError(i18n.volvox.commons.logs.error.label, err, true);
+        }
+
+        return throwError(err);
     }
 
     private getHeaders(headers: HttpHeaders, options: IApiOptions): HttpHeaders {
