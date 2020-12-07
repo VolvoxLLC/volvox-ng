@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.3.5 (2020-12-07)
+- Fixed default error handling
+
+## Version 1.3.4 (2020-11-23)
+- Bug fixes
+
 ## Version 1.3.3 (2020-11-23)
 - Added loading button (spinner / progress-bar)
 - Added log title - Now **all** log() calls need a title
