@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoggerComponent } from '../components/logger/logger.component';
 import { ILoggerConfig, ILoggerDefaultConfig } from '../models/logger-config.model';
 import { isNullOrUndefined } from '../utils/commons.util';
+import { i18n } from '../utils/i18n.util';
 
 @Injectable({
     providedIn: 'root',
@@ -50,6 +51,24 @@ export class LoggerService {
     }
 
     /**
+     * Get the title to be shown in logger toast
+     * @param err
+     */
+    public getErrorTitle(err: any): string {
+        let title: string = i18n.volvox.commons.logs.error.label;
+        if (err?.label) {
+            title = err.label;
+        } else if (err?.title) {
+            title = err.title;
+        } else if (err?.error?.label) {
+            title = err.error.label;
+        } else if (err?.error?.title) {
+            title = err.error.title;
+        }
+        return title;
+    }
+
+    /**
      * Setter for logger
      * @param component
      * @param defaultConfig
@@ -69,6 +88,11 @@ export class LoggerService {
     public logError(title: string, err: any, showUser?: boolean, config?: ILoggerConfig): void {
         config = this.serializeConfig(config);
         const msg = this.getErrorMsg(err);
+
+        if (!title) {
+            title = this.getErrorTitle(err);
+        }
+
         config.className = 'snackbar-error';
 
         if (showUser) {
@@ -215,7 +239,7 @@ export class LoggerService {
             console.log(
                 `%c[${ type.toUpperCase() }] ${ date.toLocaleDateString('en-US', dateOptions) } - ${ title || type }\n%c${ msg }`,
                 `font-weight:bold;color: ${ color };`,
-                `color: ${ color };`
+                `color: ${ color };`,
             );
         } else {
             console.log(msg);

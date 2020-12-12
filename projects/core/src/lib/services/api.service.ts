@@ -292,7 +292,7 @@ export class ApiService {
 
     private handleError(err: HttpErrorResponse, options: IApiOptions): Observable<never> {
         if (!options?.skipErrorHandling) {
-            this.myLoggerService.logError(i18n.volvox.commons.logs.error.label, err, true);
+            this.myLoggerService.logError(null, err, true);
         }
 
         return throwError(err);
