@@ -1,6 +1,9 @@
 # Changelog
 
-## Version 1.3.6
+## Version 1.3.6 (2020-12-13)
+- Added disabled state for volvox-loading-button
+
+## Version 1.3.6 (2020-12-13)
 - Added getErrorTitle
 - ApiService accepts now options to set token instead of single accessToken
 
