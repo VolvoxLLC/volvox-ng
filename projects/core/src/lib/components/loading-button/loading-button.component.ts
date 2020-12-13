@@ -19,6 +19,9 @@ export class LoadingButtonComponent implements OnInit {
     public loading: boolean;
 
     @Input()
+    public disabled: boolean;
+
+    @Input()
     public color: ThemePalette = 'primary';
 
     @Input()
