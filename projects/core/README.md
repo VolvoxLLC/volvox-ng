@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.3.6
+- Added getErrorTitle
+- ApiService accepts now options to set token instead of single accessToken
+
 ## Version 1.3.5 (2020-12-07)
 - Fixed default error handling
 

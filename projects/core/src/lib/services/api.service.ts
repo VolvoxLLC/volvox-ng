@@ -1,10 +1,13 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IApiOptions } from '../models/api-options.model';
-import { i18n } from '../utils/i18n.util';
+import { ITokenSettings } from '../models/token-settings.model';
+import { isNullOrEmpty } from '../utils/commons.util';
 import { LoggerService } from './logger.service';
+
+export const LOCAL_STORAGE_TOKEN_KEY = 'volvoxTokenSettings';
 
 @Injectable({
     providedIn: 'root',
@@ -12,13 +15,14 @@ import { LoggerService } from './logger.service';
 export class ApiService {
 
     constructor(
-        private readonly myHttpClient: HttpClient,
         private readonly myLoggerService: LoggerService,
+        private readonly myHttpClient: HttpClient,
     ) {
     }
 
     /**
      * Gets an access token
+     * @deprecated use getToken()
      */
     public getAccessToken(): string {
         return window.localStorage.getItem('jwtAccessToken');
@@ -27,6 +31,7 @@ export class ApiService {
     /**
      * Sets an access token
      * @param token
+     * @deprecated use setToken()
      */
     public setAccessToken(token: string): void {
         window.localStorage.setItem('jwtAccessToken', token);
@@ -34,9 +39,35 @@ export class ApiService {
 
     /**
      * Removes an access token from local storage
+     * @deprecated use deleteAccessToken()
      */
     public removeAccessToken(): void {
         window.localStorage.removeItem('jwtAccessToken');
+    }
+
+    /**
+     * Sets the token
+     * @param tokenSettings
+     */
+    public setToken(tokenSettings: ITokenSettings): void {
+        window.localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, JSON.stringify(tokenSettings));
+    }
+
+    /**
+     * Gets token
+     */
+    public getToken(): ITokenSettings {
+        const tokenSettings: string = window.localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
+        if (!isNullOrEmpty(tokenSettings)) {
+            return JSON.parse(tokenSettings);
+        }
+    }
+
+    /**
+     * Deletes token
+     */
+    public deleteToken(): void {
+        window.localStorage.removeItem(LOCAL_STORAGE_TOKEN_KEY);
     }
 
     /**
@@ -292,7 +323,7 @@ export class ApiService {
 
     private handleError(err: HttpErrorResponse, options: IApiOptions): Observable<never> {
         if (!options?.skipErrorHandling) {
-            this.myLoggerService.logError(i18n.volvox.commons.logs.error.label, err, true);
+            this.myLoggerService.logError(null, err, true);
         }
 
         return throwError(err);
@@ -308,8 +339,12 @@ export class ApiService {
         }
 
         if (!options?.skipAuth) {
-            if (this.getAccessToken()) {
-                return headers.append('Authorization', `Bearer ${ this.getAccessToken() }`);
+            if (this.getToken()) {
+                const tokenSettings: ITokenSettings = this.getToken();
+                headers = headers.append('Authorization', `${ tokenSettings.tokenType } ${ tokenSettings.accessToken }`);
+            } else {
+                // Deprecated.
+                headers = headers.append('Authorization', `Bearer ${ this.getAccessToken() }`);
             }
         }
         return headers;

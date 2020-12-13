@@ -74,6 +74,8 @@ export * from './lib/models/volvox-duration.model';
 export * from './lib/models/facades/logger-state.model';
 export * from './lib/models/facades/cell-editor-base-state.model';
 
+export * from './lib/models/token-settings.model';
+
 /**
  * Utils
  */
