@@ -41,7 +41,7 @@ export class CellEditorBaseComponent<Model> extends BaseComponent implements OnI
             this.myMatDialog
                 .open(ConfirmDialog, {
                     width: '600px',
-                    data: new ConfirmDialogData('Discard changes?', 'Do you really want to discard your changes?'),
+                    data: new ConfirmDialogData('', ''),
                 })
                 .afterClosed()
                 .subscribe((result: ConfirmDialogResult): void => {

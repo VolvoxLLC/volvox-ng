@@ -97,16 +97,6 @@ export class ApiService {
     }
 
     /**
-     * @deprecated use get instead
-     */
-    public async httpGet<T>(url: string, headers?: HttpHeaders, options: IApiOptions = null): Promise<T> {
-        options = ApiService.serializeOptions(options);
-        headers = this.getHeaders(headers, options);
-
-        return this.myHttpClient.get<T>(url, { headers }).toPromise();
-    }
-
-    /**
      * Makes an async http get call, which also includes the response headers
      * @param url
      * @param headers
@@ -133,13 +123,6 @@ export class ApiService {
     }
 
     /**
-     * @deprecated use getWithHeaders instead
-     */
-    public async httpGetWithHeaders<T>(url: string, headers?: HttpHeaders): Promise<HttpResponse<T>> {
-        return this.myHttpClient.get<T>(url, { headers, observe: 'response' }).toPromise();
-    }
-
-    /**
      * Makes an async http patch call
      * @param url
      * @param data
@@ -151,7 +134,7 @@ export class ApiService {
     }
 
     /**
-     * Makes an http patch call
+     * Makes an http patch call (For partial updates)
      * @param url
      * @param data
      * @param headers
@@ -168,16 +151,7 @@ export class ApiService {
     }
 
     /**
-     * @deprecated use patch instead
-     */
-    public async httpPatch<T>(url: string, data?: T, headers?: HttpHeaders, options: IApiOptions = null): Promise<any> {
-        options = ApiService.serializeOptions(options);
-        headers = this.getHeaders(headers, options);
-        return this.myHttpClient.patch(url, data, { headers }).toPromise();
-    }
-
-    /**
-     * Makes an async http put call
+     * Makes an async http put call (For complete updates)
      * @param url
      * @param data
      * @param headers
@@ -201,15 +175,6 @@ export class ApiService {
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
-    }
-
-    /**
-     * @deprecated use put instead
-     */
-    public async httpPut<T>(url: string, data?: T, headers?: HttpHeaders, options: IApiOptions = null): Promise<any> {
-        options = ApiService.serializeOptions(options);
-        headers = this.getHeaders(headers, options);
-        return this.myHttpClient.put(url, data, { headers }).toPromise();
     }
 
     /**
@@ -237,15 +202,6 @@ export class ApiService {
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
-    }
-
-    /**
-     * @deprecated use post
-     */
-    public async httpPost<T>(url: string, data?: T, headers?: HttpHeaders, options: IApiOptions = null): Promise<any> {
-        options = ApiService.serializeOptions(options);
-        headers = this.getHeaders(headers, options);
-        return this.myHttpClient.post(url, data, { headers }).toPromise();
     }
 
     /**
@@ -299,14 +255,6 @@ export class ApiService {
         }
 
         document.body.append(script);
-    }
-
-    /**
-     * @deprecated use delete instead
-     */
-    public async httpDelete(url: string, headers?: HttpHeaders): Promise<any> {
-        headers = this.getHeaders(headers, null);
-        return this.myHttpClient.delete(url, { headers }).toPromise();
     }
 
     private static serializeOptions(options: IApiOptions): IApiOptions {
