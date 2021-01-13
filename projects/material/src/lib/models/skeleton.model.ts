@@ -1,4 +1,4 @@
-﻿import { isNullOrEmpty, isNumber, isZeroOrHigher } from '../utils/commons.util';
+﻿import { isNullOrEmpty, isNumber, isZeroOrHigher } from '@volvox-ng/core';
 
 export class Skeleton {
     public width?: number | string;

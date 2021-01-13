@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ApiService, CoreLoggerService, isNullOrEmpty } from '@volvox-ng/core';
 import { timer } from 'rxjs';
 import { IUpdateConfig, IVersion, UpdateDialogResult } from '../../models/update-config.model';
-import { ApiService } from '../../services/api.service';
-import { LoggerService } from '../../services/logger.service';
-import { isNullOrEmpty } from '../../utils/commons.util';
 import { BaseComponent } from '../base/base.component';
 import { MatUpdateDialog } from './mat-update-dialog/mat-update.dialog';
 
@@ -81,7 +79,7 @@ export class UpdateDialog extends BaseComponent implements OnInit {
     constructor(
         private readonly myMatDialog: MatDialog,
         private readonly myApiService: ApiService,
-        private readonly myLoggerService: LoggerService,
+        private readonly myLoggerService: CoreLoggerService,
     ) {
         super();
     }

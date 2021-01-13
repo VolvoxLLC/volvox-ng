@@ -52,6 +52,56 @@
           }
         }
       }
+    },
+    "material": {
+      "projectType": "library",
+      "root": "projects/material",
+      "sourceRoot": "projects/material/src",
+      "prefix": "volvox",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/material/tsconfig.lib.json",
+            "project": "projects/material/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/material/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/material/tsconfig.lib.json",
+              "projects/material/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "core"

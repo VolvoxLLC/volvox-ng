@@ -1,11 +1,11 @@
 ﻿import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { PromiseReject, PromiseResolve } from '@volvox-ng/core';
 import { Observable } from 'rxjs';
 import { ConfirmDialogData, ConfirmDialogResult } from '../../models/confirm-dialog.model';
 import { TableItem } from '../../models/table-item.model';
 import { CellEditorBaseFacade } from '../../services/facades/cell-editor-base.facade';
-import { PromiseReject, PromiseResolve } from '../../utils/promise.util';
 import { ConfirmDialog } from '../confirm-dialog/confirm.dialog';
 import { BaseComponent } from './base.component';
 

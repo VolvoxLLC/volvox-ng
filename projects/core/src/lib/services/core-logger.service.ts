@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { LoggerComponent } from '../components/logger/logger.component';
 import { ILoggerConfig, ILoggerDefaultConfig } from '../models/logger-config.model';
 import { isNullOrUndefined } from '../utils/commons.util';
 import { i18n } from '../utils/i18n.util';
@@ -7,10 +6,9 @@ import { i18n } from '../utils/i18n.util';
 @Injectable({
     providedIn: 'root',
 })
-export class LoggerService {
+export class CoreLoggerService {
 
-    private loggerComp: LoggerComponent;
-    private defaultConfig: ILoggerDefaultConfig;
+    public defaultConfig: ILoggerDefaultConfig;
 
     /**
      * Default constructor
@@ -69,16 +67,6 @@ export class LoggerService {
     }
 
     /**
-     * Setter for logger
-     * @param component
-     * @param defaultConfig
-     */
-    public logger(component: LoggerComponent, defaultConfig: ILoggerDefaultConfig): void {
-        this.loggerComp = component;
-        this.defaultConfig = defaultConfig;
-    }
-
-    /**
      * Logs an error to the user
      * @param title
      * @param err
@@ -99,7 +87,7 @@ export class LoggerService {
             this.show(title, msg, 'error', config);
         }
 
-        LoggerService.writeToConsole('error', title, msg);
+        CoreLoggerService.writeToConsole('error', title, msg);
     }
 
     /**
@@ -117,7 +105,7 @@ export class LoggerService {
             this.show(title, msg, 'success', config);
         }
 
-        LoggerService.writeToConsole('success', title, msg);
+        CoreLoggerService.writeToConsole('success', title, msg);
     }
 
     /**
@@ -135,7 +123,7 @@ export class LoggerService {
             this.show(title, msg, 'warning', config);
         }
 
-        LoggerService.writeToConsole('warning', title, msg);
+        CoreLoggerService.writeToConsole('warning', title, msg);
     }
 
     /**
@@ -153,7 +141,7 @@ export class LoggerService {
             this.show(title, msg, 'info', config);
         }
 
-        LoggerService.writeToConsole('info', title, msg);
+        CoreLoggerService.writeToConsole('info', title, msg);
     }
 
     /**
@@ -182,7 +170,19 @@ export class LoggerService {
             this.show(title, msg, 'default', config);
         }
 
-        LoggerService.writeToConsole('log', title, msg);
+        CoreLoggerService.writeToConsole('log', title, msg);
+    }
+
+    /**
+     * Show the log
+     * @requires @volvox-ng/material
+     * @param title
+     * @param msg
+     * @param type
+     * @param config
+     */
+    public show(title: string, msg: string, type: string, config: ILoggerConfig): void {
+        //
     }
 
     /**
@@ -270,32 +270,12 @@ export class LoggerService {
         }
 
         // Serialize configuration
-        config.duration = LoggerService.getValue<number>(config.duration, this.defaultConfig.duration, 4);
-        config.className = LoggerService.getValue<string>(config.className, this.defaultConfig.className, null);
-        config.showDismiss = LoggerService.getValue<boolean>(config.showDismiss, this.defaultConfig.showDismiss, false);
-        config.closeOnClick = LoggerService.getValue<boolean>(config.closeOnClick, this.defaultConfig.closeOnClick, true);
+        config.duration = CoreLoggerService.getValue<number>(config.duration, this.defaultConfig.duration, 4);
+        config.className = CoreLoggerService.getValue<string>(config.className, this.defaultConfig.className, null);
+        config.showDismiss = CoreLoggerService.getValue<boolean>(config.showDismiss, this.defaultConfig.showDismiss, false);
+        config.closeOnClick = CoreLoggerService.getValue<boolean>(config.closeOnClick, this.defaultConfig.closeOnClick, true);
 
         return config;
-    }
-
-    /**
-     * Shows the log
-     * @param title
-     * @param msg
-     * @param type
-     * @param config
-     * @private
-     */
-    private show(title: string, msg: string, type: string, config: ILoggerConfig): void {
-        if (this.loggerComp) {
-            const i = this.loggerComp.slideIn(title, msg, type, config);
-
-            if (config.duration !== -1) {
-                setTimeout((): void => {
-                    this.loggerComp.slideOut(i);
-                }, config.duration * 1000);
-            }
-        }
     }
 
 }

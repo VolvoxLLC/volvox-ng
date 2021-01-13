@@ -2,11 +2,11 @@
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ApiService } from '@volvox-ng/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { ICellEditorBaseState } from '../../models/facades/cell-editor-base-state.model';
+import { ICellEditorBaseState } from '../../models/states/cell-editor-base-state.model';
 import { TableItem } from '../../models/table-item.model';
-import { ApiService } from '../api.service';
 
 let _state: ICellEditorBaseState<any> = {
     loading: false,

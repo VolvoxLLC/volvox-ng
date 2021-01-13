@@ -1,8 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ILog, ILoggerConfig } from '@volvox-ng/core';
 import { Observable } from 'rxjs';
-import { ILoggerState } from '../../models/facades/logger-state.model';
-import { ILog, ILoggerConfig } from '../../models/logger-config.model';
+import { ILoggerState } from '../../models/states/logger-state.model';
 import { LoggerFacade } from '../../services/facades/logger.facade';
 import { BaseComponent } from '../base/base.component';
 

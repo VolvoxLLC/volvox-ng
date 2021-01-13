@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { IApiOptions } from '../models/api-options.model';
 import { ITokenSettings } from '../models/token-settings.model';
 import { isNullOrEmpty } from '../utils/commons.util';
-import { LoggerService } from './logger.service';
+import { CoreLoggerService } from './core-logger.service';
 
 export const LOCAL_STORAGE_TOKEN_KEY = 'volvoxTokenSettings';
 
@@ -15,7 +15,7 @@ export const LOCAL_STORAGE_TOKEN_KEY = 'volvoxTokenSettings';
 export class ApiService {
 
     constructor(
-        private readonly myLoggerService: LoggerService,
+        private readonly myLoggerService: CoreLoggerService,
         private readonly myHttpClient: HttpClient,
     ) {
     }

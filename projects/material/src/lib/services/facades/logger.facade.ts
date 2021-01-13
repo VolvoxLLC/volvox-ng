@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ILog } from '@volvox-ng/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ILoggerState } from '../../models/facades/logger-state.model';
-import { ILog } from '../../models/logger-config.model';
+import { ILoggerState } from '../../models/states/logger-state.model';
 
 let _state: ILoggerState = {
     logs: [],
