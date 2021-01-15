@@ -47,7 +47,9 @@ export function roundNearest(value: number, round: number): number {
  * @param array
  */
 export function mergeArray<T>(array: T[][]): T[] {
-    return [].concat.apply([], array);
+    return array.reduce((flat: any, toFlatten: any): any => {
+        return flat.concat(Array.isArray(toFlatten) ? mergeArray<T>(toFlatten) : toFlatten);
+    }, []);
 }
 
 /**
