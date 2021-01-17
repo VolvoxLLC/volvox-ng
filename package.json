@@ -11,7 +11,8 @@
     "start": "ng serve",
     "build": "ng build",
     "lint": "ng lint",
-    "build:schematics": "tsc -p material/tsconfig.schematics.json && npm run copy-schematics",
+    "postbuild": "npm run build:schematics",
+    "build:schematics": "tsc -p projects/material/tsconfig.schematics.json && npm run copy-schematics",
     "copy-schematics": "gulp copy:schematic-schemas && gulp copy:schematic-files && gulp copy:schematic-collection"
   },
   "private": false,

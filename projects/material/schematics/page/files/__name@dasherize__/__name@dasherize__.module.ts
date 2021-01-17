@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { <%= classify(name) %>Component } from './<%= dasherize(name) %>.component';
+import { <%= classify(name) %>Page } from './<%= dasherize(name) %>.page';
 
 @NgModule({
-    declarations: [ <%= classify(name) %>Component ],
+    declarations: [ <%= classify(name) %>Page ],
     imports: [
         CommonModule,
     ],

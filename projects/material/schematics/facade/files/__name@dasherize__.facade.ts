@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { I<%= classify(name) %>State } from './<%= dasherize(name) %>-state.model';
 
-let state: I<%= classify(name) %>State = {
+let _state: I<%= classify(name) %>State = {
 };
 
 @Injectable({
@@ -10,10 +10,10 @@ let state: I<%= classify(name) %>State = {
 })
 export class <%= classify(name) %>Facade {
 
-    protected store$: BehaviorSubject<I<%= classify(name) %>State>
+    protected store$: BehaviorSubject<I<%= classify(name) %>State>;
 
     constructor() {
-        this.store$ = new BehaviorSubject<I<%= classify(name) %>State>();
+        this.store$ = new BehaviorSubject<I<%= classify(name) %>State>(_state);
     }
 
     public subState(): Observable<I<%= classify(name) %>State> {

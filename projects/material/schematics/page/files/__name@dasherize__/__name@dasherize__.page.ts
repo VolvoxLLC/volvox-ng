@@ -10,9 +10,11 @@ import { BaseComponent } from '@volvox-ng/material';
 export class <%= classify(name) %>Page extends BaseComponent implements OnInit {
 
     constructor() {
+        super();
     }
 
     public ngOnInit(): void {
+        super.ngOnInit();
     }
 
 }

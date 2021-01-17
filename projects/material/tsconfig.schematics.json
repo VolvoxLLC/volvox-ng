@@ -15,11 +15,10 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "rootDir": "schematics",
-    "outDir": "../../dist/@volvox-ng/schematics",
+    "outDir": "../../dist/@volvox-ng/material/schematics",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strictNullChecks": true,
     "target": "es6",
     "types": [
       "jasmine",

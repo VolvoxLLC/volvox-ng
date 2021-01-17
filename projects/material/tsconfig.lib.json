@@ -19,6 +19,7 @@
     "enableResourceInlining": true
   },
   "exclude": [
+    "schematics",
     "src/test.ts",
     "**/*.spec.ts"
   ]
