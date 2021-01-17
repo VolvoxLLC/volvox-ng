@@ -36,7 +36,7 @@ export class LoggerComponent extends BaseComponent implements OnInit {
      * @param myLoggerFacade
      */
     constructor(
-        private myLoggerFacade: LoggerFacade,
+        private readonly myLoggerFacade: LoggerFacade,
     ) {
         super();
     }

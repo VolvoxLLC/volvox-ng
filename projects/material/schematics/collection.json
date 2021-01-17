@@ -1,0 +1,17 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "Add library to the project.",
+      "factory": "./ng-add/index#ngAdd"
+    },
+    "component": {
+      "description": "Creates a component",
+      "factory": "./component/index#component"
+    },
+    "page": {
+      "description": "Creates a page",
+      "factory": "./page/index#page"
+    }
+  }
+}
