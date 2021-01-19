@@ -19,11 +19,11 @@ export class ConfirmDialog extends BaseComponent implements OnInit {
         private myMatDialogRef: MatDialogRef<ConfirmDialog>,
     ) {
         super();
-        const cancel: ConfirmDialogAction = new ConfirmDialogAction(this.i18n.volvox.commons.buttons.cancel, true);
-        const deny: ConfirmDialogAction = new ConfirmDialogAction(this.i18n.volvox.commons.buttons.deny);
-        const confirm: ConfirmDialogAction = new ConfirmDialogAction(this.i18n.volvox.commons.buttons.confirm, true);
-        const title: string = this.i18n.volvox.components.confirmDialog.title;
-        const message: string = this.i18n.volvox.components.confirmDialog.message;
+        const cancel: ConfirmDialogAction = new ConfirmDialogAction('volvox.commons.buttons.cancel', true);
+        const deny: ConfirmDialogAction = new ConfirmDialogAction('volvox.commons.buttons.deny');
+        const confirm: ConfirmDialogAction = new ConfirmDialogAction('volvox.commons.buttons.confirm', true);
+        const title: string = 'volvox.components.confirmDialog.title';
+        const message: string = 'volvox.components.confirmDialog.message';
 
         this.dialogData = myConfirmDialogData || new ConfirmDialogData(title, message, cancel, confirm, deny);
 

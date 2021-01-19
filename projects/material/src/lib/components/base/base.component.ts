@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { i18n, II18n } from '@volvox-ng/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -8,8 +7,6 @@ import { Subject } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnDestroy {
-
-    public i18n: II18n = i18n;
 
     public ngUnsubscribe: Subject<void> = new Subject<void>();
 

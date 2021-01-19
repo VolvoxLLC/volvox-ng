@@ -55,11 +55,11 @@ export class UpdateDialog extends BaseComponent implements OnInit {
             }
 
             if (!config.title) {
-                config.title = this.i18n.volvox.components.updateDialog.title;
+                config.title = 'volvox.components.updateDialog.title';
             }
 
             if (!config.message) {
-                config.message = this.i18n.volvox.components.updateDialog.message;
+                config.message = 'volvox.components.updateDialog.message';
             }
 
             this.config = config;

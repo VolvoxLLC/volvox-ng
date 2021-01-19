@@ -1,8 +1,3 @@
-﻿import { MatTableDataSource } from '@angular/material/table';
-import { TableItem } from '../table-item.model';
-
-export interface ICellEditorBaseState<T> {
+﻿export interface ICellEditorBaseState {
     loading: boolean;
-    displayedColumns: string[];
-    dataSource: MatTableDataSource<TableItem<T>>;
 }

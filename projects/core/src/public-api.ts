@@ -23,7 +23,6 @@ export * from './lib/volvox.module';
 /**
  * Models
  */
-export * from './lib/models/i18n.model';
 export * from './lib/models/dictionary-item.model';
 export * from './lib/models/api-options.model';
 export * from './lib/models/volvox-duration.model';
@@ -34,7 +33,6 @@ export * from './lib/models/transform-matrix.model';
 /**
  * Utils
  */
-export * from './lib/utils/i18n.util';
 export * from './lib/utils/dictionary.util';
 export * from './lib/utils/prototypes.util';
 export * from './lib/utils/sieve.util';
@@ -49,6 +47,7 @@ export * from './lib/utils/commons.util';
 export * from './lib/enums/theme.enum';
 export * from './lib/enums/content-position.enum';
 export * from './lib/enums/browser.enum';
+export * from './lib/enums/i18n-supported.enum';
 
 /**
  * Pipes

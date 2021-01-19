@@ -4,14 +4,14 @@
 </div>
 <div mat-dialog-actions>
     <button (click)="close(0)" [class.cancel-btn]="config.showIgnore" mat-stroked-button>
-        {{ i18n.volvox.commons.buttons.cancel | translate | uppercase }}
+        {{ 'volvox.commons.buttons.cancel' | translate | uppercase }}
     </button>
     <button (click)="close(1)" *ngIf="config.showIgnore" color="primary" mat-stroked-button>
-        {{ i18n.volvox.commons.buttons.ignoreFor | translate: {
+        {{ 'volvox.commons.buttons.ignoreFor' | translate: {
             duration: config.ignoreTimeout | volvoxDuration: 'auto' | async | uppercase
         } | uppercase }}
     </button>
     <button mat-flat-button color="primary" (click)="close(2)">
-        {{ i18n.volvox.commons.buttons.reloadNow | translate | uppercase}}
+        {{ 'volvox.commons.buttons.reloadNow' | translate | uppercase}}
     </button>
 </div>

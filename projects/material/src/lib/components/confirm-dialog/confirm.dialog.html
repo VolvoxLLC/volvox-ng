@@ -4,7 +4,7 @@
 </div>
 <div mat-dialog-actions>
     <button (click)="confirm(result.cancelled)" *ngIf="dialogData.cancel" color="primary" mat-stroked-button>
-        {{ i18n.volvox.commons.buttons.cancel | translate | uppercase }}
+        {{ 'volvox.commons.buttons.cancel' | translate | uppercase }}
     </button>
     <button (click)="confirm(result.denied)" *ngIf="dialogData.deny.visible" color="primary" mat-stroked-button>
         {{ dialogData.deny.label | translate | uppercase }}

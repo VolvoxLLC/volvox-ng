@@ -18,7 +18,7 @@
 
         <div *ngIf="log.config.action || log.config.showDismiss" class="actions">
             <button (click)="slideOut(log.id)" *ngIf="log.config.showDismiss" class="dismiss" mat-button>
-                {{ i18n.volvox.commons.buttons.dismiss | translate | uppercase }}
+                {{ 'volvox.commons.buttons.dismiss' | translate | uppercase }}
             </button>
             <button (click)="$event.stopPropagation(); callAction(log)"
                     *ngIf="log.config.action && log.config.action.label && log.config.action.callback"

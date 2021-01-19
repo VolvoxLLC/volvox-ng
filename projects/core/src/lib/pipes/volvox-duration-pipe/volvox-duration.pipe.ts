@@ -2,17 +2,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { II18n } from '../../models/i18n.model';
 import { VolvoxDurationFormat } from '../../models/volvox-duration.model';
 import { isNullOrUndefined } from '../../utils/commons.util';
-import { i18n } from '../../utils/i18n.util';
 
 @Pipe({
     name: 'volvoxDuration',
 })
 export class VolvoxDurationPipe implements PipeTransform {
 
-    private i18n: II18n = i18n;
     private store$: BehaviorSubject<number>;
 
     constructor(
@@ -42,30 +39,30 @@ export class VolvoxDurationPipe implements PipeTransform {
 
     private getSeconds(seconds: number): string {
         if (seconds === 1) {
-            return `${ seconds } ${ this.myTranslateService.instant(this.i18n.volvox.commons.dateTime.second) }`;
+            return `${ seconds } ${ this.myTranslateService.instant('volvox.commons.dateTime.second') }`;
         }
-        return `${ seconds } ${ this.myTranslateService.instant(this.i18n.volvox.commons.dateTime.seconds) }`;
+        return `${ seconds } ${ this.myTranslateService.instant('volvox.commons.dateTime.seconds') }`;
     }
 
     private getMinutes(minutes: number): string {
         if (minutes === 1) {
-            return `${ minutes } ${ this.myTranslateService.instant(this.i18n.volvox.commons.dateTime.second) }`;
+            return `${ minutes } ${ this.myTranslateService.instant('volvox.commons.dateTime.second') }`;
         }
-        return `${ minutes } ${ this.myTranslateService.instant(this.i18n.volvox.commons.dateTime.seconds) }`;
+        return `${ minutes } ${ this.myTranslateService.instant('volvox.commons.dateTime.seconds') }`;
     }
 
     private getHours(hours: number): string {
         if (hours === 1) {
-            return `${ hours } ${ this.myTranslateService.instant(this.i18n.volvox.commons.dateTime.second) }`;
+            return `${ hours } ${ this.myTranslateService.instant('volvox.commons.dateTime.second') }`;
         }
-        return `${ hours } ${ this.myTranslateService.instant(this.i18n.volvox.commons.dateTime.seconds) }`;
+        return `${ hours } ${ this.myTranslateService.instant('volvox.commons.dateTime.seconds') }`;
     }
 
     private getDays(days: number): string {
         if (days === 1) {
-            return `${ days } ${ this.myTranslateService.instant(this.i18n.volvox.commons.dateTime.second) }`;
+            return `${ days } ${ this.myTranslateService.instant('volvox.commons.dateTime.second') }`;
         }
-        return `${ days } ${ this.myTranslateService.instant(this.i18n.volvox.commons.dateTime.seconds) }`;
+        return `${ days } ${ this.myTranslateService.instant('volvox.commons.dateTime.seconds') }`;
     }
 
     private calcDuration(currentDate: number, millis: number, format: VolvoxDurationFormat): string {

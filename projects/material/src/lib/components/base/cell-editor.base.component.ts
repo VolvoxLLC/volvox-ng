@@ -1,5 +1,6 @@
 ﻿import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { PromiseReject, PromiseResolve } from '@volvox-ng/core';
 import { Observable } from 'rxjs';
@@ -16,19 +17,23 @@ import { BaseComponent } from './base.component';
 })
 export class CellEditorBaseComponent<Model> extends BaseComponent implements OnInit, CanDeactivate<CellEditorBaseComponent<Model>> {
 
+    public dataSource: MatTableDataSource<TableItem<Model>>;
+    public displayedColumns: string[];
+
     constructor(
-        public readonly myCellEditorFacade: CellEditorBaseFacade<Model>,
         public readonly myMatDialog: MatDialog,
     ) {
         super();
     }
 
     public get changedRows(): TableItem<Model>[] {
-        return this.myCellEditorFacade.snapshot.dataSource?.data?.filter((c: TableItem<Model>): boolean => c.rowChangedRowKeys?.length > 0);
+        return this.dataSource?.data?.filter((c: TableItem<Model>): boolean => c.rowChangedRowKeys?.length > 0);
     }
 
     public ngOnInit(): void {
         super.ngOnInit();
+        this.dataSource = new MatTableDataSource<TableItem<Model>>();
+        this.displayedColumns = [];
     }
 
     public canDeactivate(component: CellEditorBaseComponent<Model>, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot,

@@ -4,7 +4,7 @@ import { BaseSkeletonLoader } from './base.skeleton-loader';
 import { SkeletonComponent } from './skeleton/skeleton.component';
 
 @NgModule({
-    declarations: [BaseSkeletonLoader, SkeletonComponent],
+    declarations: [ BaseSkeletonLoader, SkeletonComponent ],
     imports: [
         CommonModule,
     ],

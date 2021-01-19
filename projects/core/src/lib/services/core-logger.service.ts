@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ILoggerConfig, ILoggerDefaultConfig } from '../models/logger-config.model';
 import { isNullOrUndefined } from '../utils/commons.util';
-import { i18n } from '../utils/i18n.util';
 
 @Injectable({
     providedIn: 'root',
@@ -53,7 +52,7 @@ export class CoreLoggerService {
      * @param err
      */
     public getErrorTitle(err: any): string {
-        let title: string = i18n.volvox.commons.logs.error.label;
+        let title: string = 'volvox.commons.logs.error.label';
         if (err?.label) {
             title = err.label;
         } else if (err?.title) {
