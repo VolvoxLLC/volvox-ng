@@ -1,3 +1,5 @@
+import { ITransformMatrix } from '../models/transform-matrix.model';
+
 /**
  * Checks if an object is null or undefined. Does not check for
  * empty strings, or false booleans
@@ -29,4 +31,38 @@ export function isZeroOrHigher(num: number | string): boolean {
  */
 export function isNumber(num: any): boolean {
     return num !== null && !isNaN(+num);
+}
+
+/**
+ * Round to nearest number given
+ * @param value
+ * @param round
+ */
+export function roundNearest(value: number, round: number): number {
+    return Math.ceil(value / 5) * 5;
+}
+
+/**
+ * Merge a two dimensional array
+ * @param array
+ */
+export function mergeArray<T>(array: T[][]): T[] {
+    return array.reduce((flat: any, toFlatten: any): any => {
+        return flat.concat(Array.isArray(toFlatten) ? mergeArray<T>(toFlatten) : toFlatten);
+    }, []);
+}
+
+/**
+ * Get CSS Transform matrix from an element
+ * @param element
+ */
+export function getTransformMatrix(element: HTMLElement): ITransformMatrix {
+    const values = element.style.transform.split(/\w+\(|\);?/);
+    const transform = values[1].split(/,\s?/g).map((numStr: string): number => parseInt(numStr, 10));
+
+    return {
+        x: transform[0],
+        y: transform[1],
+        z: transform[2],
+    };
 }

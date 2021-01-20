@@ -1,26 +1,17 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {
-      "core": [
-        "dist/core/core",
-        "dist/core"
-      ]
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/core/tsconfig.lib.json"
     },
-    "resolveJsonModule": true
-  }
+    {
+      "path": "./projects/core/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/material/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/material/tsconfig.spec.json"
+    }
+  ]
 }

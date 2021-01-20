@@ -3,7 +3,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { i18n } from '../../utils/i18n.util';
 
 @Pipe({
     name: 'volvoxDate',
@@ -80,19 +79,19 @@ export class VolvoxDatePipe implements PipeTransform {
 
     private updateTemplates(): void {
         this.templates = {
-            prefix: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.prefix),
-            suffix: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.suffix),
-            seconds: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.seconds),
-            minute: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.minute),
-            minutes: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.minutes),
-            hour: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.hour),
-            hours: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.hours),
-            day: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.day),
-            days: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.days),
-            month: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.month),
-            months: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.months),
-            year: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.year),
-            years: this.myTranslateService.instant(i18n.volvox.pipes.timeSince.years),
+            prefix: this.myTranslateService.instant('volvox.pipes.timeSince.prefix'),
+            suffix: this.myTranslateService.instant('volvox.pipes.timeSince.suffix'),
+            seconds: this.myTranslateService.instant('volvox.pipes.timeSince.seconds'),
+            minute: this.myTranslateService.instant('volvox.pipes.timeSince.minute'),
+            minutes: this.myTranslateService.instant('volvox.pipes.timeSince.minutes'),
+            hour: this.myTranslateService.instant('volvox.pipes.timeSince.hour'),
+            hours: this.myTranslateService.instant('volvox.pipes.timeSince.hours'),
+            day: this.myTranslateService.instant('volvox.pipes.timeSince.day'),
+            days: this.myTranslateService.instant('volvox.pipes.timeSince.days'),
+            month: this.myTranslateService.instant('volvox.pipes.timeSince.month'),
+            months: this.myTranslateService.instant('volvox.pipes.timeSince.months'),
+            year: this.myTranslateService.instant('volvox.pipes.timeSince.year'),
+            years: this.myTranslateService.instant('volvox.pipes.timeSince.years'),
         };
     }
 

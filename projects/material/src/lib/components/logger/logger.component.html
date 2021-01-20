@@ -1,0 +1,32 @@
+<ng-container *ngIf="loggerState$ | async as state">
+    <div #loggerElement
+         *ngFor="let log of state.logs"
+         [@slide]="log.state"
+         [class.none]="!log.state"
+         [class]="log.config.className"
+         (click)="onClickLog(log)"
+         [class.touch]="log.config.closeOnClick"
+         class="logger-element">
+
+        <div class="content">
+            <mat-icon [svgIcon]="log.icon" class="icon"></mat-icon>
+            <div>
+                <div *ngIf="log.title" class="title">{{ log.title | translate }}</div>
+                <div *ngIf="log.message" [innerHTML]="log.message | translate" class="message"></div>
+            </div>
+        </div>
+
+        <div *ngIf="log.config.action || log.config.showDismiss" class="actions">
+            <button (click)="slideOut(log.id)" *ngIf="log.config.showDismiss" class="dismiss" mat-button>
+                {{ 'volvox.commons.buttons.dismiss' | translate | uppercase }}
+            </button>
+            <button (click)="$event.stopPropagation(); callAction(log)"
+                    *ngIf="log.config.action && log.config.action.label && log.config.action.callback"
+                    class="action-btn" mat-button>
+                {{ log.config.action.label | translate | uppercase }}
+            </button>
+        </div>
+
+    </div>
+</ng-container>
+

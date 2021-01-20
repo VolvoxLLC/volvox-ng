@@ -161,5 +161,10 @@
       "volvox",
       "kebab-case"
     ]
+  },
+  "linterOptions": {
+    "exclude": [
+      "projects/material/schematics"
+    ]
   }
 }

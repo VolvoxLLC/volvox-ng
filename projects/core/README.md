@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 2.0.0 (2021-01-15)
+- Added roundNearest()
+- seperated core to core and material
+    - UI -> @volvox-ng/material
+    - Other -> @volvox-ng/core
+
 ## Version 1.3.6 (2020-12-13)
 - Added disabled state for volvox-loading-button
 

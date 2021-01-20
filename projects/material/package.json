@@ -1,0 +1,19 @@
+{
+  "name": "@volvox-ng/material",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^11.0.0",
+    "@angular/core": "^11.0.0",
+    "@volvox-ng/core": ">=2.0.0",
+    "@angular/cdk": ">=^11.0.0",
+    "@angular/material": ">=^11.0.0",
+    "@mdi/angular-material": ">=5.8.55"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-add": {
+    "save": "devDependencies"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

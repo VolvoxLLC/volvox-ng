@@ -1,0 +1,17 @@
+<h1 class="active" mat-dialog-title>{{ config.title | translate }}</h1>
+<div mat-dialog-content>
+    {{ config.message | translate }}
+</div>
+<div mat-dialog-actions>
+    <button (click)="close(0)" [class.cancel-btn]="config.showIgnore" mat-stroked-button>
+        {{ 'volvox.commons.buttons.cancel' | translate | uppercase }}
+    </button>
+    <button (click)="close(1)" *ngIf="config.showIgnore" color="primary" mat-stroked-button>
+        {{ 'volvox.commons.buttons.ignoreFor' | translate: {
+            duration: config.ignoreTimeout | volvoxDuration: 'auto' | async | uppercase
+        } | uppercase }}
+    </button>
+    <button mat-flat-button color="primary" (click)="close(2)">
+        {{ 'volvox.commons.buttons.reloadNow' | translate | uppercase}}
+    </button>
+</div>

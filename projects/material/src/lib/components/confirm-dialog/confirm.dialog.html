@@ -1,0 +1,15 @@
+<h1 class="active" mat-dialog-title>{{ dialogData.title | translate }}</h1>
+<div mat-dialog-content>
+    {{ dialogData.message | translate }}
+</div>
+<div mat-dialog-actions>
+    <button (click)="confirm(result.cancelled)" *ngIf="dialogData.cancel" color="primary" mat-stroked-button>
+        {{ 'volvox.commons.buttons.cancel' | translate | uppercase }}
+    </button>
+    <button (click)="confirm(result.denied)" *ngIf="dialogData.deny.visible" color="primary" mat-stroked-button>
+        {{ dialogData.deny.label | translate | uppercase }}
+    </button>
+    <button (click)="confirm(result.confirmed)" *ngIf="dialogData.confirm.visible" color="primary" mat-flat-button>
+        {{ dialogData.confirm.label | translate | uppercase }}
+    </button>
+</div>

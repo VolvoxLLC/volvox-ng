@@ -1,6 +1,6 @@
 {
   "name": "@volvox-ng/core",
-  "version": "1.3.7",
+  "version": "2.0.0",
   "author": {
     "name": "Volvox LLC",
     "email": "smoutinho@volvox.tech",
@@ -12,10 +12,7 @@
   "peerDependencies": {
     "@angular/common": ">=^11.0.0",
     "@angular/core": ">=^11.0.0",
-    "@angular/cdk": ">=^11.0.0",
-    "@angular/material": ">=^11.0.0",
-    "@ngx-translate/core": ">=^13.0.0",
-    "@mdi/angular-material": ">=^5.8.55"
+    "@ngx-translate/core": ">=^13.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.1"

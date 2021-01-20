@@ -1,11 +1,13 @@
 ﻿{
-  "$schema": "./volvox-schema.json",
   "version": "1.0.0",
 
-  "volvox.components.confirmDialog.title": "Confirm Action",
-  "volvox.components.confirmDialog.message": "Do you really want to execute this action?",
-  "volvox.components.updateDialog.title": "Update available",
-  "volvox.components.updateDialog.message": "A new update was found. Which action do you want to take?",
+  "volvox.confirmDialog.label": "Confirm Action",
+  "volvox.confirmDialog.message": "Do you really want to execute this action?",
+  "volvox.updateDialog.label": "Update available",
+  "volvox.updateDialog.message": "A new update was found. Which action do you want to take?",
+
+  "volvox.cellEditor.discardChanges.label": "Discard changes?",
+  "volvox.cellEditor.discardChanges.message": "Do you really want to discard your changes?",
 
   "volvox.pipes.timeSince.prefix": "",
   "volvox.pipes.timeSince.suffix": " ago",
