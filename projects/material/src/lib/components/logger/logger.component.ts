@@ -95,14 +95,16 @@ export class LoggerComponent extends BaseComponent implements OnInit {
         let logs: ILog[] = [ ...this.myLoggerFacade.snapshot.logs ];
         if (logs.length > 0) {
             const item = logs.find((e: ILog): boolean => e.id === id);
-            item.state = 'leave';
-            this.myLoggerFacade.updateLogs(logs);
-            setTimeout((): void => {
-                logs = [ ...this.myLoggerFacade.snapshot.logs ];
-                const index = logs.findIndex((log: ILog): boolean => log.id === item.id);
-                logs.splice(index, 1);
+            if (item) {
+                item.state = 'leave';
                 this.myLoggerFacade.updateLogs(logs);
-            }, 200);
+                setTimeout((): void => {
+                    logs = [ ...this.myLoggerFacade.snapshot.logs ];
+                    const index = logs.findIndex((log: ILog): boolean => log.id === item.id);
+                    logs.splice(index, 1);
+                    this.myLoggerFacade.updateLogs(logs);
+                }, 200);
+            }
         }
     }
 
