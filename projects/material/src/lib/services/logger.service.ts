@@ -7,7 +7,6 @@ import { LoggerComponent } from '../components/logger/logger.component';
 })
 export class LoggerService extends CoreLoggerService {
 
-    public defaultConfig: ILoggerDefaultConfig;
     private loggerComp: LoggerComponent;
 
     /**
@@ -35,6 +34,7 @@ export class LoggerService extends CoreLoggerService {
      * @param config
      */
     public show(title: string, msg: string, type: string, config: ILoggerConfig): void {
+        super.show(title, msg, type, config);
         if (this.loggerComp) {
             const i = this.loggerComp.slideIn(title, msg, type, config);
 

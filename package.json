@@ -10,6 +10,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:core": "npm run build core -- --prod",
+    "build:material": "npm run build material -- --prod",
     "lint": "ng lint",
     "postbuild": "npm run build:schematics",
     "build:schematics": "tsc -p projects/material/tsconfig.schematics.json && npm run copy-schematics",
