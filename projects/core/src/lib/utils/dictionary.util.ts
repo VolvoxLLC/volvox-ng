@@ -43,6 +43,49 @@ export class Dictionary<Key, Value> {
      * @param value
      */
     public add(key: Key, value: Value): void {
-        this.dictionaryItems.push({key, value});
+        this.dictionaryItems.push({ key, value });
     }
+
+    /**
+     * Updates a dictionary item
+     * @param data
+     * @param index
+     */
+    public update(data: IDictionaryItem<Key, Value>, index?: number): void {
+        if (!index) {
+            index = this.getIndex(data.key);
+        }
+
+        if (index !== -1) {
+            this.dictionaryItems[ index ] = data;
+        } else {
+            console.warn('Dictionary: Index not found');
+        }
+    }
+
+    /**
+     * Gets an index with a specific key
+     * @param key
+     */
+    public getIndex(key: Key): number {
+        return this.dictionaryItems.findIndex((val: IDictionaryItem<Key, Value>): boolean => val.key === key);
+    }
+
+    /**
+     * Removes an item from the dictionary
+     * @param value
+     * @param index
+     */
+    public remove(value: Key, index?: number): void {
+        if (!index) {
+            index = this.getIndex(value);
+        }
+
+        if (index !== -1) {
+            this.dictionaryItems.splice(index, 1);
+        } else {
+            console.warn('Dictionary: Index not found');
+        }
+    }
+
 }
