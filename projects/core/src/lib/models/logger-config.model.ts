@@ -17,13 +17,6 @@ export interface ILoggerConfig extends ILoggerBaseConfig {
     };
 }
 
-export interface ILogEvent {
-    title: string;
-    msg: string;
-    type: string;
-    config: ILoggerConfig;
-}
-
 export interface ILog {
     id: number;
     title: string;

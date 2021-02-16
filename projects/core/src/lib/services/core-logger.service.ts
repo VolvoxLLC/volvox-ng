@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { ILogEvent, ILoggerConfig, ILoggerDefaultConfig } from '../models/logger-config.model';
+import { ILoggerConfig, ILoggerDefaultConfig } from '../models/logger-config.model';
 import { isNullOrUndefined } from '../utils/commons.util';
 
 @Injectable({
@@ -10,17 +9,10 @@ export class CoreLoggerService {
 
     public defaultConfig: ILoggerDefaultConfig;
 
-    private uiLogs$: BehaviorSubject<ILogEvent>;
-
     /**
      * Default constructor
      */
     constructor() {
-        this.uiLogs$ = new BehaviorSubject(null);
-    }
-
-    public subUiLogs(): Observable<ILogEvent> {
-        return this.uiLogs$.asObservable();
     }
 
     /**
@@ -189,7 +181,7 @@ export class CoreLoggerService {
      * @param config
      */
     public show(title: string, msg: string, type: string, config: ILoggerConfig): void {
-        this.uiLogs$.next({ title, msg, type, config });
+        //
     }
 
     /**
