@@ -10,9 +10,6 @@ import { ThemePalette } from '@angular/material/core';
 export class LoadingButtonComponent implements OnInit {
 
     @Input()
-    public label: string;
-
-    @Input()
     public mode: 'spinner' | 'progress-bar' = 'spinner';
 
     @Input()
