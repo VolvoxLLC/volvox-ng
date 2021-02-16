@@ -1,15 +1,36 @@
-﻿import { IDictionaryItem } from '../models/dictionary-item.model';
+﻿import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IDictionaryItem } from '../models/dictionary-item.model';
 
 export class Dictionary<Key, Value> {
 
-    private readonly dictionaryItems: IDictionaryItem<Key, Value>[];
+    private readonly dictionaryItems$: BehaviorSubject<IDictionaryItem<Key, Value>[]>;
 
     /**
      * Default constructor.
      * @param data Requires an array of IDictionaryItem with a key and a value
      */
     constructor(...data: IDictionaryItem<Key, Value>[]) {
-        this.dictionaryItems = data;
+        this.dictionaryItems$ = new BehaviorSubject<IDictionaryItem<Key, Value>[]>(data);
+    }
+
+    /**
+     * Observable to subscribe to dictionary changes
+     */
+    public valueChanges(): Observable<IDictionaryItem<Key, Value>[]> {
+        return this.dictionaryItems$.asObservable();
+    }
+
+    /**
+     * Observable to subscribe to dictionary as object changes
+     */
+    // @ts-ignore
+    public objectArray(): Observable<{ [ key: Key ]: Value }> {
+        return this.dictionaryItems$.asObservable()
+            .pipe(
+                // @ts-ignore
+                map((items: IDictionaryItem<Key, Value>[]): { [ key: Key ]: Value } => this.toObject(items)),
+            );
     }
 
     /**
@@ -17,7 +38,7 @@ export class Dictionary<Key, Value> {
      * @returns dictionary items
      */
     public get items(): IDictionaryItem<Key, Value>[] {
-        return this.dictionaryItems;
+        return this.dictionaryItems$.value;
     }
 
     /**
@@ -26,7 +47,7 @@ export class Dictionary<Key, Value> {
      * @returns single dictionary item
      */
     public get(key: Key): IDictionaryItem<Key, Value> {
-        return this.dictionaryItems.find((item: IDictionaryItem<Key, Value>): boolean => item.key === key);
+        return this.dictionaryItems$.value.find((item: IDictionaryItem<Key, Value>): boolean => item.key === key);
     }
 
     /**
@@ -43,7 +64,9 @@ export class Dictionary<Key, Value> {
      * @param value
      */
     public add(key: Key, value: Value): void {
-        this.dictionaryItems.push({ key, value });
+        const dictionaryItems: IDictionaryItem<Key, Value>[] = [ ...this.dictionaryItems$.value ];
+        dictionaryItems.push({ key, value });
+        this.updateItems(dictionaryItems);
     }
 
     /**
@@ -52,15 +75,17 @@ export class Dictionary<Key, Value> {
      * @param index
      */
     public update(data: IDictionaryItem<Key, Value>, index?: number): void {
+        const dictionaryItems: IDictionaryItem<Key, Value>[] = [ ...this.dictionaryItems$.value ];
         if (!index) {
             index = this.getIndex(data.key);
         }
 
         if (index !== -1) {
-            this.dictionaryItems[ index ] = data;
+            dictionaryItems[ index ] = data;
         } else {
             console.warn('Dictionary: Index not found');
         }
+        this.updateItems(dictionaryItems);
     }
 
     /**
@@ -68,7 +93,7 @@ export class Dictionary<Key, Value> {
      * @param key
      */
     public getIndex(key: Key): number {
-        return this.dictionaryItems.findIndex((val: IDictionaryItem<Key, Value>): boolean => val.key === key);
+        return this.dictionaryItems$.value.findIndex((val: IDictionaryItem<Key, Value>): boolean => val.key === key);
     }
 
     /**
@@ -77,15 +102,42 @@ export class Dictionary<Key, Value> {
      * @param index
      */
     public remove(value: Key, index?: number): void {
+        const dictionaryItems: IDictionaryItem<Key, Value>[] = [ ...this.dictionaryItems$.value ];
         if (!index) {
             index = this.getIndex(value);
         }
 
         if (index !== -1) {
-            this.dictionaryItems.splice(index, 1);
+            dictionaryItems.splice(index, 1);
         } else {
             console.warn('Dictionary: Index not found');
         }
+        this.updateItems(dictionaryItems);
+    }
+
+    /**
+     * Private function to cast array to an object
+     * @param items
+     * @private
+     */
+    // @ts-ignore
+    private toObject(items: IDictionaryItem<Key, Value>[]): { [ key: Key ]: Value } {
+        // @ts-ignore
+        const obj: { [ key: Key ]: Value } = {};
+        for (const item of items) {
+            // @ts-ignore
+            obj[ item.key ] = item.value;
+        }
+        return obj;
+    }
+
+    /**
+     * Private function to update dictionary items
+     * @param items
+     * @private
+     */
+    private updateItems(items: IDictionaryItem<Key, Value>[]): void {
+        this.dictionaryItems$.next(items);
     }
 
 }
