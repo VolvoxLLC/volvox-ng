@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 2.0.3 (2021-02-17)
+- Fix ApiService always sending application/json as content-type
+
 ## Version 2.0.2 (2021-02-16)
 - Add update Dictionary
 - Add remove item from dictionary
