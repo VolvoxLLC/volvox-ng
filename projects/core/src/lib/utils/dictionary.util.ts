@@ -1,6 +1,6 @@
 ﻿import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IDictionaryItem } from '../models/dictionary-item.model';
+import { IDictionaryItem, IDictionaryObjectResult } from '../models/dictionary-item.model';
 
 export class Dictionary<Key, Value> {
 
@@ -24,12 +24,10 @@ export class Dictionary<Key, Value> {
     /**
      * Observable to subscribe to dictionary as object changes
      */
-    // @ts-ignore
-    public objectArray(): Observable<{ [ key: Key ]: Value }> {
+    public objectArray(): Observable<IDictionaryObjectResult<Value>> {
         return this.dictionaryItems$.asObservable()
             .pipe(
-                // @ts-ignore
-                map((items: IDictionaryItem<Key, Value>[]): { [ key: Key ]: Value } => this.toObject(items)),
+                map((items: IDictionaryItem<Key, Value>[]): IDictionaryObjectResult<Value> => this.toObject(items)),
             );
     }
 
@@ -120,13 +118,10 @@ export class Dictionary<Key, Value> {
      * @param items
      * @private
      */
-    // @ts-ignore
-    private toObject(items: IDictionaryItem<Key, Value>[]): { [ key: Key ]: Value } {
-        // @ts-ignore
-        const obj: { [ key: Key ]: Value } = {};
+    private toObject(items: IDictionaryItem<Key, Value>[]): IDictionaryObjectResult<Value> {
+        const obj: IDictionaryObjectResult<Value> = {};
         for (const item of items) {
-            // @ts-ignore
-            obj[ item.key ] = item.value;
+            obj[ item.key as any ] = item.value;
         }
         return obj;
     }
