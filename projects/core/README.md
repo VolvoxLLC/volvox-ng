@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 2.0.2 (2021-02-16)
+- Add update Dictionary
+- Add remove item from dictionary
+- Add get index
+
+## Version 2.0.1 (2021-01-23)
+- Fixed logger
+
 ## Version 2.0.0 (2021-01-15)
 - Added roundNearest()
 - seperated core to core and material

@@ -1,6 +1,11 @@
 {
   "name": "@volvox-ng/material",
-  "version": "1.0.2",
+  "version": "1.0.3",
+  "author": {
+    "name": "Volvox LLC",
+    "email": "smoutinho@volvox.tech",
+    "url": "https://volvox.tech/"
+  },
   "peerDependencies": {
     "@angular/common": "^11.0.0",
     "@angular/core": "^11.0.0",
@@ -14,6 +19,6 @@
     "save": "devDependencies"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.1"
   }
 }
