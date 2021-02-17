@@ -33,7 +33,13 @@
       140
     ],
     "member-access": true,
-    "ordered-imports": true,
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "case-insensitive-legacy",
+        "named-imports-order": "case-insensitive-legacy"
+      }
+    ],
     "member-ordering": [
       true,
       {
