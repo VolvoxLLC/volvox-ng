@@ -164,7 +164,7 @@
   },
   "linterOptions": {
     "exclude": [
-      "projects/material/schematics"
+      "projects/material/schematics/**"
     ]
   }
 }
