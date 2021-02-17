@@ -12,10 +12,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
+    - name: TS-Lint
+      run: |
+        npm run lint
     - name: Build
       run: |
         npm ci
         npm run build --prod --if-present
-    - name: TS-Lint
-      run: |
-        npm run lint
