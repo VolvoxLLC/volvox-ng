@@ -6,10 +6,10 @@ describe('<%= classify(name) %>Page', (): void => {
     let fixture: ComponentFixture<<%= classify(name) %>Page>;
 
     beforeEach(async (): Promise<void> => {
-       await TestBed.configureTestingModule({
-           declarations: [ <%= classify(name) %>Page ],
-       })
-           .compileComponents();
+        await TestBed.configureTestingModule({
+            declarations: [ <%= classify(name) %>Page ],
+        })
+            .compileComponents();
     });
 
     beforeEach((): void => {
