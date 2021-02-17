@@ -283,7 +283,7 @@ export class ApiService {
         }
 
         if (options.contentType) {
-            headers = headers.append('Content-Type', 'application/json');
+            headers = headers.append('Content-Type', options.contentType);
         }
 
         if (!options?.skipAuth) {
