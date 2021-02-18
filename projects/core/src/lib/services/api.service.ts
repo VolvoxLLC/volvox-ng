@@ -90,7 +90,7 @@ export class ApiService {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
-        return this.myHttpClient.get<T>(url, { headers })
+        return this.myHttpClient.get<T>(url, { ...options.httpOptions as {}, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -116,7 +116,7 @@ export class ApiService {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
-        return this.myHttpClient.get<T>(url, { headers, observe: 'response' })
+        return this.myHttpClient.get<T>(url, { ...options.httpOptions as {}, headers, observe: 'response' })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -144,7 +144,7 @@ export class ApiService {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
-        return this.myHttpClient.patch(url, data, { headers })
+        return this.myHttpClient.patch(url, data, { ...options.httpOptions as {}, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -171,7 +171,7 @@ export class ApiService {
     public put<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
-        return this.myHttpClient.put(url, data, { headers })
+        return this.myHttpClient.put(url, data, { ...options.httpOptions as {}, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -198,7 +198,7 @@ export class ApiService {
     public post<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
-        return this.myHttpClient.post<T>(url, data, { headers })
+        return this.myHttpClient.post<T>(url, data, { ...options.httpOptions as {}, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -225,7 +225,7 @@ export class ApiService {
     public delete<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Observable<T> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
-        return this.myHttpClient.delete<T>(url, { headers })
+        return this.myHttpClient.delete<T>(url, { ...options.httpOptions as {}, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
@@ -260,6 +260,10 @@ export class ApiService {
     private static serializeOptions(options: IApiOptions): IApiOptions {
         if (!options) {
             options = {};
+        }
+
+        if (!options.httpOptions) {
+            options.httpOptions = {};
         }
 
         return options;
