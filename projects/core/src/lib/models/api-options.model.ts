@@ -1,5 +1,5 @@
 ﻿export interface IApiOptions {
     skipAuth?: boolean;
-    contentType?: string;
+    skipContentType?: boolean;
     skipErrorHandling?: boolean;
 }
