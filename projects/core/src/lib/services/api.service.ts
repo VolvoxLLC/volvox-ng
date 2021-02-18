@@ -262,10 +262,6 @@ export class ApiService {
             options = {};
         }
 
-        if (!options.contentType) {
-            options.contentType = 'application/json';
-        }
-
         return options;
     }
 
@@ -282,17 +278,19 @@ export class ApiService {
             headers = new HttpHeaders();
         }
 
-        if (options.contentType) {
-            headers = headers.append('Content-Type', options.contentType);
+        if (!options.skipContentType) {
+            if (!headers.get('Content-Type')) {
+                headers = headers.set('Content-Type', 'application/json');
+            }
         }
 
         if (!options?.skipAuth) {
             if (this.getToken()) {
                 const tokenSettings: ITokenSettings = this.getToken();
-                headers = headers.append('Authorization', `${ tokenSettings.tokenType } ${ tokenSettings.accessToken }`);
+                headers = headers.set('Authorization', `${ tokenSettings.tokenType } ${ tokenSettings.accessToken }`);
             } else {
                 // Deprecated.
-                headers = headers.append('Authorization', `Bearer ${ this.getAccessToken() }`);
+                headers = headers.set('Authorization', `Bearer ${ this.getAccessToken() }`);
             }
         }
         return headers;

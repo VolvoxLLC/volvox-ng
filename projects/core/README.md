@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 2.0.4 (2021-02-18)
+- Fix ApiService Content-Type when uploading files
+
 ## Version 2.0.3 (2021-02-17)
 - Fix ApiService always sending application/json as content-type
 
