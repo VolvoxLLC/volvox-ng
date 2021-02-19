@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 2.0.5 (2021-02-19)
+- Extend api service with http options
+
 ## Version 2.0.4 (2021-02-18)
 - Fix ApiService Content-Type when uploading files
 
