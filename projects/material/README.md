@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.0.4 (2021-03-25)
+- Fix peerDependency Version
+
 ## Version 1.0.3 (2021-02-16)
 - Use volvox-loading-button without label
     - For Spinner: ng-content select=".spinner-label"

@@ -6,7 +6,7 @@ import { <%= classify(name) %>Page } from './<%= dasherize(name) %>.page';
 const routes: Routes = [
     {
         path: '',
-        component: <%= classify(name) %>Page
+        component: <%= classify(name) %>Page,
     },
 ];
 
