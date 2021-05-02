@@ -35,6 +35,26 @@ export class CellEditorBaseComponent<Model> extends BaseComponent implements OnI
         return this.dataSource?.data?.filter((c: TableItem<Model>): boolean => c.changedRowKeys?.length > 0);
     }
 
+    /**
+     * Remove table item data
+     * @param data
+     */
+    public serializeData(data: TableItem<Model>[]): Model[] {
+        return data.map((val: TableItem<Model>): Model => {
+            delete val.changedRowKeys;
+            delete val.rowOriginalData;
+            return val;
+        });
+    }
+
+    public toTableItems(data: Model[]): TableItem<Model>[] {
+        return data.map((val: Model): TableItem<Model> => ({
+            ...val,
+            rowOriginalData: val,
+            changedRowKeys: [],
+        }));
+    }
+
     public canDeactivate(component: CellEditorBaseComponent<Model>, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot,
                          nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         if (!this.changedRows.length) {
