@@ -1,6 +1,4 @@
 ﻿{
-  "version": "1.0.0",
-
   "volvox.confirmDialog.label": "Confirm Action",
   "volvox.confirmDialog.message": "Do you really want to execute this action?",
   "volvox.updateDialog.label": "Update available",
@@ -8,6 +6,9 @@
 
   "volvox.cellEditor.discardChanges.label": "Discard changes?",
   "volvox.cellEditor.discardChanges.message": "Do you really want to discard your changes?",
+
+  "volvox.components.cellEditorBase.discardChanges.label": "Discard changes?",
+  "volvox.components.cellEditorBase.discardChanges.message": "You have still unsaved changes. Are you sure you want to close the page?",
 
   "volvox.pipes.timeSince.prefix": "",
   "volvox.pipes.timeSince.suffix": " ago",

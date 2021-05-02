@@ -19,7 +19,6 @@ export * from './lib/models/table-item.model';
 export * from './lib/components/cell-editor/cell-editor.module';
 export * from './lib/components/cell-editor/cell-editor.component';
 export * from './lib/models/states/cell-editor-base-state.model';
-export * from './lib/services/facades/cell-editor-base.facade';
 export * from './lib/directives/cell-editor/cell-editor.directive.module';
 export * from './lib/directives/cell-editor/cell-editor.directive';
 export * from './lib/services/cell-editor.service';
