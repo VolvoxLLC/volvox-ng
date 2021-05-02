@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 1.0.5 (2021-05-02)
+- Updated angular packages
+- Added global styles (`@import "~volvox-ng/material/src/assets/global-styles"`)
+- removed cell editor base facade
+- Added toTableItems()
+- Fixed cell output
+- Added serializeData() to remove table item properties for saving
+
 ## Version 1.0.4 (2021-03-25)
 - Fix peerDependency Version
 
