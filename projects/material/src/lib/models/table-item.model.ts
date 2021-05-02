@@ -1,5 +1,5 @@
 ﻿export interface ITableItem<T> {
-    rowChangedRowKeys: string[];
+    changedRowKeys: string[];
     rowOriginalData: T;
 }
 
