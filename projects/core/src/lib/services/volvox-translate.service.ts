@@ -27,7 +27,7 @@ export class VolvoxTranslateService {
             return cacheItem.value;
         }
 
-        const data = await this.myApiService.get<any>(`/assets/i18n/volvox-${ lang }.json`).toPromise();
+        const data: any = await this.myApiService.getAsync<any>(`/assets/i18n/volvox-${ lang }.json`);
         this.cache.add(lang, data);
         return this.updateTranslation(lang, data).toPromise();
     }
