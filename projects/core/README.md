@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 2.0.7 (2021-05-02)
+- Added join pipe
+- Added findInArray pipe
+- Updated packages
+
 ## Version 2.0.6 (2021-03-25)
 - Fix peerDependency Version
 
