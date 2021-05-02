@@ -1,4 +1,4 @@
-﻿import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, OnInit, Optional } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
@@ -20,7 +20,7 @@ export class CellEditorBaseComponent<Model> extends BaseComponent implements OnI
     public displayedColumns: string[];
 
     constructor(
-        public readonly myMatDialog: MatDialog,
+        @Optional() public readonly myMatDialog: MatDialog,
     ) {
         super();
     }

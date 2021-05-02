@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+}
+
+// Angular material overrides
+.mat-dialog-title.active {
+  margin: -24px -24px 24px -24px;
+  font-weight: 400;
+  padding: 24px;
+  background: #222222;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mat-dialog-actions {
+  margin-bottom: -10px !important;
+  justify-content: flex-end;
+}
