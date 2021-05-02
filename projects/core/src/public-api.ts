@@ -64,3 +64,6 @@ export * from './lib/pipes/volvox-duration-pipe/volvox-duration.pipe';
 export * from './lib/pipes/find-in-array/find-in-array-pipe.module';
 export * from './lib/pipes/find-in-array/find-in-array.pipe';
 
+export * from './lib/pipes/join/join-pipe.module';
+export * from './lib/pipes/join/join.pipe';
+
