@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 2.0.6 (2021-03-25)
+- Fix peerDependency Version
+
 ## Version 2.0.5 (2021-02-19)
 - Extend api service with http options
 
