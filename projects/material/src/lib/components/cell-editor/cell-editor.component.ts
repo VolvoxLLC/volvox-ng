@@ -72,19 +72,19 @@ export class CellEditorComponent extends BaseComponent implements OnInit {
             this.element.classList.remove('focused');
 
             if (save) {
-                if (!this.rowItem.rowChangedRowKeys) {
-                    this.rowItem.rowChangedRowKeys = [];
+                if (!this.rowItem.changedRowsKeys) {
+                    this.rowItem.changedRowKeys = [];
                 }
-                const index: number = this.rowItem.rowChangedRowKeys.indexOf(this.key);
+                const index: number = this.rowItem.changedRowKeys.indexOf(this.key);
                 if (this.value !== this.oldValue) {
                     if (index === -1) {
-                        this.rowItem.rowChangedRowKeys.push(this.key);
+                        this.rowItem.changedRowKeys.push(this.key);
                         this.element.classList.add('edited');
                     }
                     this.cellChange.emit();
                 } else {
                     if (index !== -1) {
-                        this.rowItem.rowChangedRowKeys.splice(index, 1);
+                        this.rowItem.changedRowKeys.splice(index, 1);
                         this.element.classList.remove('edited');
                     }
                 }

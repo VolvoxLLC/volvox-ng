@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.0.6 (2021-05-03)
+- Fixed changeRowKeys for cell editor
+
 ## Version 1.0.5 (2021-05-02)
 - Updated angular packages
 - Added global styles (`@import "~volvox-ng/material/src/assets/global-styles"`)
