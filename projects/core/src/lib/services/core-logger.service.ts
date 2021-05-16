@@ -218,7 +218,7 @@ export class CoreLoggerService {
      */
     private static writeToConsole(type: 'error' | 'success' | 'info' | 'warning' | 'log', title: string, msg: string): void {
         const date = new Date();
-        const dateOptions = {
+        const dateOptions: Intl.DateTimeFormatOptions = {
             year: '2-digit',
             month: '2-digit',
             day: '2-digit',
