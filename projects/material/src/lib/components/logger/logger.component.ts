@@ -66,19 +66,19 @@ export class LoggerComponent extends BaseComponent implements OnInit {
 
         switch (type) {
             case 'error':
-                icon = 'alert-circle-outline';
+                icon = 'error';
                 break;
             case 'warning':
-                icon = 'alert-outline';
+                icon = 'warning';
                 break;
             case 'info':
-                icon = 'information-outline';
+                icon = 'info';
                 break;
             case 'success':
-                icon = 'check';
+                icon = 'done';
                 break;
             case 'default':
-                icon = 'bell-outline';
+                icon = 'notifications';
                 break;
         }
 
