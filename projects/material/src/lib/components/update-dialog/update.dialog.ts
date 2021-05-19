@@ -38,7 +38,7 @@ export class UpdateDialog extends BaseComponent implements OnInit {
     public set updateConfig(config: IUpdateConfig) {
         if (config) {
             if (!config.versionPath) {
-                this.myLoggerService.logError('LoggerService', 'No version path was provided. This field is required!');
+                console.warn('LoggerService: No version path was provided. This field is required!');
                 return;
             }
 
@@ -66,7 +66,7 @@ export class UpdateDialog extends BaseComponent implements OnInit {
             this.end();
             this.start();
         } else {
-            this.myLoggerService.logWarning('LoggerService', 'Cannot check for version. No config was provided.');
+            console.warn('LoggerService: Cannot check for version. No config was provided.');
         }
     }
 

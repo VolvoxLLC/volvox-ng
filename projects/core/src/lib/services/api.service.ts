@@ -15,7 +15,7 @@ export const LOCAL_STORAGE_TOKEN_KEY = 'volvoxTokenSettings';
 export class ApiService {
 
     constructor(
-        private readonly myLoggerService: CoreLoggerService,
+        private readonly myCoreLoggerService: CoreLoggerService,
         private readonly myHttpClient: HttpClient,
     ) {
     }
@@ -271,7 +271,7 @@ export class ApiService {
 
     private handleError(err: HttpErrorResponse, options: IApiOptions): Observable<never> {
         if (!options?.skipErrorHandling) {
-            this.myLoggerService.logError(null, err, true);
+            this.myCoreLoggerService.logError({ msg: err });
         }
 
         return throwError(err);

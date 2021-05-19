@@ -33,10 +33,10 @@ export class LoggerService extends CoreLoggerService {
      * @param type
      * @param config
      */
-    public show(title: string, msg: string, type: string, config: ILoggerConfig): void {
-        super.show(title, msg, type, config);
+    public show(config: ILoggerConfig, type: string): void {
+        super.show(config, type);
         if (this.loggerComp) {
-            const i = this.loggerComp.slideIn(title, msg, type, config);
+            const i = this.loggerComp.slideIn(config.title, config.msg, type, config);
 
             if (config.duration !== -1) {
                 setTimeout((): void => {
