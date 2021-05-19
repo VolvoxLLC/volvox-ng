@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.1.0 (2021-05-19)
+- Logger parameter change
+- Loading button mat-icon-button
+
 ## Version 1.0.6 (2021-05-03)
 - Fixed changeRowKeys for cell editor
 
