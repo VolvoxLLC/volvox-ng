@@ -17,7 +17,7 @@
     </button>
     <button (click)="onClick($event)" *ngSwitchCase="'icon'" [class]="mode" [color]="color"
             [disabled]="loading || disabled" mat-icon-button>
-        <mat-spinner class="icon-spinner" [color]="color" [diameter]="40"></mat-spinner>
+        <mat-spinner *ngIf="loading" class="icon-spinner" [color]="color" [diameter]="40" [strokeWidth]="2"></mat-spinner>
         <ng-content select=".icon"></ng-content>
     </button>
 </ng-container>
