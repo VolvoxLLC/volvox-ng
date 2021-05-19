@@ -9,7 +9,7 @@
          class="logger-element">
 
         <div class="content">
-            <mat-icon [svgIcon]="log.icon" class="icon"></mat-icon>
+            <mat-icon class="icon">{{ log.icon }}</mat-icon>
             <div>
                 <div *ngIf="log.title" class="title">{{ log.title | translate }}</div>
                 <div *ngIf="log.message" [innerHTML]="log.message | translate" class="message"></div>
