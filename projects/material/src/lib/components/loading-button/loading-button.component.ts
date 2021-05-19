@@ -22,7 +22,7 @@ export class LoadingButtonComponent implements OnInit {
     public color: ThemePalette = 'primary';
 
     @Input()
-    public buttonType: 'default' | 'raised' | 'stroked' | 'flat';
+    public buttonType: 'default' | 'raised' | 'stroked' | 'flat' | 'icon';
 
     @Output()
     public click: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();

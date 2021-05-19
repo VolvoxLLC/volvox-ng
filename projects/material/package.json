@@ -1,14 +1,14 @@
 {
   "name": "@volvox-ng/material",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "author": {
     "name": "Volvox LLC",
     "email": "smoutinho@volvox.tech",
     "url": "https://volvox.tech/"
   },
   "peerDependencies": {
-    "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0",
+    "@angular/common": ">=11.0.0",
+    "@angular/core": ">=11.0.0",
     "@volvox-ng/core": ">=2.0.0",
     "@angular/cdk": ">=11.0.0",
     "@angular/material": ">=11.0.0",

@@ -7,7 +7,8 @@ import { CellEditorService } from '../../services/cell-editor.service';
 })
 export class CellEditorDirective implements OnInit {
 
-    @ContentChild(CellEditorComponent) private cellEditor: CellEditorComponent;
+    @ContentChild(CellEditorComponent)
+    private cellEditor: CellEditorComponent;
 
     constructor(
         private readonly myElementRef: ElementRef<HTMLElement>,
@@ -152,7 +153,7 @@ export class CellEditorDirective implements OnInit {
                 this.findPreviousEditableColumn(currentCell);
             if (this.myCellEditorService.isEditingCellValid()) {
                 this.cellEditor.toOutput(true);
-                targetCell.click();
+                targetCell?.click();
             }
             CellEditorDirective.executeMove(event, targetCell);
         }
