@@ -55,10 +55,24 @@ export class Sieve {
     }
 
     /**
+     * Setter to set page size
+     */
+    public set pageSize(pageSize: number) {
+        this.options.pageSize = pageSize;
+    }
+
+    /**
      * public getter to get page
      */
     public get page(): number {
         return this.options.page;
+    }
+
+    /**
+     * Setter to set page
+     */
+    public set page(page: number) {
+        this.options.page = page;
     }
 
     /**
@@ -69,10 +83,24 @@ export class Sieve {
     }
 
     /**
+     * Setter to set filters
+     */
+    public set filters(filters: ISieveFilter[]) {
+        this.options.filters = filters;
+    }
+
+    /**
      * public getter to get sorts
      */
     public get sorts(): ISieveSort[] {
         return this.options.sorts;
+    }
+
+    /**
+     * Setter to set sorts
+     */
+    public set sorts(sorts: ISieveSort[]) {
+        this.options.sorts = sorts;
     }
 
     /**
