@@ -18,7 +18,7 @@ export class FindInArrayPipe implements PipeTransform {
             return null;
         }
 
-        const foundItem: any = array.find((val: string): boolean => val[ search ] === searchValue);
+        const foundItem: any = array.find((val: string): boolean => (search ? val[ search ] : val) === searchValue);
 
         if (!foundItem) {
             return null;

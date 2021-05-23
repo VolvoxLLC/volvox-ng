@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.1.1 (2021-05-20)
+- Improve findInArray pipe
+  - Search parameter is optional
+
 ## Version 2.1.0 (2021-05-19)
 - Parameter change for logger
 - Add sieve response model
