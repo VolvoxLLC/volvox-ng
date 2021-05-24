@@ -46,8 +46,23 @@ export class StringExtensions implements IStringExtensions {
 }
 
 export class ArrayExtensions implements IArrayExtensions {
-    public hasChanges<T>(data: T): boolean {
+    public hasChanges<T>(data: T[]): boolean {
         return JSON.stringify(this) !== JSON.stringify(data);
+    }
+
+    public replaceRange<T>(data: T[], start: number, end: number): T[] {
+        const array: T[] = cast<T[]>(this);
+        let replaceDataIndex: number = 0;
+        for (let i: number = start; i < end; i++) {
+            if (!array[ i ] && !data[ replaceDataIndex ]) {
+                array.splice(i, 1);
+                continue;
+            }
+
+            array[ i ] = data[ replaceDataIndex ];
+            replaceDataIndex++;
+        }
+        return array;
     }
 }
 
@@ -95,6 +110,11 @@ export interface IArrayExtensions {
      * @deprecated learn how to program
      */
     hasChanges: <T>(data: T[]) => boolean;
+    /**
+     * Replaces a specific element range in an array
+     * @param data
+     */
+    replaceRange: <T>(replaceData: T[], start: number, end: number) => T[];
 }
 
 export interface INumberExtensions {
@@ -136,6 +156,7 @@ export class Prototypes {
         String.prototype.toUTC = stringExtensions.toUTC;
 
         Array.prototype.hasChanges = arrayExtensions.hasChanges;
+        Array.prototype.replaceRange = arrayExtensions.replaceRange;
 
         Number.prototype.between = numberExtensions.between;
     }
