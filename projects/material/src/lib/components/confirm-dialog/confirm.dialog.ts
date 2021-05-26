@@ -6,7 +6,7 @@ import { BaseComponent } from '../base/base.component';
 @Component({
     selector: 'volvox-confirm-dialog',
     templateUrl: './confirm.dialog.html',
-    styleUrls: ['./confirm.dialog.scss'],
+    styleUrls: [ './confirm.dialog.scss' ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmDialog extends BaseComponent implements OnInit {

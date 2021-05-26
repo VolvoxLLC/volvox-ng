@@ -32,7 +32,7 @@ export class VolvoxSocketService {
             return ws.close.bind(ws);
         });
         const observer = {
-            next: (data: Object): void => {
+            next: (data: any): void => {
                 if (ws.readyState === WebSocket.OPEN) {
                     ws.send(JSON.stringify(data));
                 }

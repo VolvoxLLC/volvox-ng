@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class VolvoxDatePipe implements PipeTransform {
 
     private store$: BehaviorSubject<number>;
-    private templates: { [key: string]: string };
+    private templates: { [ key: string ]: string };
 
     constructor(
         private readonly myTranslateService: TranslateService,
@@ -74,7 +74,7 @@ export class VolvoxDatePipe implements PipeTransform {
     }
 
     private template(key: string, val: number): string {
-        return this.templates[key] && this.templates[key].replace(/%d/i, String(Math.abs(Math.round(val))));
+        return this.templates[ key ] && this.templates[ key ].replace(/%d/i, String(Math.abs(Math.round(val))));
     }
 
     private updateTemplates(): void {

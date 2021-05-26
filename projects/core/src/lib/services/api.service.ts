@@ -90,7 +90,7 @@ export class ApiService {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
-        return this.myHttpClient.get<T>(url, { ...options.httpOptions as {}, headers })
+        return this.myHttpClient.get<T>(url, { ...options.httpOptions as any, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -116,7 +116,7 @@ export class ApiService {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
-        return this.myHttpClient.get<T>(url, { ...options.httpOptions as {}, headers, observe: 'response' })
+        return this.myHttpClient.get<T>(url, { ...options.httpOptions as any, headers, observe: 'response' })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -144,7 +144,7 @@ export class ApiService {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
-        return this.myHttpClient.patch(url, data, { ...options.httpOptions as {}, headers })
+        return this.myHttpClient.patch(url, data, { ...options.httpOptions as any, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -171,7 +171,7 @@ export class ApiService {
     public put<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
-        return this.myHttpClient.put(url, data, { ...options.httpOptions as {}, headers })
+        return this.myHttpClient.put(url, data, { ...options.httpOptions as any, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -198,7 +198,7 @@ export class ApiService {
     public post<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
-        return this.myHttpClient.post<T>(url, data, { ...options.httpOptions as {}, headers })
+        return this.myHttpClient.post<T>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
             );
@@ -225,6 +225,7 @@ export class ApiService {
     public delete<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Observable<T> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
+        // eslint-disable-next-line @typescript-eslint/ban-types
         return this.myHttpClient.delete<T>(url, { ...options.httpOptions as {}, headers })
             .pipe(
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
@@ -257,18 +258,6 @@ export class ApiService {
         document.body.append(script);
     }
 
-    private static serializeOptions(options: IApiOptions): IApiOptions {
-        if (!options) {
-            options = {};
-        }
-
-        if (!options.httpOptions) {
-            options.httpOptions = {};
-        }
-
-        return options;
-    }
-
     private handleError(err: HttpErrorResponse, options: IApiOptions): Observable<never> {
         if (!options?.skipErrorHandling) {
             this.myCoreLoggerService.logError({ msg: err });
@@ -298,5 +287,17 @@ export class ApiService {
             }
         }
         return headers;
+    }
+
+    private static serializeOptions(options: IApiOptions): IApiOptions {
+        if (!options) {
+            options = {};
+        }
+
+        if (!options.httpOptions) {
+            options.httpOptions = {};
+        }
+
+        return options;
     }
 }

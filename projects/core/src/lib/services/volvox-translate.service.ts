@@ -44,7 +44,7 @@ export class VolvoxTranslateService {
         }
         const json: any = await this.myApiService.get(`../../assets/i18n/${ prefix }${ lang }.json`).toPromise();
 
-        // tslint:disable-next-line:forin
+        // eslint-disable-next-line guard-for-in
         for (const objectPath in json) {
             const parts: string[] = objectPath.split('.');
 
@@ -52,11 +52,11 @@ export class VolvoxTranslateService {
             const targets = [];
             while (parts.length > 1) {
                 const part = parts.shift();
-                target = target[part] = target[part] || {};
+                target = target[ part ] = target[ part ] || {};
                 targets.push(part);
             }
 
-            target[parts[0]] = objectPath;
+            target[ parts[ 0 ] ] = objectPath;
         }
 
         let parsedJSON = JSON.stringify(result, null, 4);
@@ -82,7 +82,7 @@ export class VolvoxTranslateService {
         // Add semicolon
         parsedJSON += ';';
 
-        const resultString = `export const i18nApp: II18nApp = ` + parsedJSON;
+        const resultString = `export const i18nApp: II18nApp = ${ parsedJSON }`;
 
         console.log(resultString);
     }
@@ -99,17 +99,17 @@ export class VolvoxTranslateService {
         }
         const json: any = await this.myApiService.get(`../../assets/i18n/${ prefix }${ lang }.json`).toPromise();
 
-        // tslint:disable-next-line:forin
+        // eslint-disable-next-line guard-for-in
         for (const objectPath in json) {
             const parts: string[] = objectPath.split('.');
 
             let target = result;
             while (parts.length > 1) {
                 const part = parts.shift();
-                target = target[part] = target[part] || {};
+                target = target[ part ] = target[ part ] || {};
             }
 
-            target[parts[0]] = json[objectPath];
+            target[ parts[ 0 ] ] = json[ objectPath ];
         }
 
         let parsedJSON = JSON.stringify(result, null, 4);
@@ -122,7 +122,7 @@ export class VolvoxTranslateService {
         // Add typedef
         parsedJSON = parsedJSON.replace(/".*?"/g, 'string;');
 
-        const resultString = `export interface II18nApp ` + parsedJSON;
+        const resultString = `export interface II18nApp ${ parsedJSON }`;
 
         console.log(resultString);
     }

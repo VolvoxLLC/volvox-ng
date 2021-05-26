@@ -33,7 +33,7 @@ export interface ISieveOptions {
 export class Sieve {
 
     private readonly options: ISieveOptions;
-    private readonly baseUrl: string;
+    private _baseUrl: string;
 
     /**
      * Default constructor.
@@ -55,10 +55,24 @@ export class Sieve {
     }
 
     /**
+     * Setter to set page size
+     */
+    public set pageSize(pageSize: number) {
+        this.options.pageSize = pageSize;
+    }
+
+    /**
      * public getter to get page
      */
     public get page(): number {
         return this.options.page;
+    }
+
+    /**
+     * Setter to set page
+     */
+    public set page(page: number) {
+        this.options.page = page;
     }
 
     /**
@@ -69,10 +83,24 @@ export class Sieve {
     }
 
     /**
+     * Setter to set filters
+     */
+    public set filters(filters: ISieveFilter[]) {
+        this.options.filters = filters;
+    }
+
+    /**
      * public getter to get sorts
      */
     public get sorts(): ISieveSort[] {
         return this.options.sorts;
+    }
+
+    /**
+     * Setter to set sorts
+     */
+    public set sorts(sorts: ISieveSort[]) {
+        this.options.sorts = sorts;
     }
 
     /**
@@ -102,10 +130,25 @@ export class Sieve {
     }
 
     /**
+     * Getter for base url
+     */
+    public get baseUrl(): string {
+        return this._baseUrl;
+    }
+
+    /**
+     * Setter for base url
+     * @param url
+     */
+    public set baseUrl(url: string) {
+        this._baseUrl = url;
+    }
+
+    /**
      * Convert to queried string
      */
     public getUrl(): string {
-        return `${ this.baseUrl }${ this.toQuery() }`;
+        return `${ this._baseUrl }${ this.toQuery() }`;
     }
 
     /**

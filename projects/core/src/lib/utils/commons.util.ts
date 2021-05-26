@@ -47,9 +47,8 @@ export function roundNearest(value: number, round: number): number {
  * @param array
  */
 export function mergeArray<T>(array: T[][]): T[] {
-    return array.reduce((flat: any, toFlatten: any): any => {
-        return flat.concat(Array.isArray(toFlatten) ? mergeArray<T>(toFlatten) : toFlatten);
-    }, []);
+    return array.reduce((flat: any, toFlatten: any): any =>
+        flat.concat(Array.isArray(toFlatten) ? mergeArray<T>(toFlatten) : toFlatten), []);
 }
 
 /**
@@ -58,11 +57,11 @@ export function mergeArray<T>(array: T[][]): T[] {
  */
 export function getTransformMatrix(element: HTMLElement): ITransformMatrix {
     const values = element.style.transform.split(/\w+\(|\);?/);
-    const transform = values[1].split(/,\s?/g).map((numStr: string): number => parseInt(numStr, 10));
+    const transform = values[ 1 ].split(/,\s?/g).map((numStr: string): number => parseInt(numStr, 10));
 
     return {
-        x: transform[0],
-        y: transform[1],
-        z: transform[2],
+        x: transform[ 0 ],
+        y: transform[ 1 ],
+        z: transform[ 2 ],
     };
 }
