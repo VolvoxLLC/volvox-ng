@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 2.1.1 (2021-05-20)
+## Version 2.1.1 (2021-05-26)
 - Improve findInArray pipe
   - Search parameter is optional
 - Sieve add setters
