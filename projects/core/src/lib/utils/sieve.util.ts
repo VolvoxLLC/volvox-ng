@@ -33,7 +33,7 @@ export interface ISieveOptions {
 export class Sieve {
 
     private readonly options: ISieveOptions;
-    private readonly baseUrl: string;
+    private _baseUrl: string;
 
     /**
      * Default constructor.
@@ -130,10 +130,25 @@ export class Sieve {
     }
 
     /**
+     * Getter for base url
+     */
+    public get baseUrl(): string {
+        return this._baseUrl;
+    }
+
+    /**
+     * Setter for base url
+     * @param url
+     */
+    public set baseUrl(url: string) {
+        this._baseUrl = url;
+    }
+
+    /**
      * Convert to queried string
      */
     public getUrl(): string {
-        return `${ this.baseUrl }${ this.toQuery() }`;
+        return `${ this._baseUrl }${ this.toQuery() }`;
     }
 
     /**

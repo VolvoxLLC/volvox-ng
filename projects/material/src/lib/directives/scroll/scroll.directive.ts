@@ -5,7 +5,7 @@ import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
 })
 export class ScrollDirective {
 
-    // tslint:disable-next-line:no-output-on-prefix
+    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
     @Output()
     public onScroll: EventEmitter<Event> = new EventEmitter<Event>();
 

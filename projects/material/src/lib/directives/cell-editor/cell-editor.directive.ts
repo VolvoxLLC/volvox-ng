@@ -16,19 +16,15 @@ export class CellEditorDirective implements OnInit {
     ) {
     }
 
-    public ngOnInit(): void {
-        this.myElementRef.nativeElement.classList.add('editable-cell');
-    }
-
-    @HostListener('keydown.escape', ['$event'])
+    @HostListener('keydown.escape', [ '$event' ])
     public onEscapeKeyDown(e: KeyboardEvent): void {
         e.preventDefault();
         this.cellEditor.toOutput();
     }
 
-    @HostListener('keydown.tab', ['$event'])
-    @HostListener('keydown.shift.tab', ['$event'])
-    @HostListener('keydown.meta.tab', ['$event'])
+    @HostListener('keydown.tab', [ '$event' ])
+    @HostListener('keydown.shift.tab', [ '$event' ])
+    @HostListener('keydown.meta.tab', [ '$event' ])
     public onShiftKeyDown(e: KeyboardEvent): void {
         e.preventDefault();
         if (e.shiftKey) {
@@ -38,7 +34,7 @@ export class CellEditorDirective implements OnInit {
         }
     }
 
-    @HostListener('keydown.enter', ['$event'])
+    @HostListener('keydown.enter', [ '$event' ])
     public onEnterKeyDown(e: KeyboardEvent): void {
         e.preventDefault();
         if (this.myCellEditorService.isEditingCellValid()) {
@@ -46,34 +42,15 @@ export class CellEditorDirective implements OnInit {
         }
     }
 
-    @HostListener('click', ['$event'])
+    @HostListener('click', [ '$event' ])
     public onClick(e: MouseEvent): void {
         e.preventDefault();
         this.myCellEditorService.updateEditingCell(this.cellEditor);
         this.cellEditor.cellClick.emit();
     }
 
-    private static invokeElementMethod(element: any, methodName: string, args?: any[]): void {
-        (element as any)[methodName].apply(element, args);
-    }
-
-    private static executeMove(e: KeyboardEvent, targetCell: Element): void {
-        e.preventDefault();
-        // If datepicker is opened, remove cdk-overlay from dom
-        const element: Element = e.composedPath()[0] as Element;
-        if (element.className.indexOf('td-input-date') > -1) {
-            const cdkOverlayContainer: Element = document.getElementsByClassName('cdk-overlay-container')[0];
-            const cdkBackdrop: Element = cdkOverlayContainer.getElementsByClassName('cdk-overlay-backdrop')[0];
-            if (cdkBackdrop != null) {
-                CellEditorDirective.invokeElementMethod(cdkBackdrop, 'click');
-            }
-            cdkOverlayContainer.innerHTML = '';
-        }
-
-        CellEditorDirective.invokeElementMethod(e.target, 'blur');
-        if (targetCell != null) {
-            CellEditorDirective.invokeElementMethod(targetCell, 'click');
-        }
+    public ngOnInit(): void {
+        this.myElementRef.nativeElement.classList.add('editable-cell');
     }
 
     private moveToNextRowCell(e: KeyboardEvent): void {
@@ -101,7 +78,7 @@ export class CellEditorDirective implements OnInit {
             return null;
         }
 
-        const column: Element = nextRow.getElementsByClassName(matColumnClassName)[0];
+        const column: Element = nextRow.getElementsByClassName(matColumnClassName)[ 0 ];
         return column?.classList.contains('editable-cell') ?
             column.firstChild as HTMLElement :
             this.findNextRowEditableColumn(nextRow, matColumnClassName);
@@ -156,6 +133,30 @@ export class CellEditorDirective implements OnInit {
                 targetCell?.click();
             }
             CellEditorDirective.executeMove(event, targetCell);
+        }
+    }
+
+    private static invokeElementMethod(element: any, methodName: string, args?: any[]): void {
+        // eslint-disable-next-line prefer-spread
+        element[ methodName ].apply(element, args);
+    }
+
+    private static executeMove(e: KeyboardEvent, targetCell: Element): void {
+        e.preventDefault();
+        // If datepicker is opened, remove cdk-overlay from dom
+        const element: Element = e.composedPath()[ 0 ] as Element;
+        if (element.className.indexOf('td-input-date') > -1) {
+            const cdkOverlayContainer: Element = document.getElementsByClassName('cdk-overlay-container')[ 0 ];
+            const cdkBackdrop: Element = cdkOverlayContainer.getElementsByClassName('cdk-overlay-backdrop')[ 0 ];
+            if (cdkBackdrop != null) {
+                CellEditorDirective.invokeElementMethod(cdkBackdrop, 'click');
+            }
+            cdkOverlayContainer.innerHTML = '';
+        }
+
+        CellEditorDirective.invokeElementMethod(e.target, 'blur');
+        if (targetCell != null) {
+            CellEditorDirective.invokeElementMethod(targetCell, 'click');
         }
     }
 

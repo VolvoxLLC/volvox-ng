@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleCha
 @Component({
     selector: 'volvox-alert-widget',
     templateUrl: './alert.widget.html',
-    styleUrls: ['./alert.widget.scss'],
+    styleUrls: [ './alert.widget.scss' ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertWidget implements OnInit, OnChanges {

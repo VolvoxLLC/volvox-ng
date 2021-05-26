@@ -34,6 +34,7 @@ import { MatUpdateDialog } from './mat-update-dialog/mat-update.dialog';
  */
 export class UpdateDialog extends BaseComponent implements OnInit {
 
+    // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('config')
     public set updateConfig(config: IUpdateConfig) {
         if (config) {
@@ -77,9 +78,8 @@ export class UpdateDialog extends BaseComponent implements OnInit {
     private config: IUpdateConfig;
 
     constructor(
-        private readonly myMatDialog: MatDialog,
         private readonly myApiService: ApiService,
-        private readonly myLoggerService: CoreLoggerService,
+        private readonly myMatDialog: MatDialog,
     ) {
         super();
     }
@@ -92,7 +92,7 @@ export class UpdateDialog extends BaseComponent implements OnInit {
         if (this.interval) {
             this.end();
         }
-        this.checkForUpdate().then();
+        void this.checkForUpdate();
         this.interval = setInterval((): Promise<void> => this.checkForUpdate(), this.config.refreshInterval);
     }
 

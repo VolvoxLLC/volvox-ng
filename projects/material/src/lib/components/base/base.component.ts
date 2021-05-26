@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 
 @Component({
     selector: 'volvox-base',
-    template: ``,
+    template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnDestroy {

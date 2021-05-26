@@ -11,7 +11,7 @@ export class VarDirective {
     }
 
     @Input()
-    set ngVar(context: any) {
+    public set ngVar(context: any) {
         this.context.$implicit = this.context.ngVar = context;
         this.updateView();
     }

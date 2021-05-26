@@ -12,20 +12,11 @@ export class ClickOutsideDirective {
     public enableWhiteListing: boolean;
 
     constructor(
-        private readonly elementRef: ElementRef
+        private readonly elementRef: ElementRef,
     ) {
     }
 
-    private static getClosest(el: HTMLElement, selector: string): HTMLElement {
-        while (el) {
-            if (el.classList.contains(selector)) {
-                return el;
-            }
-            el = el.parentElement;
-        }
-    }
-
-    @HostListener('document:click', ['$event.target'])
+    @HostListener('document:click', [ '$event.target' ])
     private onClick(targetElement: HTMLElement): void {
         const clickedInside = this.elementRef.nativeElement.contains(targetElement);
         const whiteListedClass = 'whitelisted';
@@ -35,11 +26,20 @@ export class ClickOutsideDirective {
                     || ClickOutsideDirective.getClosest(targetElement, whiteListedClass)
                     || ClickOutsideDirective.getClosest(targetElement, 'cdk-overlay-container');
                 if (!isWhiteListed) {
-                    this.clickOutside.emit([this.elementRef.nativeElement, targetElement]);
+                    this.clickOutside.emit([ this.elementRef.nativeElement, targetElement ]);
                 }
             } else {
-                this.clickOutside.emit([this.elementRef.nativeElement, targetElement]);
+                this.clickOutside.emit([ this.elementRef.nativeElement, targetElement ]);
             }
+        }
+    }
+
+    private static getClosest(el: HTMLElement, selector: string): HTMLElement {
+        while (el) {
+            if (el.classList.contains(selector)) {
+                return el;
+            }
+            el = el.parentElement;
         }
     }
 

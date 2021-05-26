@@ -9,14 +9,6 @@ import { Skeleton } from '../../../models/skeleton.model';
 })
 export class SkeletonComponent implements OnInit {
 
-    private get actualWidth(): string {
-        if (this.skeleton.randomizeOffset > 0 && typeof this.skeleton.width === 'number') {
-            return `${ this.skeleton.width - Math.floor(Math.random() * this.skeleton.randomizeOffset) }px`;
-        }
-
-        return SkeletonComponent.value(this.skeleton.width);
-    }
-
     @Input()
     public skeleton: Skeleton;
 
@@ -54,9 +46,17 @@ export class SkeletonComponent implements OnInit {
         this.element.style.borderRadius = SkeletonComponent.value(this.skeleton.borderRadius);
     }
 
+    private get actualWidth(): string {
+        if (this.skeleton.randomizeOffset > 0 && typeof this.skeleton.width === 'number') {
+            return `${ this.skeleton.width - Math.floor(Math.random() * this.skeleton.randomizeOffset) }px`;
+        }
+
+        return SkeletonComponent.value(this.skeleton.width);
+    }
+
     private static value(val: number | string): string {
         if (typeof val === 'number') {
-            return val + 'px';
+            return `${ val }px`;
         }
         return val;
     }

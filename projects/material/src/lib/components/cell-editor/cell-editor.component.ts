@@ -7,7 +7,7 @@ import {
     EventEmitter,
     Input,
     OnInit,
-    Output
+    Output,
 } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import { TableItem } from '../../models/table-item.model';
@@ -20,8 +20,6 @@ import { BaseComponent } from '../base/base.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CellEditorComponent extends BaseComponent implements OnInit {
-
-    public mode: 'input' | 'output' = 'output';
 
     @Input()
     public key: string;
@@ -46,6 +44,8 @@ export class CellEditorComponent extends BaseComponent implements OnInit {
 
     @ContentChild(MatSelect)
     private select: MatSelect;
+
+    public mode: 'input' | 'output' = 'output';
 
     private oldValue: any;
 

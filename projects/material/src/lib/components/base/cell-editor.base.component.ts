@@ -11,7 +11,7 @@ import { BaseComponent } from './base.component';
 
 @Component({
     selector: 'volvox-cell-editor-base',
-    template: ``,
+    template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CellEditorBaseComponent<Model> extends BaseComponent implements OnInit, CanDeactivate<CellEditorBaseComponent<Model>> {
