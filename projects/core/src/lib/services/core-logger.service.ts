@@ -155,23 +155,6 @@ export class CoreLoggerService {
     }
 
     /**
-     * Gets a value which is not undefined or null
-     * @param val
-     * @param val1
-     * @param def
-     * @private
-     */
-    private static getValue<T>(val: T, val1: T, def: T): T {
-        if (isNullOrUndefined(val)) {
-            if (isNullOrUndefined(val1)) {
-                return def;
-            }
-            return val1;
-        }
-        return val;
-    }
-
-    /**
      * Serializes empty values, so no error is being returned
      * @param config
      * @private
@@ -201,6 +184,23 @@ export class CoreLoggerService {
         config.closeOnClick = CoreLoggerService.getValue<boolean>(config.closeOnClick, this.defaultConfig.closeOnClick, true);
 
         return config;
+    }
+
+    /**
+     * Gets a value which is not undefined or null
+     * @param val
+     * @param val1
+     * @param def
+     * @private
+     */
+    private static getValue<T>(val: T, val1: T, def: T): T {
+        if (isNullOrUndefined(val)) {
+            if (isNullOrUndefined(val1)) {
+                return def;
+            }
+            return val1;
+        }
+        return val;
     }
 
 }
