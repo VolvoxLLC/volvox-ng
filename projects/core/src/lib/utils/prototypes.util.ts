@@ -1,4 +1,5 @@
-﻿/**
+﻿/* eslint-disable @typescript-eslint/unbound-method */
+/**
  * Cast any type
  * @param data to be casted
  * @returns casted data
@@ -127,15 +128,15 @@ export interface INumberExtensions {
 }
 
 declare global {
-    // tslint:disable-next-line:no-empty-interface
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface String extends IStringExtensions {
     }
 
-    // tslint:disable-next-line:no-empty-interface
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface Array<T> extends IArrayExtensions {
     }
 
-    // tslint:disable-next-line:no-empty-interface
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface Number extends INumberExtensions {
     }
 }
