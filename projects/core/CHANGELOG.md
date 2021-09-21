@@ -1,5 +1,9 @@
 # Changelog
 
+12.0.0
+--------------------------------
+- Update to Angular 12
+
 11.0.0
 --------------------------------
 - Update versions to angular version
