@@ -23,8 +23,10 @@
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/core/tsconfig.lib.prod.json"
-                        }
-                    }
+                        },
+                        "development": {}
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "lint": {
                     "builder": "@angular-eslint/builder:lint",
@@ -56,8 +58,10 @@
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/material/tsconfig.lib.prod.json"
-                        }
-                    }
+                        },
+                        "development": {}
+                    },
+                    "defaultConfiguration": "production"
                 },
                 "lint": {
                     "builder": "@angular-eslint/builder:lint",
