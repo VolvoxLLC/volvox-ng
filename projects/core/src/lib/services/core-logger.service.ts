@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ILogEvent } from '../models/logger/log-event.model';
+import { LogType } from '../models/logger/log-type.model';
 import { ILoggerConfig } from '../models/logger/logger-config.model';
 import { ILoggerDefaultConfig } from '../models/logger/logger-default-config.model';
 import { isNullOrUndefined } from '../utils/commons.util';
@@ -150,7 +151,7 @@ export class CoreLoggerService {
      * @param type
      * @param config
      */
-    public show(config: ILoggerConfig, type: string): void {
+    public show(config: ILoggerConfig, type: LogType): void {
         this.uiLogs$.next({ title: config.title, msg: config.msg, type, config });
     }
 
