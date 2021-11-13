@@ -8,11 +8,6 @@ export class Sieve {
     private readonly options: ISieveOptions;
     private _baseUrl: string;
 
-    /**
-     * Default constructor.
-     * @param url base url
-     * @param options sieve options
-     */
     constructor(options: ISieveOptions) {
         this.options = options;
         this.options.filters = options.filters || [];
