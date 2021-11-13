@@ -28,7 +28,12 @@ export * from './lib/models/api-options.model';
 export * from './lib/models/volvox-duration.model';
 export * from './lib/models/token-settings.model';
 export * from './lib/models/transform-matrix.model';
-export * from './lib/models/sieve-response.model';
+
+export * from './lib/models/sieve/sieve-response.model';
+export * from './lib/models/sieve/sieve-sort.model';
+export * from './lib/models/sieve/sieve-filter.model';
+export * from './lib/models/sieve/sieve-operator.model';
+export * from './lib/models/sieve/sieve-options.model';
 
 export * from './lib/models/logger/logger-config.model';
 export * from './lib/models/logger/log.model';
