@@ -13,7 +13,8 @@ Happy linting! 💖
 */
 // eslint:disable
 module.exports = {
-    root: true,
+    'root': true,
+    'ignorePatterns': 'projects/**/*',
     'env': {
         'browser': true,
         'es6': true,
