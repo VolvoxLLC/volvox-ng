@@ -1,1 +1,3 @@
-<p><%= dasherize(name) %> works!</p>
+<% if (createFacade) { %><ng-container *ngIf="<%= camelize(name) %>State$ | async as state">
+    <p><%= dasherize(name) %> works!</p>
+</ng-container><% } else { %><p><%= dasherize(name) %> works!</p><% } %>
