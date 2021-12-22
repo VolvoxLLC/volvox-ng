@@ -17,5 +17,5 @@ const routes: Routes = [
         RouterModule.forChild(routes),
     ],
 })
-export class <%= classify(name) %>Module {
+export class <%= classify(name) %>PageModule {
 }

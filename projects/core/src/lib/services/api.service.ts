@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { IApiOptions } from '../models/api-options.model';
 import { ITokenSettings } from '../models/token-settings.model';
 import { isNullOrEmpty } from '../utils/commons.util';
@@ -92,7 +92,8 @@ export class ApiService {
 
         return this.myHttpClient.get<T>(url, { ...options.httpOptions as any, headers })
             .pipe(
-                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
+                map((val: HttpEvent<T>) => (val as HttpResponse<T>).body),
+                catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
 
@@ -102,7 +103,7 @@ export class ApiService {
      * @param headers
      * @param options
      */
-    public async getWithHeadersAsync<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Promise<HttpResponse<T>> {
+    public async getWithHeadersAsync<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Promise<HttpEvent<T>> {
         return this.getWithHeaders<T>(url, headers, options).toPromise();
     }
 
@@ -112,13 +113,14 @@ export class ApiService {
      * @param headers
      * @param options
      */
-    public getWithHeaders<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Observable<HttpResponse<T>> {
+    public getWithHeaders<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Observable<HttpEvent<T>> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return this.myHttpClient.get<T>(url, { ...options.httpOptions as any, headers, observe: 'response' })
             .pipe(
-                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
+                catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
 
@@ -144,9 +146,10 @@ export class ApiService {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
-        return this.myHttpClient.patch(url, data, { ...options.httpOptions as any, headers })
+        return this.myHttpClient.patch<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
-                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
+                map((val: HttpEvent<T1>) => (val as HttpResponse<T1>).body),
+                catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
 
@@ -171,21 +174,11 @@ export class ApiService {
     public put<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
-        return this.myHttpClient.put(url, data, { ...options.httpOptions as any, headers })
+        return this.myHttpClient.put<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
-                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
+                map((val: HttpEvent<T1>) => (val as HttpResponse<T1>).body),
+                catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
-    }
-
-    /**
-     * Makes an async http post call
-     * @param url
-     * @param data
-     * @param headers
-     * @param options
-     */
-    public async postAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
-        return this.post<T, T1>(url, data, headers, options).toPromise();
     }
 
     /**
@@ -198,10 +191,22 @@ export class ApiService {
     public post<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
-        return this.myHttpClient.post<T>(url, data, { ...options.httpOptions as any, headers })
+        return this.myHttpClient.post<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
-                catchError((err: HttpErrorResponse): Observable<any> => this.handleError(err, options)),
+                map((val: HttpEvent<T1>) => (val as HttpResponse<T1>).body),
+                catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
+    }
+
+    /**
+     * Makes an async http post call
+     * @param url
+     * @param data
+     * @param headers
+     * @param options
+     */
+    public async postAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
+        return this.post<T, T1>(url, data, headers, options).toPromise();
     }
 
     /**
@@ -239,6 +244,7 @@ export class ApiService {
      * @param onLoad
      */
     public loadExternalScript(path: string, attributes?: { key: string, value: string }[],
+                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
                               onLoad?: ((this: GlobalEventHandlers, ev: Event) => any)): void {
         const script = document.createElement('script');
         script.type = 'text/javascript';

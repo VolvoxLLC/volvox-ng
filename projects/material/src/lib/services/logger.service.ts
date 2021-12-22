@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CoreLoggerService, ILoggerConfig, ILoggerDefaultConfig } from '@volvox-ng/core';
+import { CoreLoggerService, ILoggerConfig, ILoggerDefaultConfig, LogType } from '@volvox-ng/core';
 import { LoggerComponent } from '../components/logger/logger.component';
 
 @Injectable({
@@ -33,7 +33,7 @@ export class LoggerService extends CoreLoggerService {
      * @param type
      * @param config
      */
-    public show(config: ILoggerConfig, type: string): void {
+    public show(config: ILoggerConfig, type: LogType): void {
         super.show(config, type);
         if (this.loggerComp) {
             const i = this.loggerComp.slideIn(config.title, config.msg, type, config);

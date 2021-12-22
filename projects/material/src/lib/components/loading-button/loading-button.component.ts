@@ -30,6 +30,7 @@ export class LoadingButtonComponent implements OnInit {
     constructor() {
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public ngOnInit(): void {
     }
 

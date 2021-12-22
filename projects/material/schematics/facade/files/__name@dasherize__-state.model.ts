@@ -1,2 +1,2 @@
-export interface I<%= classify(name) %>State {
+export <% if (!useClass) { %>interface I<% } else { %>class <% } %><%= classify(name) %>State {
 }

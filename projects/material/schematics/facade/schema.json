@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "Schematic",
+  "id": "FacadeSchematic",
   "title": "ng new options schema",
   "type": "object",
   "description": "Initialize a new facade",
@@ -18,9 +18,25 @@
       "format": "path",
       "visible": false
     },
+    "use-class": {
+      "type": "boolean",
+      "description": "Create a facade with a class instead of an interface"
+    },
+    "with-snapshot": {
+      "type": "boolean",
+      "description": "Create a getter or function for the snapshot"
+    },
+    "use-snapshot-function": {
+      "type": "boolean",
+      "description": "Use a function instead of the default getter"
+    },
+    "model-folder-path": {
+      "type": "string",
+      "description": "Custom models path for facades"
+    },
     "project": {
       "type": "string",
-      "description": "The name of the project",
+      "description": "The name of the project.",
       "$default": {
         "$source": "projectName"
       }

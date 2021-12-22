@@ -1,4 +1,5 @@
-﻿export enum ConfirmDialogResult {
+﻿// eslint-disable-next-line max-classes-per-file
+export enum ConfirmDialogResult {
     confirmed,
     denied,
     cancelled,

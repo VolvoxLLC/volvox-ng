@@ -8,6 +8,7 @@ import { BaseSkeletonLoader } from '../base.skeleton-loader';
     styleUrls: [ './table.skeleton-loader.scss' ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class TableSkeletonLoader extends BaseSkeletonLoader implements OnInit {
 
     @Input()

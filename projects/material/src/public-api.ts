@@ -46,9 +46,3 @@ export * from './lib/models/update-config.model';
 
 export * from './lib/directives/click-outside/click-outside.directive.module';
 export * from './lib/directives/click-outside/click-outside.directive';
-
-export * from './lib/directives/scroll/scroll.directive.module';
-export * from './lib/directives/scroll/scroll.directive';
-
-export * from './lib/directives/var/var.directive.module';
-export * from './lib/directives/var/var.directive';

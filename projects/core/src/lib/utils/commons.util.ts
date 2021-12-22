@@ -5,6 +5,7 @@ import { ITransformMatrix } from '../models/transform-matrix.model';
  * empty strings, or false booleans
  * @param val
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isNullOrUndefined(val: any): boolean {
     return val === null || val === undefined;
 }
@@ -29,6 +30,7 @@ export function isZeroOrHigher(num: number | string): boolean {
  * Checks if an object is a number
  * @param num
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isNumber(num: any): boolean {
     return num !== null && !isNaN(+num);
 }
@@ -38,7 +40,7 @@ export function isNumber(num: any): boolean {
  * @param value
  * @param round
  */
-export function roundNearest(value: number, round: number): number {
+export function roundNearest(value: number): number {
     return Math.ceil(value / 5) * 5;
 }
 
@@ -47,8 +49,8 @@ export function roundNearest(value: number, round: number): number {
  * @param array
  */
 export function mergeArray<T>(array: T[][]): T[] {
-    return array.reduce((flat: any, toFlatten: any): any =>
-        flat.concat(Array.isArray(toFlatten) ? mergeArray<T>(toFlatten) : toFlatten), []);
+    return array.reduce((flat: T[], toFlatten: T[] | T[][]): T[] =>
+        flat.concat(Array.isArray(toFlatten) ? mergeArray<T>(toFlatten as T[][]) : toFlatten), []);
 }
 
 /**

@@ -121,6 +121,7 @@ export class Dictionary<Key, Value> {
     private toObject(items: IDictionaryItem<Key, Value>[]): IDictionaryObjectResult<Value> {
         const obj: IDictionaryObjectResult<Value> = {};
         for (const item of items) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             obj[ item.key as any ] = item.value;
         }
         return obj;
