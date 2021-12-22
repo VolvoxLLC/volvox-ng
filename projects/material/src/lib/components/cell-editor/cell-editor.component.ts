@@ -19,7 +19,8 @@ import { BaseComponent } from '../base/base.component';
     styleUrls: [ './cell-editor.component.scss' ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CellEditorComponent extends BaseComponent implements OnInit {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export class CellEditorComponent<T = any> extends BaseComponent implements OnInit {
 
     @Input()
     public key: string;

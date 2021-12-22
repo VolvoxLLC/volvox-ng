@@ -30,6 +30,7 @@ export class CoreLoggerService {
      * Gets the error message from any type of object
      * @param err
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public getErrorMsg(err: any): string {
         let msg = 'Error';
 
@@ -62,6 +63,7 @@ export class CoreLoggerService {
      * Get the title to be shown in logger toast
      * @param err
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public getErrorTitle(err: any): string {
         let title: string = 'volvox.commons.logs.error.label';
         if (err?.label) {

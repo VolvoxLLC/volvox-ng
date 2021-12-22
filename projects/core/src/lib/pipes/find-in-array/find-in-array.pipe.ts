@@ -12,12 +12,14 @@ export class FindInArrayPipe implements PipeTransform {
      * @param searchValue
      * @param returnElements
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public transform(array: any[], search: any, searchValue: any, returnElements?: string[]): any {
         // Return if array is empty or null
         if (!array || !array.length) {
             return null;
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const foundItem: any = array.find((val: string): boolean => (search ? val[ search ] : val) === searchValue);
 
         if (!foundItem) {
@@ -34,6 +36,7 @@ export class FindInArrayPipe implements PipeTransform {
         }
 
         // Return given values to the keys
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const result: any[] = [];
         for (const returnElement of returnElements) {
             result.push(foundItem[ returnElement ]);

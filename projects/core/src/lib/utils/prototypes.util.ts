@@ -4,6 +4,7 @@
  * @param data to be casted
  * @returns casted data
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any,max-classes-per-file
 export function cast<T>(data: any): T {
     return data as T;
 }
@@ -33,7 +34,7 @@ export class StringExtensions implements IStringExtensions {
         }
 
         if (typeof str === 'object') {
-            return <T>str;
+            return str as T;
         }
     }
 
@@ -42,7 +43,7 @@ export class StringExtensions implements IStringExtensions {
     }
 
     public toUTC(): string {
-        return cast<string>(this) + 'Z';
+        return `${cast<string>(this)}Z`;
     }
 }
 
@@ -128,15 +129,15 @@ export interface INumberExtensions {
 }
 
 declare global {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface,id-blacklist
     interface String extends IStringExtensions {
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface,@typescript-eslint/no-unused-vars
     interface Array<T> extends IArrayExtensions {
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface,id-blacklist
     interface Number extends INumberExtensions {
     }
 }

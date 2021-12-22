@@ -11,23 +11,23 @@ import { ApiService } from './api.service';
 })
 export class VolvoxTranslateService {
 
-    private readonly cache: Dictionary<I18nSupported, any>;
+    private readonly cache: Dictionary<I18nSupported, { [ key: string ]: string }>;
 
     constructor(
         private readonly myTranslateService: TranslateService,
         private readonly myApiService: ApiService,
     ) {
-        this.cache = new Dictionary<I18nSupported, any>();
+        this.cache = new Dictionary<I18nSupported, { [ key: string ]: string }>();
     }
 
-    public async merge(lang: I18nSupported): Promise<any> {
+    public async merge(lang: I18nSupported): Promise<{ [ key: string ]: string }> {
         if (this.cache.contains(lang)) {
-            const cacheItem: IDictionaryItem<I18nSupported, any> = this.cache.get(lang);
+            const cacheItem: IDictionaryItem<I18nSupported, { [ key: string ]: string }> = this.cache.get(lang);
             this.updateTranslation(lang, cacheItem.value);
             return cacheItem.value;
         }
 
-        const data: any = await this.myApiService.getAsync<any>(`/assets/i18n/volvox-${ lang }.json`);
+        const data: { [ key: string ]: string } = await this.myApiService.getAsync<{ [ key: string ]: string }>(`/assets/i18n/volvox-${ lang }.json`);
         this.cache.add(lang, data);
         return this.updateTranslation(lang, data).toPromise();
     }
@@ -38,20 +38,20 @@ export class VolvoxTranslateService {
      * @param prefix
      */
     public async generateI18nConst(lang: I18nSupported, prefix?: string): Promise<void> {
-        const result: any = {};
+        const result: { [ key: string ]: string } = {};
         if (prefix) {
             prefix = `${ prefix }-`;
         }
-        const json: any = await this.myApiService.get(`../../assets/i18n/${ prefix }${ lang }.json`).toPromise();
+        const json: { [ key: string ]: string } = await this.myApiService.get<{ [ key: string ]: string }>(`../../assets/i18n/${ prefix }${ lang }.json`).toPromise();
 
         // eslint-disable-next-line guard-for-in
         for (const objectPath in json) {
             const parts: string[] = objectPath.split('.');
 
-            let target = result;
+            let target: { [ key: string ]: string } | {} = result;
             const targets = [];
             while (parts.length > 1) {
-                const part = parts.shift();
+                const part: string = parts.shift();
                 target = target[ part ] = target[ part ] || {};
                 targets.push(part);
             }
@@ -93,10 +93,12 @@ export class VolvoxTranslateService {
      * @param prefix
      */
     public async generateI18nModel(lang: I18nSupported, prefix?: string): Promise<void> {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const result: any = {};
         if (prefix) {
             prefix = `${ prefix }-`;
         }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const json: any = await this.myApiService.get(`../../assets/i18n/${ prefix }${ lang }.json`).toPromise();
 
         // eslint-disable-next-line guard-for-in
@@ -127,7 +129,7 @@ export class VolvoxTranslateService {
         console.log(resultString);
     }
 
-    private updateTranslation(lang: I18nSupported, data: any): Observable<any> {
+    private updateTranslation(lang: I18nSupported, data: { [ key: string ]: string }): Observable<{ [ key: string ]: string }> {
         this.myTranslateService.setTranslation(lang, data, true);
         return this.myTranslateService.use(lang);
     }

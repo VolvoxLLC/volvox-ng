@@ -11,7 +11,9 @@ export class JoinPipe implements PipeTransform {
      * @param returnField
      * @param separator
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public transform(array: any[], returnField: any, separator: string = ', '): string {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return array.map((val: any): string => returnField ? val[ returnField ] : val).join(separator);
     }
 
