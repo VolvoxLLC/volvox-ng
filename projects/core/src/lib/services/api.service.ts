@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { IApiOptions } from '../models/api-options.model';
 import { ITokenSettings } from '../models/token-settings.model';
 import { isNullOrEmpty } from '../utils/commons.util';
@@ -92,6 +92,7 @@ export class ApiService {
 
         return this.myHttpClient.get<T>(url, { ...options.httpOptions as any, headers })
             .pipe(
+                map((val: HttpEvent<T>) => (val as HttpResponse<T>).body),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
@@ -147,6 +148,7 @@ export class ApiService {
 
         return this.myHttpClient.patch<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
+                map((val: HttpEvent<T1>) => (val as HttpResponse<T1>).body),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
@@ -174,6 +176,7 @@ export class ApiService {
         headers = this.getHeaders(headers, options);
         return this.myHttpClient.put<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
+                map((val: HttpEvent<T1>) => (val as HttpResponse<T1>).body),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
@@ -188,8 +191,9 @@ export class ApiService {
     public post<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
-        return this.myHttpClient.post<T>(url, data, { ...options.httpOptions as any, headers })
+        return this.myHttpClient.post<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
+                map((val: HttpEvent<T1>) => (val as HttpResponse<T1>).body),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }

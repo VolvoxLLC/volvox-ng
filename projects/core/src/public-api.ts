@@ -36,6 +36,7 @@ export * from './lib/models/logger/log-event.model';
 export * from './lib/models/logger/log-message-data.model';
 export * from './lib/models/logger/logger-base-config.model';
 export * from './lib/models/logger/logger-default-config.model';
+export * from './lib/models/logger/log-type.model';
 
 /**
  * Utils

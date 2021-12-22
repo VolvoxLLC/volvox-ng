@@ -1,8 +1,7 @@
-import { Path } from '@angular-devkit/core';
 import { classify, dasherize } from '@angular-devkit/core/src/utils/strings';
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
-import { buildRelativePath, findModule, ModuleOptions } from '@schematics/angular/utility/find-module';
+import { buildRelativePath, ModuleOptions } from '@schematics/angular/utility/find-module';
 import { IModuleContext } from '../models/module-context.model';
 
 export class SchematicsImporter {
@@ -13,14 +12,9 @@ export class SchematicsImporter {
         this.tree = tree;
     }
 
-    public getModule(path: string): any {
-        const modulePath: Path = findModule(this.tree, path);
-        // config.module = modulePath;
-    }
-
     public createSourceFile(path: string): ts.SourceFile {
         if (!path) {
-            throw new SchematicsException(`Given path is empty`);
+            throw new SchematicsException('Given path is empty');
         }
 
         // Reading the module file
