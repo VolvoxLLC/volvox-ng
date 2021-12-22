@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/schema",
-    "id": "DialogSchematic",
+    "$id": "DialogSchematic",
     "title": "ng new options schema",
     "type": "object",
     "description": "Initialize a new dialog",

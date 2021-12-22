@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/schema",
-    "id": "PageSchematic",
+    "$id": "PageSchematic",
     "title": "ng new options schema",
     "type": "object",
     "description": "Initialize a new page",

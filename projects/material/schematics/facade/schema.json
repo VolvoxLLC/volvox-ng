@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "FacadeSchematic",
+  "$id": "FacadeSchematic",
   "title": "ng new options schema",
   "type": "object",
   "description": "Initialize a new facade",
