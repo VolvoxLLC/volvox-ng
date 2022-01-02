@@ -26,13 +26,13 @@ export class CellEditorComponent<T = any> extends BaseComponent implements OnIni
     public key: string;
 
     @Input()
-    public rowItem: TableItem<any>;
+    public rowItem: TableItem<T>;
 
     @Input()
-    public value: any;
+    public value: T;
 
     @Output()
-    public valueChange: EventEmitter<any> = new EventEmitter<any>();
+    public valueChange: EventEmitter<T> = new EventEmitter<T>();
 
     @Output()
     public cellClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
@@ -48,7 +48,7 @@ export class CellEditorComponent<T = any> extends BaseComponent implements OnIni
 
     public mode: 'input' | 'output' = 'output';
 
-    private oldValue: any;
+    private oldValue: T;
 
     constructor(
         private readonly myChangeDetectorRef: ChangeDetectorRef,
@@ -73,7 +73,7 @@ export class CellEditorComponent<T = any> extends BaseComponent implements OnIni
             this.element.classList.remove('focused');
 
             if (save) {
-                if (!this.rowItem.changedRowsKeys) {
+                if (!this.rowItem.changedRowKeys) {
                     this.rowItem.changedRowKeys = [];
                 }
                 const index: number = this.rowItem.changedRowKeys.indexOf(this.key);

@@ -15,6 +15,8 @@
     width: 100%;
     box-shadow: 0 0 0 3px rgba(#1387DF, .8);
     outline: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   &.edited {
@@ -33,10 +35,6 @@
 
 ::ng-deep .cell-input {
   padding: 10px;
-
-  &:not(mat-select) {
-    height: 100% !important;
-  }
 }
 
 ::ng-deep .cell-output {
@@ -46,10 +44,10 @@
 }
 
 ::ng-deep input.cell-input {
-  width: 100%;
-  display: block;
-  height: 48px;
   font-size: 14px;
   font-family: $fontRoboto;
   background: none;
+  flex-grow: 1;
+  outline: 0;
+  border: none;
 }

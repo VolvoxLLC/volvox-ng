@@ -17,10 +17,10 @@ import { BaseComponent } from './base.component';
 export class CellEditorBaseComponent<Model> extends BaseComponent implements OnInit, CanDeactivate<CellEditorBaseComponent<Model>> {
 
     public dataSource: MatTableDataSource<TableItem<Model>>;
-    public displayedColumns: string[];
+    public displayedColumns: (keyof Model | string)[] = [];
 
     constructor(
-        @Optional() public readonly myMatDialog: MatDialog,
+        @Optional() protected readonly myMatDialog: MatDialog,
     ) {
         super();
     }
@@ -28,7 +28,6 @@ export class CellEditorBaseComponent<Model> extends BaseComponent implements OnI
     public ngOnInit(): void {
         super.ngOnInit();
         this.dataSource = new MatTableDataSource<TableItem<Model>>();
-        this.displayedColumns = [];
     }
 
     public get changedRows(): TableItem<Model>[] {

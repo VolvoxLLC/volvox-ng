@@ -18,11 +18,13 @@
     <button (click)="onClick($event)" *ngSwitchCase="'icon'" [class]="mode" [color]="color"
             [disabled]="loading || disabled" mat-icon-button>
         <mat-spinner *ngIf="loading" class="icon-spinner" [color]="color" [diameter]="40" [strokeWidth]="2"></mat-spinner>
+        <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
         <ng-content select=".icon"></ng-content>
     </button>
 </ng-container>
 
 <ng-template #buttonContent>
+    <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
     <ng-container [ngSwitch]="mode">
         <ng-container *ngSwitchCase="'spinner'">
             <div class="spinner-inner">
