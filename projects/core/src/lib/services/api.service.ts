@@ -92,7 +92,7 @@ export class ApiService {
 
         return this.myHttpClient.get<T>(url, { ...options.httpOptions as any, headers })
             .pipe(
-                map((val: HttpEvent<T>) => (val as HttpResponse<T>).body),
+                map((response: HttpEvent<T>) => this.handleResponse(response)),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
@@ -148,7 +148,7 @@ export class ApiService {
 
         return this.myHttpClient.patch<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
-                map((val: HttpEvent<T1>) => (val as HttpResponse<T1>).body),
+                map((response: HttpEvent<T1>) => this.handleResponse(response)),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
@@ -176,7 +176,7 @@ export class ApiService {
         headers = this.getHeaders(headers, options);
         return this.myHttpClient.put<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
-                map((val: HttpEvent<T1>) => (val as HttpResponse<T1>).body),
+                map((response: HttpEvent<T1>) => this.handleResponse(response)),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
@@ -193,7 +193,7 @@ export class ApiService {
         headers = this.getHeaders(headers, options);
         return this.myHttpClient.post<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
-                map((val: HttpEvent<T1>) => (val as HttpResponse<T1>).body),
+                map((response: HttpEvent<T1>) => this.handleResponse(response)),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
     }
@@ -270,6 +270,14 @@ export class ApiService {
         }
 
         return throwError(err);
+    }
+
+    private handleResponse<T>(response: HttpEvent<T>): T {
+        console.log('response', response);
+        if (response instanceof HttpResponse) {
+            return response.body;
+        }
+        return response as any;
     }
 
     private getHeaders(headers: HttpHeaders, options: IApiOptions): HttpHeaders {

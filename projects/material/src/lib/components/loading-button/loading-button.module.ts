@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingButtonComponent } from './loading-button.component';
@@ -12,6 +13,7 @@ import { LoadingButtonComponent } from './loading-button.component';
         MatProgressSpinnerModule,
         MatProgressBarModule,
         MatButtonModule,
+        MatIconModule,
     ],
     exports: [ LoadingButtonComponent ],
 })

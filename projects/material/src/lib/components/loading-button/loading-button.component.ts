@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { ThemePalette } from '@angular/material/core';
     styleUrls: [ './loading-button.component.scss' ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoadingButtonComponent implements OnInit {
+export class LoadingButtonComponent {
 
     @Input()
     public mode: 'spinner' | 'progress-bar' = 'spinner';
@@ -24,14 +24,13 @@ export class LoadingButtonComponent implements OnInit {
     @Input()
     public buttonType: 'default' | 'raised' | 'stroked' | 'flat' | 'icon';
 
+    @Input()
+    public icon: string;
+
     @Output()
     public click: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
     constructor() {
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    public ngOnInit(): void {
     }
 
     public onClick(e: MouseEvent): void {

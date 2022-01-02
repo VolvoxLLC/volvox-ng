@@ -51,7 +51,7 @@ export class SchematicsSerializer {
     }
 
     /**
-     * Serialize options for generating @sla-ng/core:component
+     * Serialize options for generating @volvox-ng/material:component
      */
     public serializeComponentOptions(options: IComponentOptions): IComponentOptions {
         options = this.serializeBaseOptions(options);
@@ -65,8 +65,8 @@ export class SchematicsSerializer {
             // Get default angular component configuration
             componentSchematics = projectConfig.schematics[ '@schematics/angular:component' ] as IAngularSchematic;
 
-            // Get @sla-ng/core component configuration
-            coreComponentSchematics = (projectConfig.schematics[ '@sla-ng/core:component' ] as ICoreComponentSchematic) || {};
+            // Get @volvox-ng/material component configuration
+            coreComponentSchematics = (projectConfig.schematics[ '@volvox-ng/material:component' ] as ICoreComponentSchematic) || {};
         }
 
         options.style = getValueOrDefault(options.style, [ componentSchematics?.style ], 'css');
@@ -80,7 +80,7 @@ export class SchematicsSerializer {
     }
 
     /**
-     * Serialize options for generating @sla-ng/core:page
+     * Serialize options for generating @volvox-ng/material:page
      */
     public serializeDialogOptions(options: IDialogOptions): IComponentOptions {
         options = this.serializeBaseOptions(options);
@@ -94,8 +94,8 @@ export class SchematicsSerializer {
             // Get default angular component configuration
             componentSchematics = projectConfig.schematics[ '@schematics/angular:component' ] as IAngularSchematic;
 
-            // Get @sla-ng/core dialog configuration
-            coreDialogSchematics = (projectConfig.schematics[ '@sla-ng/core:dialog' ] as ICoreComponentSchematic) || {};
+            // Get @volvox-ng/material dialog configuration
+            coreDialogSchematics = (projectConfig.schematics[ '@volvox-ng/material:dialog' ] as ICoreComponentSchematic) || {};
         }
 
         options.style = getValueOrDefault(options.style, [ componentSchematics?.style ], 'css');
@@ -109,7 +109,7 @@ export class SchematicsSerializer {
     }
 
     /**
-     * Serialize options for generating @sla-ng/core:page
+     * Serialize options for generating @volvox-ng/material:page
      */
     public serializePageOptions(options: IComponentOptions): IComponentOptions {
         options = this.serializeBaseOptions(options);
@@ -123,8 +123,8 @@ export class SchematicsSerializer {
             // Get default angular component configuration
             componentSchematics = projectConfig.schematics[ '@schematics/angular:component' ] as IAngularSchematic;
 
-            // Get @sla-ng/core component configuration
-            coreComponentSchematics = (projectConfig.schematics[ '@sla-ng/core:page' ] as ICoreComponentSchematic) || {};
+            // Get @volvox-ng/material component configuration
+            coreComponentSchematics = (projectConfig.schematics[ '@volvox-ng/material:page' ] as ICoreComponentSchematic) || {};
         }
 
         options.style = getValueOrDefault(options.style, [ componentSchematics?.style ], 'css');
@@ -138,7 +138,7 @@ export class SchematicsSerializer {
     }
 
     /**
-     * Serialize options for generating @sla-ng/core:facade
+     * Serialize options for generating @volvox-ng/material:facade
      */
     public serializeFacadeOptions(options: IFacadeOptions): IFacadeOptions {
         options = this.serializeBaseOptions(options);
@@ -148,8 +148,8 @@ export class SchematicsSerializer {
         let coreFacadeSchematics: ICoreFacadeSchematic = {};
 
         if (projectConfig?.schematics) {
-            // Get @sla-ng/core facade configuration
-            coreFacadeSchematics = (projectConfig.schematics[ '@sla-ng/core:facade' ] as ICoreFacadeSchematic) || {};
+            // Get @volvox-ng/material facade configuration
+            coreFacadeSchematics = (projectConfig.schematics[ '@volvox-ng/material:facade' ] as ICoreFacadeSchematic) || {};
         }
 
         options.useClass = getValueOrDefault(options.useClass, [ options[ 'use-class' ], coreFacadeSchematics[ 'use-class' ] ], false);
