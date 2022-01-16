@@ -273,7 +273,6 @@ export class ApiService {
     }
 
     private handleResponse<T>(response: HttpEvent<T>): T {
-        console.log('response', response);
         if (response instanceof HttpResponse) {
             return response.body;
         }

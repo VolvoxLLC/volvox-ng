@@ -20,7 +20,7 @@ export class VolvoxDatePipe implements PipeTransform {
         this.updateTemplates();
         setInterval((): void => {
             this.store$.next(new Date().getTime());
-        });
+        }, 10);
         this.myTranslateService.onLangChange.subscribe((): void => {
             this.updateTemplates();
             this.store$.next(new Date().getTime());
@@ -32,16 +32,20 @@ export class VolvoxDatePipe implements PipeTransform {
     }
 
     private calcDate(currentDate: number, date: string | Date, mode: 'full' | 'timeSince' | 'date'): string {
-        let parsed: Date;
+        let parsed: number;
         if (date instanceof Date) {
-            parsed = new Date(date.toString().toUTC());
+            parsed = new Date(date.toString()).getTime();
         } else {
-            parsed = new Date(date.toUTC());
+            parsed = new Date(date).getTime();
+        }
+
+        if (!currentDate) {
+            currentDate = new Date().getTime();
         }
 
         const convertedDate = this.myDatePipe.transform(parsed, 'dd. MMM. yyyy hh:mm aaa');
         if (mode === 'full' || mode === 'timeSince') {
-            const seconds = ((currentDate - parsed.getTime()) * .001) >> 0;
+            const seconds = ((currentDate - parsed) * .001) >> 0;
             const minutes = seconds / 60;
             const hours = minutes / 60;
             const days = hours / 24;
