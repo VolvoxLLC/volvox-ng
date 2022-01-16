@@ -1,5 +1,11 @@
 # Changelog
 
+12.1.0
+--------------------------------
+- Update Sieve util
+  - Now constructor doesn't need url
+- Remove generators `for volvox-translate.service`
+
 12.0.0
 --------------------------------
 - Update to Angular 12
