@@ -5,23 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FindInArrayPipe implements PipeTransform {
 
-    /**
-     * Find an element in an array
-     * @param array
-     * @param search
-     * @param searchValue
-     * @param returnElements
-     */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public transform(array: any[], search: any, searchValue: any, returnElements?: string[]): any {
+    public transform<T>(searchValue: any, array: T[], searchKey: keyof T, returnElements?: (keyof T)[]): any {
         // Return if array is empty or null
         if (!array || !array.length) {
             return null;
         }
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const foundItem: any = array.find((val: string): boolean => (search ? val[ search ] : val) === searchValue);
-
+        const foundItem: T = array.find((val: T): boolean => (searchKey ? val[ searchKey as any ] : val) === searchValue);
         if (!foundItem) {
             return null;
         }
@@ -36,13 +28,7 @@ export class FindInArrayPipe implements PipeTransform {
         }
 
         // Return given values to the keys
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const result: any[] = [];
-        for (const returnElement of returnElements) {
-            result.push(foundItem[ returnElement ]);
-        }
-
-        return result;
+        return returnElements.map((val: keyof T) => foundItem[ val as string ]);
     }
 
 }
