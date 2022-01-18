@@ -1,48 +1,15 @@
-﻿/**
- * Sieve operator for filtering
- */
-export type SieveOperator = '<' | '>' | '<=' | '@=' | '@=*' | '==' | '!=';
-
-/**
- * Sieve sort interface
- */
-export interface ISieveSort {
-    desc?: boolean;
-    name: string;
-}
-
-/**
- * Sieve filter interface
- */
-export interface ISieveFilter {
-    key: string;
-    operator: SieveOperator;
-    value: string;
-}
-
-/**
- * Sieve options interface
- */
-export interface ISieveOptions {
-    sorts?: ISieveSort[];
-    filters?: ISieveFilter[];
-    page?: number;
-    pageSize?: number;
-}
+﻿import { ISieveFilter } from '../models/sieve/sieve-filter.model';
+import { SieveOperator } from '../models/sieve/sieve-operator.model';
+import { ISieveOptions } from '../models/sieve/sieve-options.model';
+import { ISieveSort } from '../models/sieve/sieve-sort.model';
 
 export class Sieve {
 
     private readonly options: ISieveOptions;
-    private _baseUrl: string;
 
-    /**
-     * Default constructor.
-     * @param url base url
-     * @param options sieve options
-     */
-    constructor(url: string, options: ISieveOptions) {
-        this.baseUrl = url;
+    constructor(options: ISieveOptions) {
         this.options = options;
+        this.options.baseUrl = options.baseUrl || '';
         this.options.filters = options.filters || [];
         this.options.sorts = options.sorts || [];
     }
@@ -133,7 +100,7 @@ export class Sieve {
      * Getter for base url
      */
     public get baseUrl(): string {
-        return this._baseUrl;
+        return this.options.baseUrl;
     }
 
     /**
@@ -141,14 +108,14 @@ export class Sieve {
      * @param url
      */
     public set baseUrl(url: string) {
-        this._baseUrl = url;
+        this.options.baseUrl = url;
     }
 
     /**
      * Convert to queried string
      */
     public getUrl(): string {
-        return `${ this._baseUrl }${ this.toQuery() }`;
+        return `${ this.options.baseUrl }${ this.toQuery() }`;
     }
 
     /**

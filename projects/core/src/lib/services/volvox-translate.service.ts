@@ -20,16 +20,16 @@ export class VolvoxTranslateService {
         this.cache = new Dictionary<I18nSupported, { [ key: string ]: string }>();
     }
 
-    public async merge(lang: I18nSupported): Promise<{ [ key: string ]: string }> {
+    public async merge(lang: I18nSupported): Promise<void> {
         if (this.cache.contains(lang)) {
             const cacheItem: IDictionaryItem<I18nSupported, { [ key: string ]: string }> = this.cache.get(lang);
             this.updateTranslation(lang, cacheItem.value);
-            return cacheItem.value;
+            cacheItem.value;
         }
 
         const data: { [ key: string ]: string } = await this.myApiService.getAsync<{ [ key: string ]: string }>(`/assets/i18n/volvox-${ lang }.json`);
         this.cache.add(lang, data);
-        return this.updateTranslation(lang, data).toPromise();
+        this.updateTranslation(lang, data);
     }
 
     /**
@@ -129,9 +129,8 @@ export class VolvoxTranslateService {
         console.log(resultString);
     }
 
-    private updateTranslation(lang: I18nSupported, data: { [ key: string ]: string }): Observable<{ [ key: string ]: string }> {
-        this.myTranslateService.setTranslation(lang, data, true);
-        return this.myTranslateService.use(lang);
+    private updateTranslation(lang: I18nSupported, data: { [ key: string ]: string }): void {
+        this.myTranslateService.setTranslation(lang, { ...data }, true);
     }
 
 }
