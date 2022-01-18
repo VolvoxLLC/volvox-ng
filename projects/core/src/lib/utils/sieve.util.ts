@@ -6,10 +6,10 @@ import { ISieveSort } from '../models/sieve/sieve-sort.model';
 export class Sieve {
 
     private readonly options: ISieveOptions;
-    private _baseUrl: string;
 
     constructor(options: ISieveOptions) {
         this.options = options;
+        this.options.baseUrl = options.baseUrl || '';
         this.options.filters = options.filters || [];
         this.options.sorts = options.sorts || [];
     }
@@ -100,7 +100,7 @@ export class Sieve {
      * Getter for base url
      */
     public get baseUrl(): string {
-        return this._baseUrl;
+        return this.options.baseUrl;
     }
 
     /**
@@ -108,14 +108,14 @@ export class Sieve {
      * @param url
      */
     public set baseUrl(url: string) {
-        this._baseUrl = url;
+        this.options.baseUrl = url;
     }
 
     /**
      * Convert to queried string
      */
     public getUrl(): string {
-        return `${ this._baseUrl }${ this.toQuery() }`;
+        return `${ this.options.baseUrl }${ this.toQuery() }`;
     }
 
     /**
