@@ -23,13 +23,11 @@ export class VolvoxTranslateService {
     public async merge(lang: I18nSupported): Promise<void> {
         if (this.cache.contains(lang)) {
             const cacheItem: IDictionaryItem<I18nSupported, { [ key: string ]: string }> = this.cache.get(lang);
-            console.log('update from cache');
             this.updateTranslation(lang, cacheItem.value);
             cacheItem.value;
         }
 
         const data: { [ key: string ]: string } = await this.myApiService.getAsync<{ [ key: string ]: string }>(`/assets/i18n/volvox-${ lang }.json`);
-        console.log('update from fetched translations');
         this.cache.add(lang, data);
         this.updateTranslation(lang, data);
     }
@@ -133,7 +131,6 @@ export class VolvoxTranslateService {
 
     private updateTranslation(lang: I18nSupported, data: { [ key: string ]: string }): void {
         this.myTranslateService.setTranslation(lang, { ...data }, true);
-        console.log('data', lang, data);
     }
 
 }
