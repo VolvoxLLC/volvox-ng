@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ILogEvent } from '../models/logger/log-event.model';
@@ -28,32 +29,40 @@ export class CoreLoggerService {
 
     /**
      * Gets the error message from any type of object
-     * @param err
      */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public getErrorMsg(err: any): string {
-        let msg = 'Error';
+        let msg: string = 'Unknown Error';
 
-        if (err) {
-            if (typeof err === 'string') {
-                msg = err;
-            } else if (err.msg) {
-                msg = err.msg;
-            } else if (err.error?.msg) {
-                msg = err.error.msg;
-            } else if (err.error?.message) {
-                msg = err.error.message;
-            } else if (err.error?.errors && err.error?.errors[ 0 ]?.message) {
-                msg = err.error.errors[ 0 ].message;
-            } else if (err.message) {
-                msg = err.message;
-            } else if (err.Message) {
-                msg = err.Message;
+        if (!err) {
+            return msg;
+        }
+
+        if (err instanceof HttpErrorResponse) {
+            if (typeof err.error !== 'string') {
+                return `volvox.commons.errors.status[${ err.status }].message`;
             }
 
-            if (typeof err.error === 'string') {
-                msg = err.error;
-            }
+            return err.error;
+        }
+
+        if (typeof err === 'string') {
+            msg = err;
+        } else if (err.msg) {
+            msg = err.msg;
+        } else if (err.error?.msg) {
+            msg = err.error.msg;
+        } else if (err.error?.message) {
+            msg = err.error.message;
+        } else if (err.error?.errors && err.error?.errors[ 0 ]?.message) {
+            msg = err.error.errors[ 0 ].message;
+        } else if (err.message) {
+            msg = err.message;
+        } else if (err.Message) {
+            msg = err.Message;
+        }
+
+        if (typeof err.error === 'string') {
+            msg = err.error;
         }
 
         return msg;
