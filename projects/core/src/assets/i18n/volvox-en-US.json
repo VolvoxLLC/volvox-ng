@@ -33,6 +33,12 @@
   "volvox.commons.logs.error.label": "Error",
   "volvox.commons.logs.error.message": "An error happened",
 
+  "volvox.commons.errors.status[400].message": "An unexpected error happened",
+  "volvox.commons.errors.status[403].message": "Forbidden request",
+  "volvox.commons.errors.status[401].message": "Unauthorized request",
+  "volvox.commons.errors.status[404].message": "Not found",
+  "volvox.commons.errors.status[500].message": "Internal Server Error",
+
   "volvox.commons.dateTime.seconds.label": "second",
   "volvox.commons.dateTime.seconds.plural.label": "seconds",
   "volvox.commons.dateTime.minutes.label": "minute",
