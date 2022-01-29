@@ -1,5 +1,9 @@
 # Changelog
 
+13.2.1 (2022-01-22)
+-------------------------------
+- fix(VolvoxTranslate): handle errors by status code
+
 12.1.0
 --------------------------------
 - Update Sieve util
