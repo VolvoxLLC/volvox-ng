@@ -1,5 +1,28 @@
 # Changelog
 
+13.3.0 (2022-01-29)
+-------------------------------
+**BREAKING CHANGE**
+
+-`VolvoxTranslateService` is not gonna be used anymore. Please use `CustomTranslateLoaderService` instead.
+
+Example in App module:
+```ts
+TranslateModule.forRoot({
+    loader: {
+        provide: TranslateLoader,
+        useClass: CustomTranslateLoaderService,
+    },
+})
+```
+
+Also call 
+```ts
+VolvoxModule.forRoot()
+```
+
+- Added `IKeyMap<T>` model
+
 13.2.1 (2022-01-22)
 -------------------------------
 - fix(VolvoxTranslate): handle errors by status code

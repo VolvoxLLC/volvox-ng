@@ -7,8 +7,9 @@
  */
 export * from './lib/services/api.service';
 export * from './lib/services/volvox-socket.service';
-export * from './lib/services/volvox-translate.service';
 export * from './lib/services/core-logger.service';
+export * from './lib/services/translation/translate-collector.service';
+export * from './lib/services/translation/custom-translate-loader.service';
 
 /**
  * Guards
@@ -28,6 +29,7 @@ export * from './lib/models/api-options.model';
 export * from './lib/models/volvox-duration.model';
 export * from './lib/models/token-settings.model';
 export * from './lib/models/transform-matrix.model';
+export * from './lib/models/key-map.model';
 
 export * from './lib/models/sieve/sieve-response.model';
 export * from './lib/models/sieve/sieve-sort.model';
@@ -53,6 +55,7 @@ export * from './lib/utils/size.util';
 export * from './lib/utils/promise.util';
 export * from './lib/utils/item.util';
 export * from './lib/utils/commons.util';
+export * from './lib/services/translation/assets-i18n-loader.service';
 
 /**
  * Enums
@@ -61,6 +64,11 @@ export * from './lib/enums/theme.enum';
 export * from './lib/enums/content-position.enum';
 export * from './lib/enums/browser.enum';
 export * from './lib/enums/i18n-supported.enum';
+
+/**
+ * Constants
+ */
+export * from './lib/constants/local-storage.constant';
 
 /**
  * Pipes

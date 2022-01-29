@@ -67,3 +67,34 @@ export function getTransformMatrix(element: HTMLElement): ITransformMatrix {
         z: transform[ 2 ],
     };
 }
+
+/**
+ * Generates a random string with numbers and letters
+ * @param length
+ */
+export function getRandomString(length: number = 10): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result: string = '';
+    for (let i: number = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+
+/**
+ * Trys to convert a json string. If it fails it returns [null] or a given fallback of [T]
+ */
+export function tryJsonParse<T>(data: string, fallback?: () => T): T | null {
+    try {
+        if (!isNullOrEmpty(data)) {
+            return JSON.parse(data);
+        }
+    } catch (err: unknown) {
+        // Ignore - go on with fallback check
+    }
+
+    if (fallback) {
+        return fallback();
+    }
+    return null;
+}
