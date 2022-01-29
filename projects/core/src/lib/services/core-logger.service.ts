@@ -30,6 +30,7 @@ export class CoreLoggerService {
     /**
      * Gets the error message from any type of object
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public getErrorMsg(err: any): string {
         let msg: string = 'Unknown Error';
 
