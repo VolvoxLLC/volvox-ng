@@ -1,21 +1,35 @@
 name: Publish Package to npmjs
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
+
+env:
+  OUTPUT_PATH: /dist/@volvox-ng
+  OUTPUT_PATH_CORE: ${{ env.OUTPUT_PATH }}/core
+  OUTPUT_PATH_MATERIAL: ${{ env.OUTPUT_PATH }}/material
+
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: cd dist/@volvox-ng/core
-      - run: npm publish
-      - run: cd ../material
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          node-version: 16
+      - run: npm install
+      - run: npm run lint
+      - run: npm run build core -- --configuration production
+      # Publish core
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ${{ env.OUTPUT_PATH_CORE }}/package.json
+          dry-run: true
+      # Publish material
+      - run: npm run build material -- --configuration production
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ${{ env.OUTPUT_PATH_MATERIAL }}/package.json
+          dry-run: true
