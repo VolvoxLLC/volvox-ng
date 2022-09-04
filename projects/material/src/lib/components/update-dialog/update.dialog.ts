@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService, isNullOrEmpty } from '@volvox-ng/core';
-import { timer } from 'rxjs';
+import { firstValueFrom, timer } from 'rxjs';
 import { IUpdateConfig, IVersion, UpdateDialogResult } from '../../models/update-config.model';
 import { BaseComponent } from '../base/base.component';
 import { MatUpdateDialog } from './mat-update-dialog/mat-update.dialog';
@@ -129,7 +129,7 @@ export class UpdateDialog extends BaseComponent implements OnInit {
             if (!isNullOrEmpty(localStorageVersion)) {
                 localVersion = JSON.parse(localStorageVersion);
             }
-            const data: IVersion = await this.myApiService.getAsync(this.config.versionPath);
+            const data: IVersion = await firstValueFrom(this.myApiService.get(this.config.versionPath));
             if (this.firstLoad) {
                 window.localStorage.setItem(this.config.localStorageKey, JSON.stringify(data));
                 this.firstLoad = false;
