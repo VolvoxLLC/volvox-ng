@@ -20,4 +20,4 @@ jobs:
         npm run lint
     - name: Build
       run: |
-        npm run build --configuration production
+        npm run build -- --configuration production
