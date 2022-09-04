@@ -20,11 +20,9 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: dist/@volvox-ng/core/package.json
-          dry-run: true
       # Publish material
       - run: npm run build material -- --configuration production
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: dist/@volvox-ng/material/package.json
-          dry-run: true
