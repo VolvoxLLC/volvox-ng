@@ -11,11 +11,11 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x
+        node-version: 16.x
     - name: Install
       run: |
         npm i
-    - name: TS-Lint
+    - name: Lint
       run: |
         npm run lint
     - name: Build
