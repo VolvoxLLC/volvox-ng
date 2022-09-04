@@ -1,6 +1,6 @@
 name: Build & Test
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   front-end:
@@ -11,13 +11,14 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x
+        node-version: 16.x
     - name: Install
       run: |
         npm i
-    - name: TS-Lint
+    - name: Lint
       run: |
         npm run lint
     - name: Build
       run: |
-        npm run build --prod --if-present
+        npm run build core -- --configuration production
+        npm run build material -- --configuration production
