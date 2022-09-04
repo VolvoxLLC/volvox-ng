@@ -1,5 +1,14 @@
 # Changelog
 
+14.0.0 (2022-09-04)
+-------------------------------
+**BREAKING CHANGE**
+- Removed `async` calls in api service
+- `IDictionaryObjectResult<T>` is now `IKeyMap<T>`
+
+Other changes:
+- Update to angular 14
+
 13.3.0 (2022-01-29)
 -------------------------------
 **BREAKING CHANGE**

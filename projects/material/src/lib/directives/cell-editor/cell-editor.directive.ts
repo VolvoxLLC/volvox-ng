@@ -67,12 +67,12 @@ export class CellEditorDirective implements OnInit {
             }
         });
 
-        const targetCell: Element = this.findNextRowEditableColumn(currentCell, columnDefClass);
+        const targetCell: HTMLElement = this.findNextRowEditableColumn(currentCell, columnDefClass);
         this.cellEditor.toOutput(true);
         CellEditorDirective.executeMove(e, targetCell);
     }
 
-    private findNextRowEditableColumn(row: Element, matColumnClassName: string): Element {
+    private findNextRowEditableColumn(row: Element, matColumnClassName: string): HTMLElement {
         const nextRow: Element = row.parentElement?.nextElementSibling;
         if (!nextRow) {
             return null;
@@ -122,7 +122,7 @@ export class CellEditorDirective implements OnInit {
         }
     }
 
-    private moveToCell(event: any, nextCell: boolean): void {
+    private moveToCell(event: KeyboardEvent, nextCell: boolean): void {
         const currentCell: HTMLElement = this.cellEditor.element;
         if (this.cellEditor.element != null) {
             const targetCell: HTMLElement = nextCell ?
@@ -136,25 +136,25 @@ export class CellEditorDirective implements OnInit {
         }
     }
 
-    private static invokeElementMethod(element: any, methodName: string, args?: any[]): void {
+    private static invokeElementMethod(element: HTMLElement, methodName: string, args?: unknown[]): void {
         // eslint-disable-next-line prefer-spread
         element[ methodName ].apply(element, args);
     }
 
-    private static executeMove(e: KeyboardEvent, targetCell: Element): void {
+    private static executeMove(e: KeyboardEvent, targetCell: HTMLElement): void {
         e.preventDefault();
         // If datepicker is opened, remove cdk-overlay from dom
         const element: Element = e.composedPath()[ 0 ] as Element;
         if (element.className.indexOf('td-input-date') > -1) {
             const cdkOverlayContainer: Element = document.getElementsByClassName('cdk-overlay-container')[ 0 ];
-            const cdkBackdrop: Element = cdkOverlayContainer.getElementsByClassName('cdk-overlay-backdrop')[ 0 ];
+            const cdkBackdrop: HTMLElement = cdkOverlayContainer.getElementsByClassName('cdk-overlay-backdrop')[ 0 ] as HTMLElement;
             if (cdkBackdrop != null) {
                 CellEditorDirective.invokeElementMethod(cdkBackdrop, 'click');
             }
             cdkOverlayContainer.innerHTML = '';
         }
 
-        CellEditorDirective.invokeElementMethod(e.target, 'blur');
+        CellEditorDirective.invokeElementMethod(e.target as HTMLElement, 'blur');
         if (targetCell != null) {
             CellEditorDirective.invokeElementMethod(targetCell, 'click');
         }

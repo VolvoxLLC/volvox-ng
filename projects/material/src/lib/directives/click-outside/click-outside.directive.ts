@@ -7,7 +7,7 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from
 export class ClickOutsideDirective {
 
     @Output()
-    public clickOutside: EventEmitter<any> = new EventEmitter();
+    public clickOutside: EventEmitter<[ HTMLElement, HTMLElement ]> = new EventEmitter<[ HTMLElement, HTMLElement ]>();
 
     @Input()
     public enableWhiteListing: boolean;

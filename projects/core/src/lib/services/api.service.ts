@@ -71,16 +71,6 @@ export class ApiService {
     }
 
     /**
-     * Makes an async http get call
-     * @param url
-     * @param headers
-     * @param options
-     */
-    public async getAsync<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Promise<T> {
-        return this.get<T>(url, headers, options).toPromise();
-    }
-
-    /**
      * Makes an http get call
      * @param url
      * @param headers
@@ -90,6 +80,7 @@ export class ApiService {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return this.myHttpClient.get<T>(url, { ...options.httpOptions as any, headers })
             .pipe(
                 map((response: HttpEvent<T>) => this.handleResponse(response)),
@@ -125,17 +116,6 @@ export class ApiService {
     }
 
     /**
-     * Makes an async http patch call
-     * @param url
-     * @param data
-     * @param headers
-     * @param options
-     */
-    public async patchAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
-        return this.patch<T, T1>(url, data, headers, options).toPromise();
-    }
-
-    /**
      * Makes an http patch call (For partial updates)
      * @param url
      * @param data
@@ -146,22 +126,12 @@ export class ApiService {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return this.myHttpClient.patch<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
                 map((response: HttpEvent<T1>) => this.handleResponse(response)),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
-    }
-
-    /**
-     * Makes an async http put call (For complete updates)
-     * @param url
-     * @param data
-     * @param headers
-     * @param options
-     */
-    public async putAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
-        return this.put<T, T1>(url, data, headers, options).toPromise();
     }
 
     /**
@@ -174,6 +144,8 @@ export class ApiService {
     public put<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return this.myHttpClient.put<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
                 map((response: HttpEvent<T1>) => this.handleResponse(response)),
@@ -191,33 +163,13 @@ export class ApiService {
     public post<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Observable<T1> {
         options = ApiService.serializeOptions(options);
         headers = this.getHeaders(headers, options);
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return this.myHttpClient.post<T1>(url, data, { ...options.httpOptions as any, headers })
             .pipe(
                 map((response: HttpEvent<T1>) => this.handleResponse(response)),
                 catchError((err: HttpErrorResponse): Observable<never> => this.handleError(err, options)),
             );
-    }
-
-    /**
-     * Makes an async http post call
-     * @param url
-     * @param data
-     * @param headers
-     * @param options
-     */
-    public async postAsync<T, T1>(url: string, data?: T, headers?: HttpHeaders, options?: IApiOptions): Promise<T1> {
-        return this.post<T, T1>(url, data, headers, options).toPromise();
-    }
-
-    /**
-     * makes an http async delete call
-     * @param url
-     * @param headers
-     * @param options
-     * @return Promise
-     */
-    public async deleteAsync<T>(url: string, headers?: HttpHeaders, options?: IApiOptions): Promise<T> {
-        return this.delete<T>(url, headers, options).toPromise();
     }
 
     /**
@@ -276,7 +228,7 @@ export class ApiService {
         if (response instanceof HttpResponse) {
             return response.body;
         }
-        return response as any;
+        return response as T;
     }
 
     private getHeaders(headers: HttpHeaders, options: IApiOptions): HttpHeaders {

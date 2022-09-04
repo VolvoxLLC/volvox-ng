@@ -27,7 +27,7 @@ export class AlertWidget implements OnInit, OnChanges {
         this.updateData();
     }
 
-    public ngOnChanges(changes: SimpleChanges): void {
+    public ngOnChanges(_changes: SimpleChanges): void {
         this.updateData();
     }
 

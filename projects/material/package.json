@@ -1,17 +1,17 @@
 {
     "name": "@volvox-ng/material",
-    "version": "13.0.1",
+    "version": "14.0.0",
     "author": {
         "name": "Volvox LLC",
         "email": "smoutinho@volvox.tech",
         "url": "https://volvox.tech/"
     },
     "peerDependencies": {
-        "@angular/common": ">=12.0.0",
-        "@angular/core": ">=12.0.0",
-        "@volvox-ng/core": ">=12.0.0",
-        "@angular/cdk": ">=12.0.0",
-        "@angular/material": ">=12.0.0"
+        "@angular/common": ">=14.0.0",
+        "@angular/core": ">=14.0.0",
+        "@volvox-ng/core": ">=14.0.0",
+        "@angular/cdk": ">=14.0.0",
+        "@angular/material": ">=14.0.0"
     },
     "schematics": "./schematics/collection.json",
     "ng-add": {

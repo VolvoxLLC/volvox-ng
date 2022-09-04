@@ -6,17 +6,3 @@ export interface IDictionaryItem<Key, Value> {
     value: Value;
 }
 
-/**
- * Interface for dictionary object result. Can contain string or number as a key
- */
-export interface IDictionaryObjectResult<Value> {
-    /**
-     * Key as string
-     */
-    [ key: string ]: Value;
-
-    /**
-     * Key as number
-     */
-    [ key: number ]: Value;
-}

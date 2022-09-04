@@ -234,7 +234,7 @@ module.exports = {
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',
         '@typescript-eslint/no-unsafe-argument': 'off',
-        '@typescript-eslint/no-explicit-any': 'warn',
+        '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/no-inferrable-types': 'off',
         '@typescript-eslint/no-misused-new': 'error',
         '@typescript-eslint/no-misused-promises': 'off',
@@ -247,6 +247,7 @@ module.exports = {
             }
         ],
         '@typescript-eslint/no-for-in-array': 'off',
+        '@typescript-eslint/no-unused-vars': ['error', {'argsIgnorePattern': '^_'}],
         '@typescript-eslint/no-unused-expressions': 'off',
         '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/no-var-requires': 'error',
@@ -254,6 +255,8 @@ module.exports = {
         '@typescript-eslint/prefer-function-type': 'error',
         '@typescript-eslint/prefer-namespace-keyword': 'error',
         '@typescript-eslint/keyword-spacing': 'error',
+        'array-bracket-spacing': ['error', 'always'],
+        'computed-property-spacing': ['error', 'always'],
         '@typescript-eslint/object-curly-spacing': ['error', 'always'],
         '@typescript-eslint/quotes': [
             'error',

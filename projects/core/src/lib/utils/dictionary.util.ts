@@ -1,6 +1,7 @@
 ﻿import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IDictionaryItem, IDictionaryObjectResult } from '../models/dictionary-item.model';
+import { IDictionaryItem } from '../models/dictionary-item.model';
+import { IKeyMap } from '../models/key-map.model';
 
 export class Dictionary<Key, Value> {
 
@@ -24,10 +25,10 @@ export class Dictionary<Key, Value> {
     /**
      * Observable to subscribe to dictionary as object changes
      */
-    public objectArray(): Observable<IDictionaryObjectResult<Value>> {
+    public objectArray(): Observable<IKeyMap<Value>> {
         return this.dictionaryItems$.asObservable()
             .pipe(
-                map((items: IDictionaryItem<Key, Value>[]): IDictionaryObjectResult<Value> => this.toObject(items)),
+                map((items: IDictionaryItem<Key, Value>[]): IKeyMap<Value> => this.toObject(items)),
             );
     }
 
@@ -118,8 +119,8 @@ export class Dictionary<Key, Value> {
      * @param items
      * @private
      */
-    private toObject(items: IDictionaryItem<Key, Value>[]): IDictionaryObjectResult<Value> {
-        const obj: IDictionaryObjectResult<Value> = {};
+    private toObject(items: IDictionaryItem<Key, Value>[]): IKeyMap<Value> {
+        const obj: IKeyMap<Value> = {};
         for (const item of items) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             obj[ item.key as any ] = item.value;

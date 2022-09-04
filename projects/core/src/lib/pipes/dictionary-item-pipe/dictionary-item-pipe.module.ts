@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { DictionaryItemPipe } from './dictionary-item.pipe';
 
 @NgModule({
-    declarations: [DictionaryItemPipe],
+    declarations: [ DictionaryItemPipe ],
     imports: [
         CommonModule,
     ],

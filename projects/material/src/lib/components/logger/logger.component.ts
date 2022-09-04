@@ -27,7 +27,7 @@ import { BaseComponent } from '../base/base.component';
 export class LoggerComponent extends BaseComponent implements OnInit {
 
     @ViewChildren('loggerElement')
-    public elements: QueryList<any>;
+    public elements: QueryList<HTMLElement>;
 
     public loggerState$: Observable<ILoggerState>;
 

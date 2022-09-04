@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AlertWidget } from './alert.widget';
 
 @NgModule({
-    declarations: [AlertWidget],
+    declarations: [ AlertWidget ],
     exports: [
         AlertWidget,
     ],
