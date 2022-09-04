@@ -4,14 +4,14 @@ import { BaseSkeletonLoader } from '../base.skeleton-loader';
 @Component({
     selector: 'volvox-list-skeleton-loader',
     templateUrl: './list.skeleton-loader.html',
-    styleUrls: ['./list.skeleton-loader.scss'],
+    styleUrls: [ './list.skeleton-loader.scss' ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class ListSkeletonLoader extends BaseSkeletonLoader implements OnInit {
 
     @Input()
-    public content: TemplateRef<any>;
+    public content: TemplateRef<unknown>;
 
     public items: number[] = [];
 

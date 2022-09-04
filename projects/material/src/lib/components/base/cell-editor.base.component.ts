@@ -54,13 +54,13 @@ export class CellEditorBaseComponent<Model> extends BaseComponent implements OnI
         }));
     }
 
-    public canDeactivate(component: CellEditorBaseComponent<Model>, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot,
-                         nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    public canDeactivate(_component: CellEditorBaseComponent<Model>, _currentRoute: ActivatedRouteSnapshot, _currentState: RouterStateSnapshot,
+                         _nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         if (!this.changedRows.length) {
             return true;
         }
 
-        return new Promise((resolve: PromiseResolve<boolean>, reject: PromiseReject): void => {
+        return new Promise((resolve: PromiseResolve<boolean>, _reject: PromiseReject): void => {
             this.myMatDialog
                 .open(ConfirmDialog, {
                     width: '600px',

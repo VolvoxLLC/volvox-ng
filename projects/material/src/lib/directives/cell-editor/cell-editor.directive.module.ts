@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CellEditorDirective } from './cell-editor.directive';
 
 @NgModule({
-    declarations: [CellEditorDirective],
+    declarations: [ CellEditorDirective ],
     imports: [
         CommonModule,
     ],

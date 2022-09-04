@@ -23,7 +23,7 @@ export class VolvoxSocketService {
         this.subject.next(data);
     }
 
-    private create<T>(url: string): Subject<MessageEvent> {
+    private create(url: string): Subject<MessageEvent> {
         const ws = new WebSocket(url);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const observable = new Observable((obs: Observer<MessageEvent>): any => {

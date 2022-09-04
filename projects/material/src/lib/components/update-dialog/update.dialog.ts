@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ApiService, CoreLoggerService, isNullOrEmpty } from '@volvox-ng/core';
+import { ApiService, isNullOrEmpty } from '@volvox-ng/core';
 import { timer } from 'rxjs';
 import { IUpdateConfig, IVersion, UpdateDialogResult } from '../../models/update-config.model';
 import { BaseComponent } from '../base/base.component';

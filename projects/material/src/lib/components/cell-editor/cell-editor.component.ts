@@ -38,10 +38,10 @@ export class CellEditorComponent<T = any> extends BaseComponent implements OnIni
     public cellClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
     @Output()
-    private cellChange: EventEmitter<any> = new EventEmitter<any>();
+    private cellChange: EventEmitter<void> = new EventEmitter<void>();
 
     @Output()
-    private cellCancel: EventEmitter<any> = new EventEmitter<any>();
+    private cellCancel: EventEmitter<void> = new EventEmitter<void>();
 
     @ContentChild(MatSelect)
     private select: MatSelect;
@@ -102,7 +102,7 @@ export class CellEditorComponent<T = any> extends BaseComponent implements OnIni
         this.myChangeDetectorRef.markForCheck();
         this.element.classList.add('focused');
         setTimeout((): void => {
-            const comp: any = this.element.querySelector('.cell-input');
+            const comp: HTMLElement = this.element.querySelector('.cell-input');
 
             if (comp instanceof HTMLInputElement) {
                 comp.focus();

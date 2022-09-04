@@ -6,14 +6,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ConfirmDialog } from './confirm.dialog';
 
 @NgModule({
-    declarations: [ConfirmDialog],
+    declarations: [ ConfirmDialog ],
     imports: [
         CommonModule,
         MatDialogModule,
         MatButtonModule,
         TranslateModule,
     ],
-    exports: [ConfirmDialog],
+    exports: [ ConfirmDialog ],
 })
 export class ConfirmDialogModule {
 }

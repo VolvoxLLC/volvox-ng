@@ -5,7 +5,7 @@ import { SkeletonLoaderModule } from '../skeleton-loader.module';
 import { TableSkeletonLoader } from './table.skeleton-loader';
 
 @NgModule({
-    declarations: [TableSkeletonLoader],
+    declarations: [ TableSkeletonLoader ],
     imports: [
         CommonModule,
         MatTableModule,
