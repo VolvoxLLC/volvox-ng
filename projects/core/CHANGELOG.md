@@ -4,6 +4,7 @@
 -------------------------------
 **BREAKING CHANGE**
 - Removed `async` calls in api service
+- `IDictionaryObjectResult<T>` is now `IKeyMap<T>`
 
 Other changes:
 - Update to angular 14
