@@ -7,10 +7,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    env:
-      OUTPUT_PATH: /dist/@volvox-ng
-      OUTPUT_PATH_CORE: ${{ env.OUTPUT_PATH }}/core
-      OUTPUT_PATH_MATERIAL: ${{ env.OUTPUT_PATH }}/material
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -23,12 +19,12 @@ jobs:
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          package: ${{ env.OUTPUT_PATH_CORE }}/package.json
+          package: dist/@volvox-ng/core/package.json
           dry-run: true
       # Publish material
       - run: npm run build material -- --configuration production
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          package: ${{ env.OUTPUT_PATH_MATERIAL }}/package.json
+          package: dist/@volvox-ng/material/package.json
           dry-run: true
