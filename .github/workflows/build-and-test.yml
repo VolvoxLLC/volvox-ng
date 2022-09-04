@@ -1,6 +1,6 @@
 name: Build & Test
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   front-end:
@@ -20,4 +20,5 @@ jobs:
         npm run lint
     - name: Build
       run: |
-        npm run build -- --configuration production
+        npm run build core -- --configuration production
+        npm run build material -- --configuration production
