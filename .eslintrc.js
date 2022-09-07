@@ -55,7 +55,7 @@ module.exports = {
             {
                 'type': 'element',
                 'prefix': [
-                    'volvox'
+                    'apollo'
                 ],
                 'style': 'kebab-case'
             }
@@ -66,7 +66,7 @@ module.exports = {
             {
                 'type': 'attribute',
                 'prefix': [
-                    'volvox'
+                    'apollo'
                 ],
                 'style': 'camelCase'
             }
@@ -109,6 +109,7 @@ module.exports = {
         ],
         '@typescript-eslint/consistent-type-assertions': 'error',
         '@typescript-eslint/dot-notation': 'off',
+        '@typescript-eslint/prefer-readonly': 'error',
         '@typescript-eslint/explicit-member-accessibility': [
             'error',
             {
@@ -247,7 +248,7 @@ module.exports = {
             }
         ],
         '@typescript-eslint/no-for-in-array': 'off',
-        '@typescript-eslint/no-unused-vars': ['error', {'argsIgnorePattern': '^_'}],
+        '@typescript-eslint/no-unused-vars': [ 'error', { 'argsIgnorePattern': '^_' } ],
         '@typescript-eslint/no-unused-expressions': 'off',
         '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/no-var-requires': 'error',
@@ -255,9 +256,9 @@ module.exports = {
         '@typescript-eslint/prefer-function-type': 'error',
         '@typescript-eslint/prefer-namespace-keyword': 'error',
         '@typescript-eslint/keyword-spacing': 'error',
-        'array-bracket-spacing': ['error', 'always'],
-        'computed-property-spacing': ['error', 'always'],
-        '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+        'array-bracket-spacing': [ 'error', 'always' ],
+        'computed-property-spacing': [ 'error', 'always' ],
+        '@typescript-eslint/object-curly-spacing': [ 'error', 'always' ],
         '@typescript-eslint/quotes': [
             'error',
             'single',
@@ -280,10 +281,12 @@ module.exports = {
         '@typescript-eslint/type-annotation-spacing': 'error',
         '@typescript-eslint/unified-signatures': 'error',
         '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'error',
         'arrow-body-style': 'off',
         'complexity': 'off',
         'constructor-super': 'error',
         'curly': 'error',
+        'brace-style': [ 'error', '1tbs', { allowSingleLine: true } ],
         'eol-last': 'error',
         'eqeqeq': [
             'error',
@@ -391,8 +394,8 @@ module.exports = {
             'error',
             'always',
             {
-                'exceptions': ['*'],
-                'markers': ['/', '#region', '#endregion'],
+                'exceptions': [ '*' ],
+                'markers': [ '/', '#region', '#endregion' ],
             }
         ],
         'use-isnan': 'error',
