@@ -1,5 +1,13 @@
 # Changelog
 
+15.0.0 (2022-12-26)
+--------------------------------
+- Update to Angular 15
+
+- Added more i18n Supported Languages
+  - de-AT
+  - de-CH
+
 14.0.0 (2022-09-04)
 -------------------------------
 **BREAKING CHANGE**
