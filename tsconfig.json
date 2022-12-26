@@ -2,41 +2,41 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-      "baseUrl": "./",
-      "outDir": "./dist/out-tsc",
-      "forceConsistentCasingInFileNames": true,
-      "noFallthroughCasesInSwitch": true,
-      "sourceMap": true,
-      "declaration": false,
-      "downlevelIteration": true,
-      "experimentalDecorators": true,
-      "moduleResolution": "node",
-      "importHelpers": true,
-      "target": "ES2022",
-      "module": "es2020",
-      "types": [
-        "node"
-      ],
-      "lib": [
-        "es2018",
-        "dom"
-      ],
-      "resolveJsonModule": true,
-      "paths": {
-        "@volvox-ng/core": [
-          "./dist/@volvox-ng/core"
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "es2020",
+        "types": [
+            "node"
         ],
-        "@volvox-ng/core/*": [
-          "./dist/@volvox-ng/core/*"
+        "lib": [
+            "es2018",
+            "dom"
         ],
-        "@volvox-ng/material": [
-          "./dist/@volvox-ng/material"
-        ],
-        "@volvox-ng/material/*": [
-          "./dist/@volvox-ng/material/*"
-        ]
-      },
-      "useDefineForClassFields": false
+        "resolveJsonModule": true,
+        "paths": {
+            "@volvox-ng/core": [
+                "./dist/@volvox-ng/core"
+            ],
+            "@volvox-ng/core/*": [
+                "./dist/@volvox-ng/core/*"
+            ],
+            "@volvox-ng/material": [
+                "./dist/@volvox-ng/material"
+            ],
+            "@volvox-ng/material/*": [
+                "./dist/@volvox-ng/material/*"
+            ]
+        },
+        "useDefineForClassFields": false
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
