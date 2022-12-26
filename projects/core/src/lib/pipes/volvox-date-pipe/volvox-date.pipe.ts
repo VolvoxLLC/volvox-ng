@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class VolvoxDatePipe implements PipeTransform {
 
-    private store$: BehaviorSubject<number>;
+    private readonly store$: BehaviorSubject<number>;
     private templates: { [ key: string ]: string };
 
     constructor(

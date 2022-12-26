@@ -12,7 +12,7 @@
         "experimentalDecorators": true,
         "moduleResolution": "node",
         "importHelpers": true,
-        "target": "es2020",
+        "target": "ES2022",
         "module": "es2020",
         "types": [
             "node"
@@ -35,7 +35,8 @@
             "@volvox-ng/material/*": [
                 "./dist/@volvox-ng/material/*"
             ]
-        }
+        },
+        "useDefineForClassFields": false
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,

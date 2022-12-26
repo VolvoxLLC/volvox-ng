@@ -15,8 +15,9 @@ export class ConfirmDialog extends BaseComponent implements OnInit {
     public result: typeof ConfirmDialogResult = ConfirmDialogResult;
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) private myConfirmDialogData: ConfirmDialogData,
-        private myMatDialogRef: MatDialogRef<ConfirmDialog>,
+        @Inject(MAT_DIALOG_DATA)
+        private readonly myConfirmDialogData: ConfirmDialogData,
+        private readonly myMatDialogRef: MatDialogRef<ConfirmDialog>,
     ) {
         super();
         const cancel: ConfirmDialogAction = new ConfirmDialogAction('volvox.commons.buttons.cancel', true);

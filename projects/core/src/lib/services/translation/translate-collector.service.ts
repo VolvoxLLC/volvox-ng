@@ -16,7 +16,7 @@ export class TranslateCollectorService {
 
     private translationMap: IKeyMap<ITranslationMap[]> = {};
 
-    constructor(private myTranslateService: TranslateService) {
+    constructor(private readonly myTranslateService: TranslateService) {
     }
 
     public addTranslations(translation: IKeyMap<string>, lang: string, priority: number): void {

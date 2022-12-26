@@ -7,11 +7,11 @@
         "url": "https://volvox.tech/"
     },
     "peerDependencies": {
-        "@angular/common": ">=14.0.0",
-        "@angular/core": ">=14.0.0",
-        "@volvox-ng/core": ">=14.0.0",
-        "@angular/cdk": ">=14.0.0",
-        "@angular/material": ">=14.0.0"
+        "@angular/common": ">=15.0.0",
+        "@angular/core": ">=15.0.0",
+        "@volvox-ng/core": ">=15.0.0",
+        "@angular/cdk": ">=15.0.0",
+        "@angular/material": ">=15.0.0"
     },
     "schematics": "./schematics/collection.json",
     "ng-add": {
