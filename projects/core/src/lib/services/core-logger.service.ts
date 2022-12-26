@@ -14,7 +14,7 @@ export class CoreLoggerService {
 
     public defaultConfig: ILoggerDefaultConfig;
 
-    private uiLogs$: BehaviorSubject<ILogEvent>;
+    private readonly uiLogs$: BehaviorSubject<ILogEvent>;
 
     /**
      * Default constructor

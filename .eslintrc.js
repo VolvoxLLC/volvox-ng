@@ -55,7 +55,7 @@ module.exports = {
             {
                 'type': 'element',
                 'prefix': [
-                    'apollo'
+                    'volvox'
                 ],
                 'style': 'kebab-case'
             }
@@ -66,7 +66,7 @@ module.exports = {
             {
                 'type': 'attribute',
                 'prefix': [
-                    'apollo'
+                    'volvox'
                 ],
                 'style': 'camelCase'
             }
@@ -164,7 +164,6 @@ module.exports = {
 
                     'public-abstract-field',
                     'protected-abstract-field',
-                    'private-abstract-field',
 
                     'public-field',
                     'protected-field',
@@ -198,17 +197,12 @@ module.exports = {
                     'protected-instance-method',
                     'private-instance-method',
 
-                    'public-abstract-method',
-                    'protected-abstract-method',
-                    'private-abstract-method',
-
                     'public-static-method',
                     'protected-static-method',
                     'private-static-method',
 
                     'static-method',
                     'instance-method',
-                    'abstract-method',
 
                     'decorated-method',
 

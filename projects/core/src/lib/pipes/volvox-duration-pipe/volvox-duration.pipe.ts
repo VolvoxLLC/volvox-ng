@@ -9,7 +9,7 @@ import { VolvoxDurationFormat } from '../../models/volvox-duration.model';
 })
 export class VolvoxDurationPipe implements PipeTransform {
 
-    private store$: BehaviorSubject<number>;
+    private readonly store$: BehaviorSubject<number>;
     private readonly interval: NodeJS.Timer;
 
     constructor(

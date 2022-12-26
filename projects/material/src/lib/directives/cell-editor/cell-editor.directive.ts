@@ -8,7 +8,7 @@ import { CellEditorService } from '../../services/cell-editor.service';
 export class CellEditorDirective implements OnInit {
 
     @ContentChild(CellEditorComponent)
-    private cellEditor: CellEditorComponent;
+    private readonly cellEditor: CellEditorComponent;
 
     constructor(
         private readonly myElementRef: ElementRef<HTMLElement>,

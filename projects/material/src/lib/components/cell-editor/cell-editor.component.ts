@@ -38,13 +38,13 @@ export class CellEditorComponent<T = any> extends BaseComponent implements OnIni
     public cellClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
     @Output()
-    private cellChange: EventEmitter<void> = new EventEmitter<void>();
+    private readonly cellChange: EventEmitter<void> = new EventEmitter<void>();
 
     @Output()
-    private cellCancel: EventEmitter<void> = new EventEmitter<void>();
+    private readonly cellCancel: EventEmitter<void> = new EventEmitter<void>();
 
     @ContentChild(MatSelect)
-    private select: MatSelect;
+    private readonly select: MatSelect;
 
     public mode: 'input' | 'output' = 'output';
 
