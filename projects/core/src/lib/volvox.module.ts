@@ -3,7 +3,7 @@ import { APP_INITIALIZER, ModuleWithProviders, NgModule } from '@angular/core';
 import { AssetsI18nLoaderService } from './services/translation/assets-i18n-loader.service';
 
 export function initI18n(i18n: AssetsI18nLoaderService): () => Promise<void> {
-    return () => i18n.init(null, null,1);
+    return () => i18n.init(null, null, 1);
 }
 
 export function initI18nCore(i18n: AssetsI18nLoaderService): () => Promise<void> {

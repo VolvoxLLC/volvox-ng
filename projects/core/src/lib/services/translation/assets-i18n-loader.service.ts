@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { share, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, share, tap } from 'rxjs/operators';
 import { IKeyMap } from '../../models/key-map.model';
 import { getRandomString } from '../../utils/commons.util';
 import { TranslateCollectorService } from './translate-collector.service';
@@ -57,7 +57,11 @@ export class AssetsI18nLoaderService {
         return this.myHttpClient.get(`${ (path || './assets/i18n/') + filename }?v=${ getRandomString() }`)
             .pipe(
                 tap((response: IKeyMap<string>) =>
-                    this.myTranslateCollectorService.addTranslations(response, lang, priority || this.priority))
+                    this.myTranslateCollectorService.addTranslations(response, lang, priority || this.priority)),
+                catchError(() => {
+                    console.error(`Missing file -> ${ filename } <-- FIX THIS!`);
+                    return of(null);
+                }),
             );
     }
 }

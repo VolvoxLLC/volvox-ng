@@ -1,5 +1,10 @@
 # Changelog
 
+15.0.1 (2022-12-26)
+--------------------------------
+- Added language files
+- Catched error when loading languages
+
 15.0.0 (2022-12-26)
 --------------------------------
 - Update to Angular 15
